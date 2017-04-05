@@ -21,11 +21,13 @@ public class MainActivity extends BaseActivity {
 //            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 //        }
 
-        ViewPager viewPage = (ViewPager) findViewById(R.id.viewpage);
-        android.support.design.widget.TabLayout tabLayout = (android.support.design.widget.TabLayout) findViewById(R.id.tabLayout);
 
+        //viewPage
+        ViewPager viewPage = (ViewPager) findViewById(R.id.viewpage);
         viewPage.setAdapter(new MainActivityAdpter(getSupportFragmentManager()));
 
+        //tablayout
+        android.support.design.widget.TabLayout tabLayout = (android.support.design.widget.TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPage);
     }
 }
