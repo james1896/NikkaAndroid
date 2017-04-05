@@ -6,9 +6,14 @@
     android:orientation="vertical"
     >
     <include layout="@layout/toolbar" />
-    <TextView
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:text="home" />-->
+    <com.never.nikkaandroid.base.CanvasView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="home" />
+        android:layout_height="match_parent">
+
+    </com.never.nikkaandroid.base.CanvasView>
 
 </LinearLayout>

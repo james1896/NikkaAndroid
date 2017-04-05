@@ -3,6 +3,8 @@ package com.never.nikkaandroid;
 import android.graphics.Typeface;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.never.nikkaandroid.adpter.MainActivityAdpter;
@@ -25,6 +27,13 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 //            //透明导航栏1
 //            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 //        }
+        //dp
+        WindowManager wm = this.getWindowManager();
+        int width = wm.getDefaultDisplay().getWidth();
+        int height = wm.getDefaultDisplay().getHeight();
+        Log.e("111","width"+width);
+        Log.e("111","height"+height);
+
 
         titleTextView = (TextView) findViewById(R.id.toolbar_title);
         titleTextView.setText(titles[0]);
