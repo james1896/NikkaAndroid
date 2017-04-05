@@ -9,6 +9,7 @@ import com.never.nikkaandroid.base.BaseActivity;
 
 public class MainActivity extends BaseActivity implements TabLayout.OnTabSelectedListener{
 
+    private TextView titleTextView;
     @Override
     protected int getContentView() {
         return R.layout.activity_main;
@@ -23,6 +24,8 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 //            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 //        }
 
+        titleTextView = (TextView) findViewById(R.id.toolbar_title);
+        titleTextView.setText("0");
 
         //viewPage
         ViewPager viewPage = (ViewPager) findViewById(R.id.viewpage);
@@ -36,17 +39,17 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-        TextView textView = (TextView) findViewById(R.id.toolbar_title);
+
         switch (tab.getPosition()){
             case 0:
 
-                textView.setText("0");
+                titleTextView.setText("0");
                 break;
             case 1:
-                textView.setText("1");
+                titleTextView.setText("1");
                 break;
             case 2:
-                textView.setText("2");
+                titleTextView.setText("2");
                 break;
             default:
                 break;
