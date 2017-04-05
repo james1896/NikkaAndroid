@@ -1,9 +1,10 @@
 package com.never.nikkaandroid.base;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-import com.never.nikka_android.R;
+import com.never.nikkaandroid.R;
+
 
 public class BaseActivity extends AppCompatActivity {
 
