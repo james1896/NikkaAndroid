@@ -20,6 +20,7 @@ public class TabLayoutItemView extends LinearLayout {
     public TabLayoutItemView(Context context,String text,int resid) {
         super(context);
         View.inflate(getContext(), R.layout.tablayout_item, this);
+
         ((ImageView)findViewById(R.id.imageview)).setImageResource(resid);
         ((TextView)findViewById(R.id.textview)).setText(text);
     }

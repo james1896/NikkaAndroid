@@ -8,6 +8,7 @@
     <ImageView
         android:id="@+id/imageview"
         android:layout_width="wrap_content"
+        android:padding="@dimen/m_3"
         android:layout_height="wrap_content"
         android:src="@drawable/tab_home_icon_selector" />
 
@@ -15,8 +16,7 @@
         android:id="@+id/textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/m_4"
         android:text="水果"
         android:textColor="@drawable/tab_home_text_selector"
-        android:textSize="@dimen/textsize_16" />
+        android:textSize="@dimen/textsize_14" />
 </LinearLayout>
