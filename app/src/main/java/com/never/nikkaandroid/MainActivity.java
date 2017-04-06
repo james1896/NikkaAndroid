@@ -48,6 +48,9 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         android.support.design.widget.TabLayout tabLayout = (android.support.design.widget.TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPage);
         tabLayout.addOnTabSelectedListener(this);
+        tabLayout.getTabAt(0).setIcon(getResources().getDrawable(R.drawable.grape_normal));
+        tabLayout.getTabAt(1).setIcon(getResources().getDrawable(R.drawable.activity_normal));
+        tabLayout.getTabAt(2).setIcon(getResources().getDrawable(R.drawable.me_normal));
     }
 
     @Override
@@ -56,23 +59,34 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
         switch (tab.getPosition()){
             case 0:
-
+                tab.setIcon(getResources().getDrawable(R.drawable.grape_press));
                 break;
             case 1:
-
+                tab.setIcon(getResources().getDrawable(R.drawable.activity_press));
                 break;
             case 2:
-
+                tab.setIcon(getResources().getDrawable(R.drawable.me_press));
                 break;
             default:
                 break;
-
         }
     }
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
-
+        switch (tab.getPosition()){
+            case 0:
+                tab.setIcon(getResources().getDrawable(R.drawable.grape_normal));
+                break;
+            case 1:
+                tab.setIcon(getResources().getDrawable(R.drawable.activity_normal));
+                break;
+            case 2:
+                tab.setIcon(getResources().getDrawable(R.drawable.activity_normal));
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
