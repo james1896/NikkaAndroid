@@ -12,4 +12,9 @@
 
     </style>
 
+    <style name="dafdsa" parent="Widget.Design.TabLayout">
+        <item name="tabSelectedTextColor">#cdcdcd</item>
+        <item name="android:textColor">#ad37ad</item>
+        
+    </style>
 </resources>

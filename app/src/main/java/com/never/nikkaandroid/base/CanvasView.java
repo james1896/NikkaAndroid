@@ -21,6 +21,8 @@ public class CanvasView extends View {
     public CanvasView(Context context) {
         super(context);
        init();
+
+
     }
     private void init(){
         paint = new Paint();

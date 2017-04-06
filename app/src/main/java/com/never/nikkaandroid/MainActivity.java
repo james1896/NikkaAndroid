@@ -21,20 +21,22 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
     @Override
     protected void init() {
+        //沉浸式状态栏
         //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 //            //透明状态栏
 //            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 //            //透明导航栏1
 //            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 //        }
+
         //dp
         WindowManager wm = this.getWindowManager();
         int width = wm.getDefaultDisplay().getWidth();
         int height = wm.getDefaultDisplay().getHeight();
-        Log.e("111","width"+width);
-        Log.e("111","height"+height);
+        Log.e("screen","width"+width);
+        Log.e("screen","height"+height);
 
-
+        //toolbar title
         titleTextView = (TextView) findViewById(R.id.toolbar_title);
         titleTextView.setText(titles[0]);
         Typeface type= Typeface.createFromAsset(getAssets(),"font/MarkerFelt.ttf");
@@ -56,7 +58,6 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         titleTextView.setText(titles[tab.getPosition()]);
-
         switch (tab.getPosition()){
             case 0:
                 tab.setIcon(getResources().getDrawable(R.drawable.grape_press));

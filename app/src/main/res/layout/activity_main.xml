@@ -27,7 +27,8 @@
             android:layout_height="49dp"
             app:tabIndicatorHeight="0dp"
             app:tabMode="fixed"
-            app:tabTextColor="#000">
+            style="@style/dafdsa"
+            >
             <!--上面TabLayout中app:tabIndicatorHeight="0dp"是为了不显示tab底部的横线，-->
             <!--app:tabMode="fixed"是让底部tab布局不可滑动。-->
         </android.support.design.widget.TabLayout>
