@@ -1,22 +1,23 @@
 package com.never.nikkaandroid.adpter;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
-
 import com.never.nikkaandroid.grid.GridFragment;
 import com.never.nikkaandroid.home.HomeFragment;
 import com.never.nikkaandroid.me.MeFragment;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class MainActivityAdpter extends FragmentPagerAdapter {
     private List<Fragment> fragments = new ArrayList<>();
+    private FragmentActivity context;
 
-    public MainActivityAdpter(FragmentManager fm) {
-        super(fm);
+    public MainActivityAdpter(FragmentActivity context) {
+        super(context.getSupportFragmentManager());
+        this.context = context;
+
         this.fragments.add(new HomeFragment());
         this.fragments.add(new GridFragment());
         this.fragments.add(new MeFragment());
