@@ -24,4 +24,6 @@
 
     <dimen name="toolbarHight">48dp</dimen>
     <dimen name="h_banner">150dp</dimen>
+
+    <dimen name="hhh">400dp</dimen>
 </resources>

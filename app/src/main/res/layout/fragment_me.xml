@@ -2,16 +2,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/background_white"
     android:orientation="vertical"
     tools:context="com.never.nikkaandroid.me.MeFragment">
 
 
-    <include layout="@layout/toolbar" />
+
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <com.never.nikkaandroid.base.CanvasView
+        android:id="@+id/canvasview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp">
+    </com.never.nikkaandroid.base.CanvasView>
+
+    <TextView
+        android:id="@+id/tetview"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:textColor="@color/background_white"
+        android:background="@color/colorBlock"
+        android:layout_weight="1"
         android:text="me" />
 
 </LinearLayout>

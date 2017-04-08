@@ -2,14 +2,16 @@ package com.never.nikkaandroid.base;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
+
+import com.never.nikkaandroid.R;
 
 /**
  * Created by toby on 05/04/2017.
@@ -17,35 +19,39 @@ import android.view.View;
 
 public class CanvasView extends View {
     Paint paint;
+    Context context;
 
     public CanvasView(Context context) {
         super(context);
-       init();
+       init(context);
+//        创建的非Activity类引用getResources()方法问题的解决方法
 
-
+        Log.e("screen","width"+context.getResources().getDisplayMetrics().widthPixels);
+        Log.e("screen","height"+context.getResources().getDisplayMetrics().heightPixels);
     }
-    private void init(){
+    private void init(Context context){
         paint = new Paint();
-        paint.setColor(Color.YELLOW);
+        paint.setColor(context.getResources().getColor(R.color.me_headerview));
         paint.setAntiAlias(true);
+        this.context = context;
 
     }
     public CanvasView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-        init();
+        init(context);
     }
 
     public CanvasView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(context);
     }
 
     //必需在这个版本下 才会调用这个方法
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public CanvasView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        init();
+        init(context);
     }
 
     //view  大小
@@ -71,10 +77,10 @@ public class CanvasView extends View {
 
 
         Path path5=new Path();
-        path5.moveTo(0, 500);
-        path5.lineTo(0,300);
-        path5.lineTo(100,200);
-        path5.lineTo(100, 500);
+        path5.moveTo(0, 0);
+        path5.lineTo(context.getResources().getDisplayMetrics().widthPixels,0);
+        path5.lineTo(context.getResources().getDisplayMetrics().widthPixels,550);
+        path5.lineTo(0, 420);
         path5.close();
         canvas.drawPath(path5, paint);
     }

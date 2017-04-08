@@ -1,8 +1,11 @@
 package com.never.nikkaandroid;
 
 import android.graphics.Typeface;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -12,6 +15,7 @@ import com.never.nikkaandroid.base.BaseActivity;
 import com.never.nikkaandroid.base.TabLayoutItemView;
 
 public class MainActivity extends BaseActivity implements TabLayout.OnTabSelectedListener{
+
 
     private TextView titleTextView;
     private String[] titles = new String[]{"Nikka","","Profile"};
@@ -96,6 +100,15 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
+
+    }
+
+    //android 6.0以上需要动态申请权限
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private String getDeviceID(){
+        TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
+        String szImei = TelephonyMgr.getDeviceId();
+        return szImei;
 
     }
 }
