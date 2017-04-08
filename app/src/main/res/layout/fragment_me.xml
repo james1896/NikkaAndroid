@@ -10,19 +10,15 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <com.never.nikkaandroid.base.CanvasView
-        android:id="@+id/canvasview"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
-    </com.never.nikkaandroid.base.CanvasView>
+    <!--<com.never.nikkaandroid.base.CanvasView-->
+        <!--android:id="@+id/canvasview"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp">-->
+    <!--</com.never.nikkaandroid.base.CanvasView>-->
 
-    <TextView
-        android:id="@+id/tetview"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:textColor="@color/background_white"
-        android:background="@color/colorBlock"
-        android:layout_weight="1"
-        android:text="me" />
+    <ListView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/meListView">
+    </ListView>
 
 </LinearLayout>
