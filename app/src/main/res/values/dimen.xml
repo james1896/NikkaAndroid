@@ -10,6 +10,10 @@
     <dimen name="m_4">4dp</dimen>
     <dimen name="m_3">3dp</dimen>
     <dimen name="m_8">8dp</dimen>
+    <dimen name="m_35">35dp</dimen>
+    <dimen name="m_40">40dp</dimen>
+    <dimen name="m_60">60dp</dimen>
+
     <dimen name="textsize_10">10dp</dimen>
     <dimen name="textsize_11">11dp</dimen>
     <dimen name="textsize_12">12dp</dimen>
@@ -23,6 +27,7 @@
     <dimen name="textsize_20">20dp</dimen>
 
     <dimen name="toolbarHight">48dp</dimen>
+
     <dimen name="h_banner">150dp</dimen>
 
     <dimen name="hhh">400dp</dimen>

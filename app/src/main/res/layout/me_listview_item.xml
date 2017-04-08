@@ -6,13 +6,37 @@
     android:layout_height="wrap_content"
     android:id="@+id/MyListItem"
     android:paddingBottom="3dip"
-    android:paddingLeft="10dip">
-    <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:id="@+id/ItemTitle"
-        android:textColor="@color/colorBlock"
-        android:textSize="30dip">
-    </TextView>
+    android:paddingLeft="@dimen/m_60"
+    android:paddingRight="@dimen/m_60">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       >
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/m_35"
+            android:layout_height="@dimen/m_35" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/ItemTitle"
+            android:paddingTop="@dimen/m_6"
+            android:paddingLeft="@dimen/m_8"
+            android:textColor="@color/colorBlock"
+            android:textSize="@dimen/textsize_18">
+        </TextView>
+    </LinearLayout>
+
+    <!--底线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="@dimen/m_6"
+        android:background="#EEEEEE">
+
+    </View>
 </LinearLayout>

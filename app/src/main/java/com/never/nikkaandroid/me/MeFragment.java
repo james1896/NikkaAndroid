@@ -11,7 +11,10 @@ import com.never.nikkaandroid.adpter.BaseListAdapter;
 import com.never.nikkaandroid.base.BaseFragment;
 import com.never.nikkaandroid.base.CanvasView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,9 +46,11 @@ public class MeFragment extends BaseFragment {
         //代码初始化view
         int height = (int) (0.4*AppDataManager.getScreenHeight(getContext()));
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
-        headerView  = new CanvasView(getContext(),height);
+        headerView  = new CanvasView(getContext(),height,20.0f,"name","subTitle");
         headerView.setBackgroundColor(getResources().getColor(R.color.white));
         headerView.setLayoutParams(params);
+
+        headerView.refresh("shahahshshshshs");
 
 
 //        dataList = new ArrayList<String>();
@@ -58,14 +63,11 @@ public class MeFragment extends BaseFragment {
 //                android.R.layout.simple_list_item_1, dataList);
 //
         ListView  listview = (ListView) contentView.findViewById(R.id.meListView);
-        listview.setAdapter(new BaseListAdapter(getContext()));
+        listview.setAdapter(new BaseListAdapter(getContext(),getDataList()));
         listview.addHeaderView(headerView);
 
         // 绑定item点击事件
 //        listview.setOnItemClickListener(this);
-
-
-
 
 
 
@@ -88,4 +90,34 @@ public class MeFragment extends BaseFragment {
 //        });
     }
 
+    private ArrayList<Map> getDataList(){
+        ArrayList<Map> list = new ArrayList<>();
+
+       Map<String,Object> map1 = new HashMap<String,Object>();
+        map1.put("title","礼物赠送");
+        map1.put("resId",R.drawable.me_list_zengsong);
+        list.add(map1);
+
+        Map<String,Object> map2 = new HashMap<String,Object>();
+        map2.put("title","生活助手");
+        map2.put("resId",R.drawable.me_list_key);
+        list.add(map2);
+
+        Map<String,Object> map3 = new HashMap<String,Object>();
+        map3.put("title","意见反馈");
+        map3.put("resId",R.drawable.me_list_yijian);
+        list.add(map3);
+
+        Map<String,Object> map4 = new HashMap<String,Object>();
+        map4.put("title","呜谢组织");
+        map4.put("resId",R.drawable.me_list_thank);
+        list.add(map4);
+
+        Map<String,Object> map5 = new HashMap<String,Object>();
+        map5.put("title","关于我们");
+        map5.put("resId",R.drawable.me_list_about);
+        list.add(map5);
+        return list;
+
+    }
 }
