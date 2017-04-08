@@ -20,10 +20,13 @@ import com.never.nikkaandroid.R;
 public class CanvasView extends View {
     Paint paint;
     Context context;
+    int height;
 
-    public CanvasView(Context context) {
+    public CanvasView(Context context, int height) {
         super(context);
        init(context);
+        this.height = height;
+
 //        创建的非Activity类引用getResources()方法问题的解决方法
 
         Log.e("screen","width"+context.getResources().getDisplayMetrics().widthPixels);

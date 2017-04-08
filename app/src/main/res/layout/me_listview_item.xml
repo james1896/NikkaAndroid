@@ -14,10 +14,5 @@
         android:textColor="@color/colorBlock"
         android:textSize="30dip">
     </TextView>
-    <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:textColor="@color/colorBlock"
-        android:id="@+id/ItemText">
-    </TextView>
+
 </LinearLayout>

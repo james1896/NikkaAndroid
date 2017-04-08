@@ -3,16 +3,14 @@ package com.never.nikkaandroid.me;
 
 import android.app.Fragment;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.never.nikkaandroid.AppDataManager;
 import com.never.nikkaandroid.R;
+import com.never.nikkaandroid.adpter.BaseListAdapter;
 import com.never.nikkaandroid.base.BaseFragment;
 import com.never.nikkaandroid.base.CanvasView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,23 +41,24 @@ public class MeFragment extends BaseFragment {
 
 
         //代码初始化view
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (0.4*AppDataManager.getScreenHeight(getContext())));
-        headerView  = new CanvasView(getContext());
+        int height = (int) (0.4*AppDataManager.getScreenHeight(getContext()));
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
+        headerView  = new CanvasView(getContext(),height);
         headerView.setBackgroundColor(getResources().getColor(R.color.white));
         headerView.setLayoutParams(params);
 
 
-        dataList = new ArrayList<String>();
-        // 初始化数据
-        for (int i = 0; i < 20; i++) {
-            dataList.add("第" + i + "条数据");
-        }
-        // 设置adapter(所在的activity,使用的显示样式,数据源)
-        ListAdapter adapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_list_item_1, dataList);
-
-      ListView  listview = (ListView) contentView.findViewById(R.id.meListView);
-        listview.setAdapter(adapter);
+//        dataList = new ArrayList<String>();
+//        // 初始化数据
+//        for (int i = 0; i < 20; i++) {
+//            dataList.add("第" + i + "条数据");
+//        }
+//        // 设置adapter(所在的activity,使用的显示样式,数据源)
+//        ListAdapter adapter = new ArrayAdapter<String>(getContext(),
+//                android.R.layout.simple_list_item_1, dataList);
+//
+        ListView  listview = (ListView) contentView.findViewById(R.id.meListView);
+        listview.setAdapter(new BaseListAdapter(getContext()));
         listview.addHeaderView(headerView);
 
         // 绑定item点击事件
