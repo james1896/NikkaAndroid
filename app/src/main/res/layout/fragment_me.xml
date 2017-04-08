@@ -16,10 +16,10 @@
         <!--android:layout_height="0dp">-->
     <!--</com.never.nikkaandroid.base.CanvasView>-->
 
-    <ListView android:layout_width="match_parent"
+    <com.never.nikkaandroid.base.BounceListView android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBlock"
         android:id="@+id/meListView">
-    </ListView>
+    </com.never.nikkaandroid.base.BounceListView>
 
 </LinearLayout>
