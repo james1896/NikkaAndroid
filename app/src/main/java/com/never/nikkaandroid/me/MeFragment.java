@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.never.nikkaandroid.AppDataManager;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.base.BaseFragment;
 import com.never.nikkaandroid.base.CanvasView;
@@ -42,7 +43,7 @@ public class MeFragment extends BaseFragment {
 
 
         //代码初始化view
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 550);
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (0.4*AppDataManager.getScreenHeight(getContext())));
         headerView  = new CanvasView(getContext());
         headerView.setBackgroundColor(getResources().getColor(R.color.white));
         headerView.setLayoutParams(params);

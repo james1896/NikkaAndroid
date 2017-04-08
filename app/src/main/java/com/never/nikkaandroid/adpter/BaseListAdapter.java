@@ -1,5 +1,6 @@
 package com.never.nikkaandroid.adpter;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -9,9 +10,10 @@ import android.widget.BaseAdapter;
  */
 
 public class BaseListAdapter extends BaseAdapter {
-    public BaseListAdapter(){
+    private Context context;
+    public BaseListAdapter(Context context){
 
-
+        this.context = context;
     }
     @Override
     public int getCount() {
