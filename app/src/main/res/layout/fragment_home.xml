@@ -2,14 +2,105 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/background_white"
     android:orientation="vertical"
     >
-    <include layout="@layout/toolbar" />
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:text="home" />-->
 
+    <!--上半部分-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <!--目前空白-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="#6FB136">
+        </LinearLayout>
+
+        <!--付款，优惠 消费记录-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:background="#62A634">
+
+            <!--付款-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:padding="@dimen/m_10">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/m_30"
+                    android:layout_marginBottom="0dp"
+                    android:gravity="center"
+                    android:text="我的储蓄"/>
+            </LinearLayout>
+
+            <!--优惠-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:padding="@dimen/m_10">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/m_30"
+                    android:gravity="center"
+                    android:text="优惠活动"/>
+            </LinearLayout>
+
+            <!--消费记录-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:padding="@dimen/m_10">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/m_30"
+                    android:gravity="center"
+                    android:text="消费记录"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--下半部分-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <!--文字-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:textColor="#6FB136"
+            android:gravity="center_vertical|left"
+            android:textSize="16dp"
+            android:paddingLeft="@dimen/m_6"
+            android:text="Here's the loyalty program app"/>
+        <!--banner-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/home_banner"/>
+    </LinearLayout>
 
 </LinearLayout>
