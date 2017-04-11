@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -28,10 +29,10 @@ public class CanvasView extends View{
     private String subTitle;
 
 
-    private int leftHeight = 420;
+    private int leftHeight = 440;
     private int rightHeight = 550;
 
-    private String text = "toby是的dgdjsahfjdhalkfkjdsaffdsafdsafdsafdsafdsa";
+    private String text = "";
 
     public CanvasView(Context context, int height,float points,String userName,String subTitle) {
         super(context);
@@ -41,7 +42,7 @@ public class CanvasView extends View{
         this.userName = userName;
         this.subTitle = subTitle;
         this.sreenWidth = context.getResources().getDisplayMetrics().widthPixels;
-        this.leftHeight = sreenWidth / 3;
+//        this.leftHeight = sreenWidth / 3;
     }
     private void init(Context context){
 
@@ -71,7 +72,7 @@ public class CanvasView extends View{
 
 
     public void refresh(String text){
-        this.text  = text;
+        this.text  = "当前积分: " + text;
         invalidate();
     }
 
@@ -101,15 +102,16 @@ public class CanvasView extends View{
     private void initTextPaint(){
         textPaint = new Paint();
         textPaint.setAntiAlias(true);
-        textPaint.setTextSize(46);
+        textPaint.setTextSize(42);
+        textPaint.setTypeface(Typeface.DEFAULT_BOLD);
         textPaint.setTextAlign(Paint.Align.LEFT);
-        textPaint.setColor(Color.BLUE);
+        textPaint.setColor(Color.WHITE);
     }
     private void drawText(Canvas canvas){
         float length = textPaint.measureText(text);
 
         float x = sreenWidth - 60 - length;
-        float y = 300;
+        float y = 420;
 
         canvas.drawText(text, x, y, textPaint);
 
@@ -120,8 +122,8 @@ public class CanvasView extends View{
     private void drawBackground(Canvas canvas){
         Path path5=new Path();
         path5.moveTo(0, 0);
-        path5.lineTo(context.getResources().getDisplayMetrics().widthPixels,0);
-        path5.lineTo(context.getResources().getDisplayMetrics().widthPixels,rightHeight);
+        path5.lineTo(sreenWidth,0);
+        path5.lineTo(sreenWidth,rightHeight);
         path5.lineTo(0, leftHeight);
         path5.close();
         canvas.drawPath(path5, backgroundPaint);

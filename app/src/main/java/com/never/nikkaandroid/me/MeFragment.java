@@ -49,8 +49,7 @@ public class MeFragment extends BaseFragment {
         headerView  = new CanvasView(getContext(),height,20.0f,"name","subTitle");
         headerView.setBackgroundColor(getResources().getColor(R.color.white));
         headerView.setLayoutParams(params);
-
-        headerView.refresh("shahahshshshshs");
+        headerView.refresh("25.0");
 
 
 //        dataList = new ArrayList<String>();
