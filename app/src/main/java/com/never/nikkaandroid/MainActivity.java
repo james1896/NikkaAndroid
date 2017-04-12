@@ -8,6 +8,8 @@ import android.support.v4.view.ViewPager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.never.nikkaandroid.adpter.MainActivityAdpter;
@@ -17,6 +19,8 @@ import com.never.nikkaandroid.base.TabLayoutItemView;
 public class MainActivity extends BaseActivity implements TabLayout.OnTabSelectedListener{
 
 
+    private RelativeLayout layout;
+    private LinearLayout linearLayout;
     private TextView titleTextView;
     private String[] titles = new String[]{"Nikka","","Profile"};
     @Override
@@ -26,21 +30,30 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
     @Override
     protected void init() {
-        //沉浸式状态栏
-        //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            //透明状态栏
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//            //透明导航栏1
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//        }
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
+            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
+        }
         //dp
         WindowManager wm = this.getWindowManager();
-        int width = wm.getDefaultDisplay().getWidth();
+        final int width = wm.getDefaultDisplay().getWidth();
         int height = wm.getDefaultDisplay().getHeight();
         Log.e("screen","width"+width);
         Log.e("screen","height"+height);
 
+////        layout = (RelativeLayout) findViewById(R.id.layout);
+//        linearLayout = (LinearLayout) findViewById(R.id.layout);
+//
+//        linearLayout.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                TransView view = new TransView(MainActivity.this);
+////                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, (int)getResources().getDimension(R.dimen.m_60));
+//                layout.addView(view);
+////                linearLayout.addView(view);
+//                view.startTrans(getResources().getDimension(R.dimen.m_60), 2000);
+//            }
+//        });
         //toolbar title
         titleTextView = (TextView) findViewById(R.id.toolbar_title);
         titleTextView.setText(titles[0]);
@@ -52,7 +65,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         viewPage.setAdapter(new MainActivityAdpter(this));
 
         //tablayout
-        android.support.design.widget.TabLayout tabLayout = (android.support.design.widget.TabLayout) findViewById(R.id.tabLayout);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPage);
         tabLayout.addOnTabSelectedListener(this);
         tabLayout.getTabAt(0).setCustomView(new TabLayoutItemView(this,"水果",R.drawable.tab_home_icon_selector));

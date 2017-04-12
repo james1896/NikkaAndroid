@@ -8,13 +8,5 @@
         <!--<item name="colorPrimaryDark">@color/colorPrimary</item>-->
         <!--<item name="colorAccent">@color/colorAccent</item>-->
         <!--<item name="windowNoTitle">true</item>-->
-        <item name="android:windowBackground">@android:color/white</item>
-
-    </style>
-
-    <style name="dafdsa" parent="Widget.Design.TabLayout">
-        <item name="tabSelectedTextColor">#cdcdcd</item>
-        <item name="android:textColor">#ad37ad</item>
-        
     </style>
 </resources>
