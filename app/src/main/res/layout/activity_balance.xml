@@ -21,4 +21,14 @@
       android:layout_height="200dp"
       android:background="@android:color/white"
       android:layout_centerInParent="true"/>
+
+ <ImageView
+     android:id="@+id/balance_back"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:background="@drawable/back"
+     android:layout_alignParentBottom="true"
+     android:layout_marginBottom="@dimen/m_20"
+     android:layout_marginLeft="@dimen/m_20"/>
+
 </RelativeLayout>

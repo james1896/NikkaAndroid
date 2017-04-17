@@ -32,7 +32,7 @@ public class BalanceActivity extends BaseActivity {
         generate(null);
 
 
-        ImageView iv = (ImageView) findViewById(R.id.iv);
+        ImageView iv = (ImageView) findViewById(R.id.balance_back);
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
