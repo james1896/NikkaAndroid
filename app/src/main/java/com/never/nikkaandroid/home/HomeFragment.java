@@ -2,6 +2,7 @@ package com.never.nikkaandroid.home;
 
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,8 +38,8 @@ public class HomeFragment extends BaseFragment implements OnClickListener{
 
     @Override
     public void onClick(View v) {
-//        Intent intent = new Intent(getActivity(),BalanceActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(getActivity(),BalanceActivity.class);
+        getActivity().startActivity(intent);
         Log.e("fdsa","fsa");
     }
 }

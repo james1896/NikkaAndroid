@@ -3,19 +3,19 @@ package com.never.nikkaandroid.home;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
-import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.base.BaseActivity;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Hashtable;
 
 /**
  * Created by toby on 17/04/2017.
@@ -29,16 +29,27 @@ public class BalanceActivity extends BaseActivity {
 
     @Override
     protected void init() {
+        generate(null);
 
+
+        ImageView iv = (ImageView) findViewById(R.id.iv);
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public void generate(View view) {
         ImageView iv = (ImageView) findViewById(R.id.iv);
-        Bitmap qrBitmap = generateBitmap("http://www.csdn.net",100, 100);
+        Bitmap qrBitmap = Create2DCode("http://www.csdn.net",300, 300);
 
         Bitmap logoBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         Bitmap bitmap = addLogo(qrBitmap, logoBitmap);
         iv.setImageBitmap(bitmap);
+
+
     }
 
     private Bitmap addLogo(Bitmap qrBitmap, Bitmap logoBitmap) {
@@ -61,26 +72,48 @@ public class BalanceActivity extends BaseActivity {
         return blankBitmap;
     }
 
-    private Bitmap generateBitmap(String content, int width, int height) {
-        QRCodeWriter qrCodeWriter = new QRCodeWriter();
-        Map<EncodeHintType, String> hints = new HashMap<>();
-        hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
+    public static Bitmap Create2DCode(String str, int width, int height) {
         try {
-            BitMatrix encode = qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, width, height, hints);
+            Hashtable<EncodeHintType, Object> hints = new Hashtable<EncodeHintType, Object>();
+            hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
+            hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
+            hints.put(EncodeHintType.MARGIN, 1);
+            BitMatrix matrix = new QRCodeWriter().encode(str, BarcodeFormat.QR_CODE, width, height);
+            matrix = deleteWhite(matrix);//删除白边
+            width = matrix.getWidth();
+            height = matrix.getHeight();
             int[] pixels = new int[width * height];
-            for (int i = 0; i < height; i++) {
-                for (int j = 0; j < width; j++) {
-                    if (encode.get(j, i)) {
-                        pixels[i * width + j] = 0xff000000;
+            for (int y = 0; y < height; y++) {
+                for (int x = 0; x < width; x++) {
+                    if (matrix.get(x, y)) {
+                        pixels[y * width + x] = Color.BLACK;
                     } else {
-                        pixels[i * width + j] = 0x00ffffff;
+                        pixels[y * width + x] = Color.WHITE;
                     }
                 }
             }
-            return Bitmap.createBitmap(pixels, 0, width, width, height, Bitmap.Config.ARGB_8888);
-        } catch (WriterException e) {
-            e.printStackTrace();
+            Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+            bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
+            return bitmap;
+        } catch (Exception e) {
+            return null;
         }
-        return null;
+    }
+
+
+    private static BitMatrix deleteWhite(BitMatrix matrix) {
+        int[] rec = matrix.getEnclosingRectangle();
+        int resWidth = rec[2] + 1;
+        int resHeight = rec[3] + 1;
+
+        BitMatrix resMatrix = new BitMatrix(resWidth, resHeight);
+        resMatrix.clear();
+        for (int i = 0; i < resWidth; i++) {
+            for (int j = 0; j < resHeight; j++) {
+                if (matrix.get(i + rec[0], j + rec[1]))
+                    resMatrix.set(i, j);
+            }
+        }
+        return resMatrix;
     }
 }
