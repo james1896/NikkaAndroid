@@ -10,11 +10,11 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <!--<com.never.nikkaandroid.base.CanvasView-->
+    <!--<com.never.nikkaandroid.views.CanvasView-->
         <!--android:id="@+id/canvasview"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="0dp">-->
-    <!--</com.never.nikkaandroid.base.CanvasView>-->
+    <!--</com.never.nikkaandroid.views.CanvasView>-->
 
     <!--<com.never.nikkaandroid.base.BounceListView-->
         <!--android:layout_width="match_parent"-->

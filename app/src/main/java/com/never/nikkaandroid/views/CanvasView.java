@@ -1,4 +1,4 @@
-package com.never.nikkaandroid.base;
+package com.never.nikkaandroid.views;
 
 import android.content.Context;
 import android.graphics.Canvas;

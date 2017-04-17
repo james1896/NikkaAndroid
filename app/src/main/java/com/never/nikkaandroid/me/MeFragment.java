@@ -9,7 +9,7 @@ import com.never.nikkaandroid.AppDataManager;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.adpter.BaseListAdapter;
 import com.never.nikkaandroid.base.BaseFragment;
-import com.never.nikkaandroid.base.CanvasView;
+import com.never.nikkaandroid.views.CanvasView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
