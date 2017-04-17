@@ -30,6 +30,7 @@
 
             <!--付款-->
             <LinearLayout
+                android:id="@+id/payLayout"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -47,6 +48,7 @@
 
             <!--优惠-->
             <LinearLayout
+                android:id="@+id/youhuiLayout"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -63,6 +65,7 @@
 
             <!--消费记录-->
             <LinearLayout
+                android:id="@+id/recordLayout"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"

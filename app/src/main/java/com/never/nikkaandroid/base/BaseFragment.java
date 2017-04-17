@@ -26,5 +26,5 @@ public abstract class BaseFragment extends Fragment {
 
     public abstract int getContentView();
 
-    protected void init(){}
+    public abstract void init();
 }

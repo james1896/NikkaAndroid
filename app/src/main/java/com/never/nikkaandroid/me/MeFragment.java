@@ -33,10 +33,10 @@ public class MeFragment extends BaseFragment {
     public int getContentView() {
         return R.layout.fragment_me;
     }
-    CanvasView headerView;
+
     @Override
-    protected void init() {
-//        final CanvasView canvasView = (CanvasView) contentView.findViewById(R.id.canvasview);
+    public void init() {
+        //        final CanvasView canvasView = (CanvasView) contentView.findViewById(R.id.canvasview);
         //用代码写布局
 //        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) canvasView.getLayoutParams();
 //        params.height = 550;
@@ -44,7 +44,7 @@ public class MeFragment extends BaseFragment {
 
 
         //代码初始化view
-        int height = (int) (0.4*AppDataManager.getScreenHeight(getContext()));
+        int height = (int) (0.4* AppDataManager.getScreenHeight(getContext()));
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
         headerView  = new CanvasView(getContext(),height,20.0f,"name","subTitle");
         headerView.setBackgroundColor(getResources().getColor(R.color.white));
@@ -61,7 +61,7 @@ public class MeFragment extends BaseFragment {
 //        ListAdapter adapter = new ArrayAdapter<String>(getContext(),
 //                android.R.layout.simple_list_item_1, dataList);
 //
-        ListView  listview = (ListView) contentView.findViewById(R.id.meListView);
+        ListView listview = (ListView) contentView.findViewById(R.id.meListView);
         listview.setAdapter(new BaseListAdapter(getContext(),getDataList()));
         listview.addHeaderView(headerView);
 
@@ -92,7 +92,7 @@ public class MeFragment extends BaseFragment {
     private ArrayList<Map> getDataList(){
         ArrayList<Map> list = new ArrayList<>();
 
-       Map<String,Object> map1 = new HashMap<String,Object>();
+        Map<String,Object> map1 = new HashMap<String,Object>();
         map1.put("title","礼物赠送");
         map1.put("resId",R.drawable.me_list_zengsong);
         list.add(map1);
@@ -119,4 +119,8 @@ public class MeFragment extends BaseFragment {
         return list;
 
     }
+
+    CanvasView headerView;
+
+
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NIKKA</string>
+    <string name="title_activity_balance">BalanceActivity</string>
 </resources>

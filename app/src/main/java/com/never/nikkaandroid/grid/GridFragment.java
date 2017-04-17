@@ -20,4 +20,9 @@ public class GridFragment extends BaseFragment {
     public int getContentView() {
         return R.layout.fragment_grid;
     }
+
+    @Override
+    public void init() {
+
+    }
 }
