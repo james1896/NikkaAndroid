@@ -3,9 +3,10 @@
     android:id="@+id/textview"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/m_60"
-    android:textSize="20dp"
+    android:layout_height="@dimen/m_100"
+    android:textSize="18dp"
     android:gravity="center"
+    android:padding="20dp"
     android:textColor="@android:color/white"
-    android:text="ahfa;hfa;hf;aohf;aofj"
-    android:background="@android:color/holo_blue_light"/>
+    android:text="在您的搜索日期内我们没有空房了，请更改日期重试。"
+    android:background="#EAA13B"/>

@@ -8,19 +8,18 @@ import android.support.v4.view.ViewPager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.never.nikkaandroid.adpter.MainActivityAdpter;
 import com.never.nikkaandroid.base.BaseActivity;
 import com.never.nikkaandroid.base.TabLayoutItemView;
+import com.never.nikkaandroid.views.TransView;
 
 public class MainActivity extends BaseActivity implements TabLayout.OnTabSelectedListener{
 
 
     private RelativeLayout layout;
-    private LinearLayout linearLayout;
     private TextView titleTextView;
     private String[] titles = new String[]{"Nikka","","Profile"};
     @Override
@@ -41,19 +40,17 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         Log.e("screen","width"+width);
         Log.e("screen","height"+height);
 
-////        layout = (RelativeLayout) findViewById(R.id.layout);
-//        linearLayout = (LinearLayout) findViewById(R.id.layout);
-//
-//        linearLayout.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                TransView view = new TransView(MainActivity.this);
-////                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, (int)getResources().getDimension(R.dimen.m_60));
-//                layout.addView(view);
-////                linearLayout.addView(view);
-//                view.startTrans(getResources().getDimension(R.dimen.m_60), 2000);
-//            }
-//        });
+        //view动画
+        layout = (RelativeLayout) findViewById(R.id.layout);
+        layout.post(new Runnable() {
+            @Override
+            public void run() {
+                TransView view = new TransView(MainActivity.this);
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, (int)getResources().getDimension(R.dimen.m_100));
+                layout.addView(view, params);
+                view.startTrans(getResources().getDimension(R.dimen.m_100), 1000);
+            }
+        });
         //toolbar title
         titleTextView = (TextView) findViewById(R.id.toolbar_title);
         titleTextView.setText(titles[0]);

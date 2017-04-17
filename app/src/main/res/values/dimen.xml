@@ -16,7 +16,7 @@
     <dimen name="m_35">35dp</dimen>
     <dimen name="m_40">40dp</dimen>
     <dimen name="m_60">60dp</dimen>
-
+    <dimen name="m_100">100dp</dimen>
 
 
     <dimen name="textsize_10">10dp</dimen>
