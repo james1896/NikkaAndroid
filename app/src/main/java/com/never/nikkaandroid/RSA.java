@@ -1,5 +1,7 @@
 package com.never.nikkaandroid;
 
+import android.util.Base64;
+
 import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -11,6 +13,8 @@ import java.security.spec.X509EncodedKeySpec;
 
 import javax.crypto.Cipher;
 
+import sun.misc.BASE64Decoder;
+
 /**
  * Created by toby on 18/04/2017.
  */
@@ -18,7 +22,7 @@ import javax.crypto.Cipher;
 /**
  * 随机生成RSA密钥对
  *
- * @param keyLength 密钥长度，范围：512～2048
+ * @paramkeyLength 密钥长度，范围：512～2048
  *                  一般1024
  * @return
  */
@@ -44,21 +48,36 @@ public class RSA {
             "jbjArhMbfs5hgXjzlwI/SHlmWV59UluoNYqH15gCHK/26p/uD3DC0vi+2NvZt32h\n" +
             "5JVOEfLUY6NM1L4gt6A+M7yKtPuirerErmUfM2gF";
 
+    public static final String PUBLICKKEY_STRING = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqgKQmqFeq0J6Vr+d90A0jlkkG5DkNYyShGj+IY9dV79T8q/cnziWnfYovZum6Vo7k83KN9tWWUEGI6NQgdY861tQ9WSQGdMiG7Oli94z6wYsKCvMZjPv7jeEY0pdLgDkr71g7/KrKPtXLmBz7LINDOE18pcKrjl/RTrOYtDo3PQIDAQAB";
 
 
 
-//public static String aaa(){
-//
-//        //公钥加密
-//        long start=System.currentTimeMillis();
-//        byte[] encryptBytes=  RSAUtils.encryptByPublicKeyForSpilt(jsonData.getBytes(),publicKey.getEncoded());
-//        long end=System.currentTimeMillis();
-//        Log.e("MainActivity","公钥加密耗时 cost time---->"+(end-start));
-//        String encryStr=Base64Encoder.encode(encryptBytes);
-//        Log.e("MainActivity","加密后json数据 --1-->"+encryStr);
-//        Log.e("MainActivity","加密后json数据长度 --1-->"+encryStr.length());
-//    }
+//字符串转公钥key
+    public static PublicKey getPublicKey(String key) throws Exception {
+        byte[] keyBytes;
+        keyBytes = (new BASE64Decoder()).decodeBuffer(key);
+        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        PublicKey publicKey = keyFactory.generatePublic(keySpec);
+        return publicKey;
+    }
+    //字符串转私钥key
+    public static PrivateKey getPrivateKey(String key) throws Exception {
+        byte[] keyBytes;
+        keyBytes = (new BASE64Decoder()).decodeBuffer(key);
+        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
+        return privateKey;
+    }
 
+    //生成秘钥对
+    //用法
+//    KeyPair keyPair=RSA.generateRSAKeyPair(RSA.DEFAULT_KEY_SIZE);
+//     公钥
+//    RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
+//     私钥
+//    RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
     public static KeyPair generateRSAKeyPair(int keyLength) {
         try {
             KeyPairGenerator kpg = KeyPairGenerator.getInstance(RSA);
@@ -75,7 +94,7 @@ public class RSA {
      *
      * @param data 原文
      */
-    public static byte[] encryptByPublicKey(byte[] data, byte[] publicKey) throws Exception {
+    public static String encryptByPublicKey(String data, byte[] publicKey) throws Exception {
         // 得到公钥
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(publicKey);
         KeyFactory kf = KeyFactory.getInstance(RSA);
@@ -83,7 +102,11 @@ public class RSA {
         // 加密数据
         Cipher cp = Cipher.getInstance(ECB_PKCS1_PADDING);
         cp.init(Cipher.ENCRYPT_MODE, keyPublic);
-        return cp.doFinal(data);
+        //加密后得到byte[]
+        byte [] encryptBytes = cp.doFinal(data.getBytes());
+        //加密后的byte[] 转成 String
+        String encryStr = new String(Base64.encode(encryptBytes,Base64.DEFAULT));
+        return encryStr;
     }
 
     /**

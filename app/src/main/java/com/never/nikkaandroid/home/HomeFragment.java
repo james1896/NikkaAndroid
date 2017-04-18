@@ -8,20 +8,21 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.cache.CacheMode;
+import com.lzy.okgo.callback.StringCallback;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.RSA;
 import com.never.nikkaandroid.base.BaseFragment;
 
-import java.security.KeyFactory;
-import java.security.KeyPair;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.interfaces.RSAPrivateKey;
-import java.security.interfaces.RSAPublicKey;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
+import org.json.JSONObject;
 
-import sun.misc.BASE64Decoder;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 
 /**
@@ -55,23 +56,7 @@ public class HomeFragment extends BaseFragment implements OnClickListener{
         v3.setOnClickListener(this);
 
     }
-    public static PublicKey getPublicKey(String key) throws Exception {
-        byte[] keyBytes;
-        keyBytes = (new BASE64Decoder()).decodeBuffer(key);
-        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        PublicKey publicKey = keyFactory.generatePublic(keySpec);
-        return publicKey;
-    }
 
-    public static PrivateKey getPrivateKey(String key) throws Exception {
-        byte[] keyBytes;
-        keyBytes = (new BASE64Decoder()).decodeBuffer(key);
-        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
-        return privateKey;
-    }
     @Override
     public void onClick(View v) {
 
@@ -83,20 +68,16 @@ public class HomeFragment extends BaseFragment implements OnClickListener{
                 break;
             }
             case R.id.youhuiLayout:{
+                String encryStr = null;
                 try {
-                    KeyPair keyPair=RSA.generateRSAKeyPair(RSA.DEFAULT_KEY_SIZE);
-                    // 公钥
-                    RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
-                    // 私钥
-                    RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
+                    Map<String,String> paras = new HashMap<String,String>();
+                    paras.put("aa","TEST_API_ANDROID");
+                     JSONObject object = new JSONObject(paras);
+                     encryStr= RSA.encryptByPublicKey(object.toString(),RSA.getPublicKey(RSA.PUBLICKKEY_STRING).getEncoded());
 
-//                    "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqgKQmqFeq0J6Vr+d90A0jlkkG5DkNYyShGj+IY9dV79T8q/cnziWnfYovZum6Vo7k83KN9tWWUEGI6NQgdY861tQ9WSQGdMiG7Oli94z6wYsKCvMZjPv7jeEY0pdLgDkr71g7/KrKPtXLmBz7LINDOE18pcKrjl/RTrOYtDo3PQIDAQAB"
-//                    byte[] encryptBytes= RSA.encryptByPublicKey("test".getBytes(),publicKey.getEncoded());
-                    byte[] encryptBytes= RSA.encryptByPublicKey("test".getBytes(),getPublicKey("MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqgKQmqFeq0J6Vr+d90A0jlkkG5DkNYyShGj+IY9dV79T8q/cnziWnfYovZum6Vo7k83KN9tWWUEGI6NQgdY861tQ9WSQGdMiG7Oli94z6wYsKCvMZjPv7jeEY0pdLgDkr71g7/KrKPtXLmBz7LINDOE18pcKrjl/RTrOYtDo3PQIDAQAB").getEncoded());
-                    String encryStr = new String(Base64.encode(encryptBytes,Base64.DEFAULT));
                     Log.e("RSA公钥加密",encryStr);
 
-                    byte[] decryptBytes= RSA.decryptByPrivateKey(Base64.decode(encryStr.getBytes(),Base64.DEFAULT),getPrivateKey(RSA.PRIVATEKEY_STRING).getEncoded());
+                    byte[] decryptBytes= RSA.decryptByPrivateKey(Base64.decode(encryStr.getBytes(),Base64.DEFAULT),RSA.getPrivateKey(RSA.PRIVATEKEY_STRING).getEncoded());
                     String decryStr=new String(decryptBytes);
                     Log.e("RSA私钥解密",decryStr);
 
@@ -110,7 +91,6 @@ public class HomeFragment extends BaseFragment implements OnClickListener{
                     e.printStackTrace();
                     Log.e("RSA","exception");
                 }
-                Log.e("request","okgo");
 //                OkGo.get("http://10.66.67.81:8001/client/test1")     // 请求方式和请求url
 //                        .tag(this)                       // 请求的 tag, 主要用于取消对应的请求
 //                        .cacheKey("cacheKey")            // 设置当前请求的缓存key,建议每个不同功能的请求设置一个
@@ -121,6 +101,27 @@ public class HomeFragment extends BaseFragment implements OnClickListener{
 //                                log.e("okgo",s);
 //                            }
 //                        });
+
+                OkGo.post("http://10.66.67.81:8001/client/test")    // 请求方式和请求url, get请求不需要拼接参数，支持get，post，put，delete，head，options请求
+                        .tag(this)               // 请求的 tag, 主要用于取消对应的请求
+                        .isMultipart(true)       // 强制使用 multipart/form-data 表单上传（只是演示，不需要的话不要设置。默认就是false）
+                        .connTimeOut(10000)      // 设置当前请求的连接超时时间
+                        .readTimeOut(10000)      // 设置当前请求的读取超时时间
+                        .writeTimeOut(10000)     // 设置当前请求的写入超时时间
+                        .cacheKey("cacheKey")    // 设置当前请求的缓存key,建议每个不同功能的请求设置一个
+                        .cacheTime(5000)         // 缓存的过期时间,单位毫秒
+                        .cacheMode(CacheMode.FIRST_CACHE_THEN_REQUEST) // 缓存模式，详细请看第四部分，缓存介绍
+                        .headers("header1", "headerValue1")     		// 添加请求头参数
+                        .headers("header2", "headerValue2")     		// 支持多请求头参数同时添加
+                        .params("value", encryStr)
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onSuccess(String s, Call call, Response response) {
+                                Log.e("POST response",s);
+                                Map map = getMapForJson(s);
+                                Log.e("map","map_POST:"+map.get("aa"));
+                            }
+                        });
                 break;
             }
             case R.id.recordLayout:{
@@ -131,5 +132,28 @@ public class HomeFragment extends BaseFragment implements OnClickListener{
             default:
                 break;
         }
+    }
+
+    public static Map<String, Object> getMapForJson(String jsonStr){
+        JSONObject jsonObject ;
+        try {
+            jsonObject = new JSONObject(jsonStr);
+
+            Iterator<String> keyIter= jsonObject.keys();
+            String key;
+            Object value ;
+            Map<String, Object> valueMap = new HashMap<String, Object>();
+            while (keyIter.hasNext()) {
+                key = keyIter.next();
+                value = jsonObject.get(key);
+                valueMap.put(key, value);
+            }
+            return valueMap;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+
+        }
+        return null;
     }
 }
