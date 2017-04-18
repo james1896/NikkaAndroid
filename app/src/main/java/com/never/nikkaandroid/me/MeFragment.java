@@ -23,6 +23,7 @@ public class MeFragment extends BaseFragment {
 
     // 模拟数据
     private List<String> dataList = null;
+    private CanvasView headerView;
 
 
     public MeFragment() {
@@ -120,7 +121,7 @@ public class MeFragment extends BaseFragment {
 
     }
 
-    CanvasView headerView;
+
 
 
 }

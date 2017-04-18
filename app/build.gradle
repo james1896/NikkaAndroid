@@ -40,6 +40,7 @@ dependencies {
     compile 'com.android.support:gridlayout-v7:25.2.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-
-    compile 'com.lzy.net:okgo:2.1.4'        //可以单独使用，不需要依赖下方的扩展包
+    compile 'com.lzy.net:okgo:2.1.4'
+    //可以单独使用，不需要依赖下方的扩展包
+    compile files('src/main/java/libs/BASE64.jar')
 }

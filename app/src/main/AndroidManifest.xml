@@ -25,6 +25,12 @@
                 <action android:name="android.intent.action.Balance" />/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".home.RecordActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.Record" />/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
