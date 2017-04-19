@@ -29,10 +29,6 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
     @Override
     protected void init() {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
-//            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
-//        }
         //dp
         WindowManager wm = this.getWindowManager();
         final int width = wm.getDefaultDisplay().getWidth();

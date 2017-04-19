@@ -14,6 +14,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.RSA;
 import com.never.nikkaandroid.base.BaseFragment;
+import com.never.nikkaandroid.base.JniHello;
 
 import org.json.JSONObject;
 
@@ -71,9 +72,10 @@ public class HomeFragment extends BaseFragment implements OnClickListener{
                 String encryStr = null;
                 try {
                     Map<String,String> paras = new HashMap<String,String>();
-                    paras.put("aa","TEST_API_ANDROID");
+                    paras.put("aa","TEST_API_ANDROID_JNI");
                      JSONObject object = new JSONObject(paras);
-                     encryStr= RSA.encryptByPublicKey(object.toString(),RSA.getPublicKey(RSA.PUBLICKKEY_STRING).getEncoded());
+                    JniHello hello = new JniHello();
+                     encryStr= RSA.encryptByPublicKey(object.toString(),RSA.getPublicKey(hello.SayHello()).getEncoded());
 
                     Log.e("RSA公钥加密",encryStr);
 
