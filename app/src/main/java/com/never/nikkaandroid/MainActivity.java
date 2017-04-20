@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.never.nikkaandroid.adpter.MainActivityAdpter;
+import com.never.nikkaandroid.base.AppUtils;
 import com.never.nikkaandroid.base.BaseActivity;
 import com.never.nikkaandroid.base.TabLayoutItemView;
 import com.never.nikkaandroid.views.TransView;
@@ -32,10 +33,9 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         //dp
         WindowManager wm = this.getWindowManager();
         final int width = wm.getDefaultDisplay().getWidth();
-        int height = wm.getDefaultDisplay().getHeight();
-        Log.e("screen","width"+width);
-        Log.e("screen","height"+height);
 
+
+        Log.e("aaaaaaaaaaa", "height"+AppUtils.getStatusHeight(this));
         //view动画
         layout = (RelativeLayout) findViewById(R.id.layout);
         layout.post(new Runnable() {

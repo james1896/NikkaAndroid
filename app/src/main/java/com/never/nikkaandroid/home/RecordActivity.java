@@ -3,7 +3,7 @@ package com.never.nikkaandroid.home;
 import android.widget.ListView;
 
 import com.never.nikkaandroid.R;
-import com.never.nikkaandroid.adpter.BaseListAdapter;
+import com.never.nikkaandroid.adpter.RecordListAdapter;
 import com.never.nikkaandroid.base.BaseActivity;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class RecordActivity extends BaseActivity {
     @Override
     protected void init() {
         ListView listview = (ListView)findViewById(R.id.recordListView);
-        listview.setAdapter(new BaseListAdapter(this,getDataList()));
+        listview.setAdapter(new RecordListAdapter(this,getDataList()));
     }
 
     private ArrayList<Map> getDataList(){

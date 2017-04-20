@@ -1,15 +1,10 @@
 package com.never.nikkaandroid.adpter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.never.nikkaandroid.R;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -46,20 +41,8 @@ public class BaseListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        Map<String,Object> map = this.dataList.get(position);
-
-        View item = mInflater.inflate(R.layout.me_listview_item, null);
-        TextView title = (TextView)item.findViewById(R.id.ItemTitle);
-        ImageView img = (ImageView)item.findViewById(R.id.imageView);
-
-        String titleS = (String) map.get("title");
-        int resid = (int) map.get("resId");
-
-        Log.e("resId",""+resid);
-        title.setText(titleS);
-
-        img.setImageResource(resid);
-        return item;
+        return null;
     }
+
+
 }

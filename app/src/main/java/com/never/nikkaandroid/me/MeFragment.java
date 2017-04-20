@@ -7,7 +7,7 @@ import android.widget.ListView;
 
 import com.never.nikkaandroid.AppDataManager;
 import com.never.nikkaandroid.R;
-import com.never.nikkaandroid.adpter.BaseListAdapter;
+import com.never.nikkaandroid.adpter.MeListAdapter;
 import com.never.nikkaandroid.base.BaseFragment;
 import com.never.nikkaandroid.views.CanvasView;
 
@@ -63,7 +63,7 @@ public class MeFragment extends BaseFragment {
 //                android.R.layout.simple_list_item_1, dataList);
 //
         ListView listview = (ListView) contentView.findViewById(R.id.meListView);
-        listview.setAdapter(new BaseListAdapter(getContext(),getDataList()));
+        listview.setAdapter(new MeListAdapter(getContext(),getDataList()));
         listview.addHeaderView(headerView);
 
         // 绑定item点击事件
