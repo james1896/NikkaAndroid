@@ -47,13 +47,13 @@ public class HomeFragment extends BaseFragment implements OnClickListener{
 //        Intent intent = new Intent(getActivity(),BalanceActivity.class);
 //        startActivity(intent);
 
-        View v1 = contentView.findViewById(R.id.payLayout);
+        View v1 = contentView.findViewById(R.id.payTextView);
         v1.setOnClickListener(this);
 
-        View v2 = contentView.findViewById(R.id.youhuiLayout);
+        View v2 = contentView.findViewById(R.id.youhuiTextView);
         v2.setOnClickListener(this);
 
-        View v3 = contentView.findViewById(R.id.recordLayout);
+        View v3 = contentView.findViewById(R.id.recordTextView);
         v3.setOnClickListener(this);
 
     }
@@ -63,17 +63,20 @@ public class HomeFragment extends BaseFragment implements OnClickListener{
 
 
         switch (v.getId()){
-            case R.id.payLayout:{
+            case R.id.payTextView:{
                 Intent intent = new Intent(getActivity(),BalanceActivity.class);
                 getActivity().startActivity(intent);
                 break;
             }
-            case R.id.youhuiLayout:{
+            case R.id.youhuiTextView:{
                 String encryStr = null;
                 try {
+                    //map转json 字符串
                     Map<String,String> paras = new HashMap<String,String>();
                     paras.put("aa","TEST_API_ANDROID_JNI");
-                     JSONObject object = new JSONObject(paras);
+                    JSONObject object = new JSONObject(paras);
+                    //得到json字符串
+                    //object.toString()
                     JniHello hello = new JniHello();
                      encryStr= RSA.encryptByPublicKey(object.toString(),RSA.getPublicKey(hello.SayHello()).getEncoded());
 
@@ -120,13 +123,15 @@ public class HomeFragment extends BaseFragment implements OnClickListener{
                             @Override
                             public void onSuccess(String s, Call call, Response response) {
                                 Log.e("POST response",s);
+
+                                //json转map
                                 Map map = getMapForJson(s);
                                 Log.e("map","map_POST:"+map.get("aa"));
                             }
                         });
                 break;
             }
-            case R.id.recordLayout:{
+            case R.id.recordTextView:{
                 Intent intent = new Intent(getActivity(),RecordActivity.class);
                 getActivity().startActivity(intent);
                 break;
@@ -136,6 +141,7 @@ public class HomeFragment extends BaseFragment implements OnClickListener{
         }
     }
 
+    //json转map
     public static Map<String, Object> getMapForJson(String jsonStr){
         JSONObject jsonObject ;
         try {

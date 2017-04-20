@@ -25,115 +25,42 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:background="#62A634">
 
             <!--付款-->
-            <LinearLayout
-                android:id="@+id/payLayout"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:padding="@dimen/m_10">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1">
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/m_27"
-                        android:layout_marginRight="@dimen/m_27"
-                        android:background="@drawable/home_shape">
-                    </View>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/home_bankcard"/>
-                </RelativeLayout>
-
-
+            <!--android:drawablePadding="10dp"-->
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/m_30"
+                    android:id="@+id/payTextView"
+                    android:drawableTop="@drawable/home_bankcard"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="0dp"
                     android:gravity="center"
                     android:text="我的储蓄"/>
-            </LinearLayout>
+
 
             <!--优惠-->
-            <LinearLayout
-                android:id="@+id/youhuiLayout"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:padding="@dimen/m_10">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1">
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/m_27"
-                        android:layout_marginRight="@dimen/m_27"
-                        android:background="@drawable/home_shape"/>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/home_ticket"/>
-                </RelativeLayout>
-
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/m_30"
+                    android:id="@+id/youhuiTextView"
+                    android:drawableTop="@drawable/home_preference"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="优惠活动"/>
-            </LinearLayout>
 
             <!--消费记录-->
-            <LinearLayout
-                android:id="@+id/recordLayout"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:padding="@dimen/m_10">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1">
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/m_27"
-                        android:layout_marginRight="@dimen/m_27"
-                        android:background="@drawable/home_shape"/>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/home_preference"/>
-                </RelativeLayout>
-
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/m_30"
+                    android:id="@+id/recordTextView"
+                    android:drawableTop="@drawable/home_ticket"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="消费记录"/>
-            </LinearLayout>
-
-
         </LinearLayout>
     </LinearLayout>
 
