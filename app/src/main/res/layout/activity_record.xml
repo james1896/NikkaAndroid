@@ -20,6 +20,7 @@
         android:layout_weight="1"/>
 
     <ImageView
+        android:id="@+id/back"
         android:padding="@dimen/m_15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

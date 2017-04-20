@@ -1,5 +1,7 @@
 package com.never.nikkaandroid.home;
 
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.never.nikkaandroid.R;
@@ -24,6 +26,13 @@ public class RecordActivity extends BaseActivity {
     protected void init() {
         ListView listview = (ListView)findViewById(R.id.recordListView);
         listview.setAdapter(new RecordListAdapter(this,getDataList()));
+        ImageView img = (ImageView) findViewById(R.id.back);
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private ArrayList<Map> getDataList(){
