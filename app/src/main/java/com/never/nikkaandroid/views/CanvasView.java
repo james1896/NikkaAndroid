@@ -99,6 +99,7 @@ public class CanvasView extends View{
         drawText(canvas);
     }
 
+    //画图片
     private void drawPicture(Canvas canvas){
         if(imageId == 0)return;
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageId);
@@ -109,7 +110,7 @@ public class CanvasView extends View{
         this.imageId = imageId;
         invalidate();
     }
-
+    //画斜线
     private void rotateCanvas(Canvas canvas){
         float tanX = (float) (rightHeight-leftHeight)/sreenWidth;
         tanX = (float) Math.atan(tanX);
@@ -117,6 +118,7 @@ public class CanvasView extends View{
         canvas.save();
         canvas.rotate(tanX);
     }
+    //
     private void initBackgroundPaint(){
         backgroundPaint = new Paint();
         backgroundPaint.setColor(context.getResources().getColor(R.color.me_headerview));
@@ -142,7 +144,7 @@ public class CanvasView extends View{
         canvas.restore();
     }
 
-
+    //画背景
     private void drawBackground(Canvas canvas){
         Path path5=new Path();
         path5.moveTo(0, 0);

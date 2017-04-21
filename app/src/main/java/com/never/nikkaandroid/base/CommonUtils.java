@@ -2,9 +2,10 @@ package com.never.nikkaandroid.base;
 
 import android.app.Activity;
 import android.content.Context;
-import android.net.wifi.WifiManager;
-import android.util.Log;
+import android.os.Build;
 import android.view.WindowManager;
+
+import java.util.UUID;
 
 /**
  * Created by toby on 20/04/2017.
@@ -44,10 +45,26 @@ public class CommonUtils {
         return wm.getDefaultDisplay().getHeight();
     }
 
-  public static String getWIFIMAC(Context context){
-      WifiManager wm = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
-      String m_szWLANMAC = wm.getConnectionInfo().getMacAddress();
-      Log.e("wifi",m_szWLANMAC);
-      return m_szWLANMAC;
-  }
+    //生成唯一码
+    public static String getUniquePsuedoID(){
+        String m_szDevIDShort = "35" +
+
+                Build.BOARD.length()%10 +
+                Build.BRAND.length()%10 +
+                Build.CPU_ABI.length() % 10 +
+                Build.DEVICE.length() %10 +
+                Build.DISPLAY.length() %10 +
+                Build.HOST.length() % 10 +
+                Build.ID.length() % 10 +
+                Build.MANUFACTURER.length() % 10 +
+                Build.MODEL.length() % 10 +
+                Build.PRODUCT.length() % 10 +
+                Build.TAGS.length() % 10 +
+                Build.TYPE.length() % 10 +
+                Build.USER.length() % 10;
+
+        String serial = Build.SERIAL;
+        return new UUID(m_szDevIDShort.hashCode(),serial.hashCode()).toString();
+
+    }
 }
