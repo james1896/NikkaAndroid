@@ -47,7 +47,7 @@ public class MeFragment extends BaseFragment {
         //代码初始化view
         int height = (int) (0.4* AppDataManager.getScreenHeight(getContext()));
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
-        headerView  = new CanvasView(getContext(),height,20.0f,"name","subTitle");
+        headerView  = new CanvasView(getContext(),height,20.0f,"name","subTitle", R.drawable.home_ticket);
         headerView.setBackgroundColor(getResources().getColor(R.color.white));
         headerView.setLayoutParams(params);
         headerView.refresh("25.0");

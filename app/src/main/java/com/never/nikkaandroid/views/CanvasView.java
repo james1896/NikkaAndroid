@@ -1,12 +1,15 @@
 package com.never.nikkaandroid.views;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
@@ -28,15 +31,20 @@ public class CanvasView extends View{
     private String userName;
     private String subTitle;
 
+    private Paint bitmapPaint;
+
 
     private int leftHeight = 440;
     private int rightHeight = 550;
 
     private String text = "";
 
-    public CanvasView(Context context, int height,float points,String userName,String subTitle) {
+    private int imageId;
+
+    public CanvasView(Context context, int height,float points,String userName,String subTitle, int imageId) {
         super(context);
        init(context);
+        this.imageId = imageId;
         this.height = height;
         this.points = points;
         this.userName = userName;
@@ -49,7 +57,12 @@ public class CanvasView extends View{
         this.context = context;
         initBackgroundPaint();
         initTextPaint();
+        initBitmapPaint();
 
+    }
+    private void initBitmapPaint(){
+        bitmapPaint = new Paint();
+        bitmapPaint.setAntiAlias(true);
     }
     public CanvasView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -80,10 +93,21 @@ public class CanvasView extends View{
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         drawBackground(canvas);
-
+        drawPicture(canvas);
         rotateCanvas(canvas);
 
         drawText(canvas);
+    }
+
+    private void drawPicture(Canvas canvas){
+        if(imageId == 0)return;
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageId);
+        canvas.drawBitmap(bitmap, 0, 200, bitmapPaint);
+    }
+
+    public void setImageId(@DrawableRes int imageId){
+        this.imageId = imageId;
+        invalidate();
     }
 
     private void rotateCanvas(Canvas canvas){
