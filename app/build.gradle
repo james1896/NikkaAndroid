@@ -35,9 +35,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    //noinspection GradleCompatible
-    //    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile files('src/main/java/libs/core-3.2.1.jar')
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:palette-v7:25.2.0'
     compile 'com.android.support:design:25.2.0'
@@ -48,6 +45,13 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile 'com.lzy.net:okgo:2.1.4'
+
     //可以单独使用，不需要依赖下方的扩展包
     compile files('src/main/java/libs/BASE64.jar')
+
+    //6.0以后 动态获得权限
+//    compile 'com.mylhyl:acp:1.1.7'
+
+    //zxing二维码
+    compile files('src/main/java/libs/core-3.2.1.jar')
 }

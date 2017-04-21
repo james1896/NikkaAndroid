@@ -1,19 +1,14 @@
 package com.never.nikkaandroid;
 
 import android.graphics.Typeface;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.telephony.TelephonyManager;
-import android.util.Log;
-import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.never.nikkaandroid.adpter.MainActivityAdpter;
-import com.never.nikkaandroid.base.AppUtils;
 import com.never.nikkaandroid.base.BaseActivity;
+import com.never.nikkaandroid.base.CommonUtils;
 import com.never.nikkaandroid.base.TabLayoutItemView;
 import com.never.nikkaandroid.views.TransView;
 
@@ -30,19 +25,19 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
     @Override
     protected void init() {
-        //dp
-        WindowManager wm = this.getWindowManager();
-        final int width = wm.getDefaultDisplay().getWidth();
 
 
-        Log.e("aaaaaaaaaaa", "height"+AppUtils.getStatusHeight(this));
+//        Log.e("WIFI",UUID.randomUUID().toString());
+//        Toast.makeText(this, UUID.randomUUID().toString(),Toast.LENGTH_LONG).show();
+
         //view动画
         layout = (RelativeLayout) findViewById(R.id.layout);
         layout.post(new Runnable() {
             @Override
             public void run() {
                 TransView view = new TransView(MainActivity.this);
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, (int)getResources().getDimension(R.dimen.m_100));
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(CommonUtils.getWindowWidth(MainActivity.this),
+                        (int)getResources().getDimension(R.dimen.m_100));
                 layout.addView(view, params);
                 view.startTrans(getResources().getDimension(R.dimen.m_100), 1000);
             }
@@ -109,18 +104,33 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
     }
 
-    //android 6.0以上需要动态申请权限
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private String getDeviceID(){
-        TelephonyManager TelephonyMgr = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
-        String szImei = TelephonyMgr.getDeviceId();
-        return szImei;
-
-    }
-
-
 
 }
 
+                //android 6.0以上需要动态申请权限
+
+//      Acp.getInstance(MainActivity.this).request(new AcpOptions.Builder()
+//              .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE
+//              , Manifest.permission.READ_PHONE_STATE
+//              , Manifest.permission.SEND_SMS)
+////                以下为自定义提示语、按钮文字
+//              .setDeniedMessage("Message")
+//              .setDeniedCloseBtn("关闭")
+//              .setDeniedSettingBtn("设置")
+//              .setRationalMessage("rational")
+//              .setRationalBtn("合理")
+//              .build(),
+//              new AcpListener() {
+//@Override
+//public void onGranted() {
+//        writeSD();
+//        getIMEI();
+//        }
+//
+//@Override
+//public void onDenied(List<String> permissions) {
+//        Toast.makeText(MainActivity.this,permissions.toString() + "权限拒绝",Toast.LENGTH_SHORT).show();
+//        }
+//        });
 
 

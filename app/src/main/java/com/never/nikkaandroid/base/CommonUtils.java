@@ -2,13 +2,15 @@ package com.never.nikkaandroid.base;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.wifi.WifiManager;
+import android.util.Log;
 import android.view.WindowManager;
 
 /**
  * Created by toby on 20/04/2017.
  */
 
-public class AppUtils {
+public class CommonUtils {
 
     /**
      * 获得状态栏的高度
@@ -42,5 +44,10 @@ public class AppUtils {
         return wm.getDefaultDisplay().getHeight();
     }
 
-  ;
+  public static String getWIFIMAC(Context context){
+      WifiManager wm = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
+      String m_szWLANMAC = wm.getConnectionInfo().getMacAddress();
+      Log.e("wifi",m_szWLANMAC);
+      return m_szWLANMAC;
+  }
 }
