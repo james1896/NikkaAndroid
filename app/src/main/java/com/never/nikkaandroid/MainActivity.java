@@ -3,6 +3,7 @@ package com.never.nikkaandroid;
 import android.graphics.Typeface;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -27,8 +28,10 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     protected void init() {
 
 
-//        Log.e("WIFI",UUID.randomUUID().toString());
-//        Toast.makeText(this, UUID.randomUUID().toString(),Toast.LENGTH_LONG).show();
+//        Log.e("WIFI","Product Model: " + android.os.Build.BRAND + ","
+//                + android.os.Build.VERSION.SDK + ","
+//                + android.os.Build.VERSION.RELEASE);
+        Log.e("Device",CommonUtils.collectDeviceInfo(this));
 
         //view动画
         layout = (RelativeLayout) findViewById(R.id.layout);

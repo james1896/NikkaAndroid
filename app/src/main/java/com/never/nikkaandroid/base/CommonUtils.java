@@ -2,9 +2,13 @@ package com.never.nikkaandroid.base;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
+import android.util.Log;
 import android.view.WindowManager;
 
+import java.lang.reflect.Field;
 import java.util.UUID;
 
 /**
@@ -87,6 +91,33 @@ public class CommonUtils {
 
         String serial = Build.SERIAL;
         return new UUID(m_szDevIDShort.hashCode(),serial.hashCode()).toString();
+
+    }
+
+    public static String collectDeviceInfo(Context ctx) {
+
+        try {
+            PackageManager pm = ctx.getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(ctx.getPackageName(), PackageManager.GET_ACTIVITIES);
+            if (pi != null) {
+                String versionName = pi.versionName == null ? "null" : pi.versionName;
+                String versionCode = pi.versionCode + "";
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e("collect", "an error occured when collect package info", e);
+        }
+        Field[] fields = Build.class.getDeclaredFields();
+        for (Field field : fields) {
+            try {
+                field.setAccessible(true);
+//                infos.put(field.getName(), field.get(null).toString());
+                Log.e("collectDeviceInfo", field.getName() + " : " + field.get(null));
+            } catch (Exception e) {
+                Log.e("collect", "an error occured when collect crash info", e);
+            }
+        }
+
+        return Build.BRAND +" | " + Build.MODEL;
 
     }
 }
