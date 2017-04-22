@@ -15,6 +15,7 @@ import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.RSA;
 import com.never.nikkaandroid.base.BaseFragment;
 import com.never.nikkaandroid.base.JniHello;
+import com.never.nikkaandroid.base.LoginActiviy;
 
 import org.json.JSONObject;
 
@@ -64,7 +65,10 @@ public class HomeFragment extends BaseFragment implements OnClickListener{
 
         switch (v.getId()){
             case R.id.payTextView:{
-                Intent intent = new Intent(getActivity(),BalanceActivity.class);
+//                Intent intent = new Intent(getActivity(),BalanceActivity.class);
+//                getActivity().startActivity(intent);
+
+                Intent intent = new Intent(getActivity(),LoginActiviy.class);
                 getActivity().startActivity(intent);
                 break;
             }
