@@ -3,6 +3,7 @@ package com.never.nikkaandroid.me;
 
 import android.app.Fragment;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
 
 import com.never.nikkaandroid.AppDataManager;
@@ -46,11 +47,15 @@ public class MeFragment extends BaseFragment {
 
         //代码初始化view
         int height = (int) (0.4* AppDataManager.getScreenHeight(getContext()));
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
+
+        //ViewGroup$LayoutParams 6.0         4.4崩溃
+        //AbsListView$LayoutParams 4.4
+        ViewGroup.LayoutParams params = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
         headerView  = new CanvasView(getContext(),height,20.0f,"name","subTitle", R.drawable.home_ticket);
         headerView.setBackgroundColor(getResources().getColor(R.color.white));
         headerView.setLayoutParams(params);
-        headerView.refresh("25.0");
+        headerView.refresh(280.0f);
+        headerView.setuserImageId(R.drawable.home_preference);
 
 
 //        dataList = new ArrayList<String>();

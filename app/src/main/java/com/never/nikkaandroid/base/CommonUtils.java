@@ -17,6 +17,14 @@ import java.util.UUID;
 
 public class CommonUtils {
 
+//    px与dip的概念及互相转化
+//    px即pixels，是绝对像素，有多少个像素点就是多少个像素点。
+//    dip即device independent pixel，设备独立像素，无像素无关。
+    public static float dip2px(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
+
     /**
      * 获得状态栏的高度
      *
