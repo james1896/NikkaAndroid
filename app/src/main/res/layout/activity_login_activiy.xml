@@ -1,87 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/login_background"
+    android:id="@+id/mainLayout"
     tools:context="com.never.nikkaandroid.base.LoginActiviy">
 
     <!--base-->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/baseLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginBottom="@dimen/m_30"
+        android:layout_above="@+id/login_back">
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Open the world to a new flavor"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <Button
-                android:id="@+id/loginBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="登录"/>
-            <Button
-                android:id="@+id/registerBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="注册"/>
-        </LinearLayout>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="使用微信账号登录"/>
+            android:gravity="center"
+            android:textSize="@dimen/textsize_20"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/m_30"
+            android:text="Open the world to a new flavor" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/l"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_below="@+id/textView"
+            >
+
+            <Button
+                android:id="@+id/base_login_btn"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/login_button_shape"
+                android:layout_margin="@dimen/m_15"
+
+                android:layout_height="wrap_content"
+                android:text="登录" />
+
+            <Button
+                android:id="@+id/base_register_btn"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/login_button_shape"
+                android:layout_margin="@dimen/m_15"
+                android:layout_height="wrap_content"
+                android:text="注册" />
+        </LinearLayout>
+
+        <Button
+            android:layout_below="@+id/l"
+            android:id="@+id/base_wechat_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/m_15"
+            android:background="@drawable/login_button_shape"
+            android:text="使用微信账号登录" />
+
+    </RelativeLayout>
 
     <!--login-->
     <LinearLayout
         android:id="@+id/loginLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_above="@+id/login_back"
+        android:layout_marginBottom="@dimen/m_30"
         android:orientation="vertical">
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/login_user_edit"
+            android:nextFocusForward="@+id/login_pwd_edit"
+            style="@style/login_editview_style"
             android:text="用户名"
             />
+        <!--<include layout="@layout/login_edittext"/>-->
+
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:id="@+id/login_pwd_edit"
+            style="@style/login_editview_style"
             android:text="密码"/>
 
-
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="match_parent"
+            android:background="@drawable/login_button_shape"
+            android:layout_margin="@dimen/m_15"
+            android:layout_height="wrap_content"
+            android:text="登录" />
     </LinearLayout>
+
 <!--register-->
     <LinearLayout
         android:id="@+id/registerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/login_back"
+        android:layout_marginBottom="@dimen/m_30"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="注册"
+            android:text="用户名"
+            android:id="@+id/register_user_edit"
+            android:nextFocusForward="@+id/register_pwd_edit"
+            style="@style/login_editview_style"
             />
+
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:id="@+id/register_pwd_edit"
+            style="@style/login_editview_style"
             android:text="密码"/>
 
+        <Button
+            android:id="@+id/register_btn"
+            android:layout_width="match_parent"
+            android:background="@drawable/login_button_shape"
+            android:layout_margin="@dimen/m_15"
+            android:layout_height="wrap_content"
+            android:text="注册" />
     </LinearLayout>
 
-    <Button
+    <ImageView
         android:id="@+id/login_back"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/m_15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/back"/>
+        android:src="@drawable/back"/>
 
-</LinearLayout>
+</RelativeLayout>
