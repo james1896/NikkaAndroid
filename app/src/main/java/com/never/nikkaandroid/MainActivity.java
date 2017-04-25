@@ -9,8 +9,9 @@ import android.widget.TextView;
 
 import com.never.nikkaandroid.adpter.MainActivityAdpter;
 import com.never.nikkaandroid.base.BaseActivity;
-import com.never.nikkaandroid.base.CommonUtils;
+import com.never.nikkaandroid.venv.CommonUtils;
 import com.never.nikkaandroid.base.TabLayoutItemView;
+import com.never.nikkaandroid.venv.Request;
 import com.never.nikkaandroid.views.TransView;
 
 public class MainActivity extends BaseActivity implements TabLayout.OnTabSelectedListener{
@@ -27,10 +28,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     @Override
     protected void init() {
 
-
-//        Log.e("WIFI","Product Model: " + android.os.Build.BRAND + ","
-//                + android.os.Build.VERSION.SDK + ","
-//                + android.os.Build.VERSION.RELEASE);
+//        Request.getInstant().login().success();
         Log.e("Device",CommonUtils.collectDeviceInfo(this));
 
         //view动画
@@ -69,6 +67,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
+        Request.getInstant().login1().success();
         titleTextView.setText(titles[tab.getPosition()]);
 //        switch (tab.getPosition()){
 //            case 0:

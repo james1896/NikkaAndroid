@@ -1,4 +1,4 @@
-package com.never.nikkaandroid;
+package com.never.nikkaandroid.venv;
 
 import android.util.Base64;
 

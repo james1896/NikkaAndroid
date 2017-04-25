@@ -18,7 +18,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.never.nikkaandroid.R;
-import com.never.nikkaandroid.base.CommonUtils;
+import com.never.nikkaandroid.venv.CommonUtils;
 
 /**
  * Created by toby on 05/04/2017.

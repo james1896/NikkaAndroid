@@ -1,11 +1,14 @@
-package com.never.nikkaandroid.base;
+package com.never.nikkaandroid.venv;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.os.Build;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 
 import java.lang.reflect.Field;
@@ -102,6 +105,7 @@ public class CommonUtils {
 
     }
 
+    //获得设备信息
     public static String collectDeviceInfo(Context ctx) {
 
         try {
@@ -126,6 +130,53 @@ public class CommonUtils {
         }
 
         return Build.BRAND +" | " + Build.MODEL;
+
+    }
+
+    /**
+     * 获取当前屏幕截图，包含状态栏
+     *
+     * @param activity
+     * @return
+     */
+    public static Bitmap snapShotWithStatusBar(Activity activity)
+    {
+        View view = activity.getWindow().getDecorView();
+        view.setDrawingCacheEnabled(true);
+        view.buildDrawingCache();
+        Bitmap bmp = view.getDrawingCache();
+        int width = (int) getWindowWidth(activity);
+        int height = (int) getStatusHeight(activity);
+        Bitmap bp = null;
+        bp = Bitmap.createBitmap(bmp, 0, 0, width, height);
+        view.destroyDrawingCache();
+        return bp;
+
+    }
+
+    /**
+     * 获取当前屏幕截图，不包含状态栏
+     *
+     * @param activity
+     * @return
+     */
+    public static Bitmap snapShotWithoutStatusBar(Activity activity)
+    {
+        View view = activity.getWindow().getDecorView();
+        view.setDrawingCacheEnabled(true);
+        view.buildDrawingCache();
+        Bitmap bmp = view.getDrawingCache();
+        Rect frame = new Rect();
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+        int statusBarHeight = frame.top;
+
+        int width = (int) getWindowWidth(activity);
+        int height = (int) getStatusHeight(activity);
+        Bitmap bp = null;
+        bp = Bitmap.createBitmap(bmp, 0, statusBarHeight, width, height
+                - statusBarHeight);
+        view.destroyDrawingCache();
+        return bp;
 
     }
 }

@@ -1,15 +1,16 @@
 package com.never.nikkaandroid.me;
 
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
-import com.never.nikkaandroid.AppDataManager;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.adpter.MeListAdapter;
 import com.never.nikkaandroid.base.BaseFragment;
+import com.never.nikkaandroid.venv.CommonUtils;
 import com.never.nikkaandroid.views.CanvasView;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class MeFragment extends BaseFragment {
 
 
         //代码初始化view
-        int height = (int) (0.4* AppDataManager.getScreenHeight(getContext()));
+        int height = (int) (0.4* CommonUtils.getWindowHeight((Activity) getContext()));
 
         //ViewGroup$LayoutParams 6.0         4.4崩溃
         //AbsListView$LayoutParams 4.4
