@@ -57,6 +57,16 @@ public class HomeFragment extends BaseFragment implements OnClickListener{
         View v3 = contentView.findViewById(R.id.recordTextView);
         v3.setOnClickListener(this);
 
+        JniHello hello = new JniHello();
+//        hello.stringMethod("jni  hola");
+//        Log.e("JNI",);
+        Log.e("JNI","BOOL"+hello.booleanMethod(true));
+        Log.e("JNI",""+hello.intMethod(100));
+
+        int[] m = { 1, 2, 3 };
+//        Log.e("JNI",""+hello.stringMethod("ss"));
+        Log.e("JNI",""+hello.intArrayMethod(m));
+
     }
 
     @Override
@@ -81,6 +91,8 @@ public class HomeFragment extends BaseFragment implements OnClickListener{
                     JSONObject object = new JSONObject(paras);
                     //得到json字符串
                     //object.toString()
+
+                    //从 jni中读取字符串
                     JniHello hello = new JniHello();
                      encryStr= RSA.encryptByPublicKey(object.toString(),RSA.getPublicKey(hello.SayHello()).getEncoded());
 
