@@ -43,6 +43,8 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
                 view.startTrans(getResources().getDimension(R.dimen.m_100), 1000);
             }
         });
+
+
         //toolbar title
         titleTextView = (TextView) findViewById(R.id.toolbar_title);
         titleTextView.setText(titles[0]);
