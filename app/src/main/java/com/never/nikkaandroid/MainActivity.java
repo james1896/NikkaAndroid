@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
             @Override
             public void run() {
                 TransView view = new TransView(MainActivity.this);
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(CommonUtils.getWindowWidth(MainActivity.this),
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) CommonUtils.getWindowWidth(MainActivity.this),
                         (int)getResources().getDimension(R.dimen.m_100));
                 layout.addView(view, params);
                 view.startTrans(getResources().getDimension(R.dimen.m_100), 1000);

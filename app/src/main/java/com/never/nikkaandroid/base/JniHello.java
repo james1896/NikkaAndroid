@@ -12,4 +12,10 @@ public class JniHello {
 
     //声明一个由 native 修饰的函数
     public native String SayHello();
+
+    //声明四种带参数的 函数
+    public native int intMethod(int n);
+    public native boolean booleanMethod(boolean bool);
+    public native String stringMethod(String text);
+    public native int intArrayMethod(int[] intArray);
 }

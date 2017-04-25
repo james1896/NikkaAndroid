@@ -31,7 +31,7 @@ public class CommonUtils {
      * @param context
      * @return
      */
-    public static int getStatusHeight(Context context) {
+    public static float getStatusHeight(Context context) {
 
         int statusHeight = -1;
         try {
@@ -46,12 +46,12 @@ public class CommonUtils {
         return statusHeight;
     }
 
-    public static int getWindowWidth(Activity context){
+    public static float getWindowWidth(Activity context){
 
         WindowManager wm = context.getWindowManager();
         return wm.getDefaultDisplay().getWidth();
     }
-    public static int getWindowHeight(Activity context){
+    public static float getWindowHeight(Activity context){
 
         WindowManager wm = context.getWindowManager();
         return wm.getDefaultDisplay().getHeight();

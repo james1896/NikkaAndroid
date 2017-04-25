@@ -30,6 +30,7 @@ public class CanvasView extends View{
     private Context context;
     private int height;
     private int sreenWidth;
+    private float cellPath;
     private float points;
     private String userName;
     private String subTitle;
@@ -37,8 +38,8 @@ public class CanvasView extends View{
     private Paint bitmapPaint;
 
 
-    private int leftHeight = 444;
-    private int rightHeight = 544;
+    private float leftHeight = 444;
+    private float rightHeight = 544;
 
     private String text = "";
 
@@ -51,6 +52,7 @@ public class CanvasView extends View{
     public CanvasView(Context context, int height,float points,String userName,String subTitle, int imageId) {
         super(context);
 
+        this.cellPath = 52f;
         leftHeight = CommonUtils.getWindowHeight((Activity) context)/8*3-100;
         rightHeight = CommonUtils.getWindowHeight((Activity) context)/8*3;
 
@@ -65,14 +67,10 @@ public class CanvasView extends View{
 //        this.leftHeight = sreenWidth / 3;
     }
     private void init(Context context){
-
         this.context = context;
-
-
         initBackgroundPaint();
         initTextPaint();
         initBitmapPaint();
-
     }
     private void initBitmapPaint(){
         bitmapPaint = new Paint();
@@ -123,7 +121,7 @@ public class CanvasView extends View{
         Log.e("weight", String.valueOf(CommonUtils.getWindowWidth((Activity) this.context)));
         Log.e("weight1", String.valueOf(context.getResources().getDisplayMetrics().widthPixels));
         //高度需要再减去 图片高度的一半
-        canvas.drawBitmap(bitmap, 60, (float) (this.leftHeight+100*(dip2px(this.context,60.0f)/CommonUtils.getWindowHeight((Activity) this.context))-bitmap.getHeight()/2), bitmapPaint);
+        canvas.drawBitmap(bitmap, dip2px(this.context,cellPath), (float) (this.leftHeight+100*(dip2px(this.context,cellPath)/CommonUtils.getWindowHeight((Activity) this.context))-bitmap.getHeight()/2), bitmapPaint);
 
     }
 
@@ -142,10 +140,10 @@ public class CanvasView extends View{
         canvas.rotate(tanX);
         //绘制文字
         float length = textPaint.measureText(text);
-        float x = sreenWidth - dip2px(this.context,60.0f-20.0f) - length;
+        float x = sreenWidth - dip2px(this.context,this.cellPath-20.0f) - length;
 
 //        Log.e("y", String.valueOf(this.rightHeight-100*(dip2px(this.context,60.0f)/ CommonUtils.getWindowWidth((Activity) this.context))) +"||||"+ this.rightHeight+"dip2px"+dip2px(this.context,60.0f));
-        float y = this.leftHeight-100*(dip2px(this.context,60.0f+20.0f)/CommonUtils.getWindowHeight((Activity) this.context));
+        float y = this.leftHeight-100*(dip2px(this.context,this.cellPath+20.0f)/CommonUtils.getWindowHeight((Activity) this.context));
         canvas.drawText(text, x, y, textPaint);
         canvas.restore();
     }
@@ -166,10 +164,8 @@ public class CanvasView extends View{
     }
     private void drawText(Canvas canvas){
         float length = textPaint.measureText(text);
-
         float x = sreenWidth - 60 - length;
         float y = 420;
-
         canvas.drawText(text, x, y, textPaint);
 
         canvas.restore();

@@ -6,8 +6,8 @@
     android:layout_height="wrap_content"
     android:id="@+id/MyListItem"
     android:paddingBottom="3dip"
-    android:paddingLeft="@dimen/m_60"
-    android:paddingRight="@dimen/m_60">
+    android:paddingLeft="@dimen/me_cell_path"
+    android:paddingRight="@dimen/me_cell_path">
 
     <LinearLayout
         android:orientation="horizontal"
