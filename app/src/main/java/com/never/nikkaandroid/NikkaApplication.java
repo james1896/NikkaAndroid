@@ -1,6 +1,7 @@
 package com.never.nikkaandroid;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
@@ -20,6 +21,7 @@ public class NikkaApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initOkGo();
+        Log.e("application","application");
     }
 
     private void initOkGo(){
