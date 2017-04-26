@@ -28,6 +28,7 @@ public class CanvasView extends View{
 
     private Paint textPaint;
     private Paint bitmapPaint;
+    private Paint userNamePaint;
     private Paint backgroundPaint;
 
     private Context context;
@@ -36,12 +37,33 @@ public class CanvasView extends View{
     private float cellPath;
     private float leftHeight = 444;
     private float rightHeight = 544;
+    private float userImg_left;
+    private float userImg_top;
     private String text = "";
     //
     private float points;
     private String userName;
     private String subTitle;
     private int imageId;
+
+
+
+    public void setuserImageId(@DrawableRes int imageId){
+        this.imageId = imageId;
+        invalidate();
+    }
+    public void setUserName(String userName){
+        this.userName = userName;
+        invalidate();
+    }
+
+    public void refreshPoint(float point){
+        this.text  = "当前积分: " + point;
+        invalidate();
+    }
+
+
+
 
     public static float dip2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
@@ -65,11 +87,41 @@ public class CanvasView extends View{
         init(context);
 
     }
+
+    //init
+
     private void init(Context context){
         initBackgroundPaint();
         initTextPaint();
         initBitmapPaint();
+        initUserNamePaint();
+
     }
+
+    private void initUserNamePaint(){
+        userNamePaint = new Paint();
+        userNamePaint.setAntiAlias(true);
+        userNamePaint.setTextSize(dip2px(this.context,16));
+        userNamePaint.setTypeface(Typeface.DEFAULT_BOLD);
+        userNamePaint.setTextAlign(Paint.Align.LEFT);
+        userNamePaint.setColor(Color.BLACK);
+    }
+
+    private void initBackgroundPaint(){
+        backgroundPaint = new Paint();
+        backgroundPaint.setColor(context.getResources().getColor(R.color.me_headerview));
+        backgroundPaint.setAntiAlias(true);
+    }
+
+    private void initTextPaint(){
+        textPaint = new Paint();
+        textPaint.setAntiAlias(true);
+        textPaint.setTextSize(dip2px(this.context,14));
+        textPaint.setTypeface(Typeface.DEFAULT_BOLD);
+        textPaint.setTextAlign(Paint.Align.LEFT);
+        textPaint.setColor(Color.WHITE);
+    }
+
     private void initBitmapPaint(){
         bitmapPaint = new Paint();
         bitmapPaint.setAntiAlias(true);
@@ -93,43 +145,43 @@ public class CanvasView extends View{
     }
 
 
-
-    public void refresh(float point){
-        this.text  = "当前积分: " + point;
-        invalidate();
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.e("aaaaaa","onDraw");
+
         super.onDraw(canvas);
         drawBackground(canvas);
         drawPicture(canvas);
         rotateCanvas(canvas);
-
+        drawUserName(canvas);
 //        drawText(canvas);
     }
 
     //画图片
     private void drawPicture(Canvas canvas){
-        if(imageId == 0)return;
+        if(imageId == 0) return;
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageId);
 
         //高度需要再减去 图片高度的一半
-        float left = dip2px(this.context,cellPath) - bitmap.getHeight()/2;
-        float top = (float) (this.leftHeight+100*(dip2px(this.context,cellPath)/CommonUtils.getWindowHeight((Activity) this.context))-bitmap.getHeight()/2);
-        canvas.drawBitmap(bitmap,left ,top , bitmapPaint);
+        this.userImg_left = dip2px(this.context,cellPath) - bitmap.getHeight()/2;
+        this.userImg_top = this.leftHeight+100*(dip2px(this.context,cellPath)/CommonUtils.getWindowHeight((Activity) this.context))-bitmap.getHeight()/2;
+        canvas.drawBitmap(bitmap,this.userImg_left ,this.userImg_top , bitmapPaint);
+
+
 
     }
 
-    public void setuserImageId(@DrawableRes int imageId){
-        this.imageId = imageId;
-        invalidate();
+    private void drawUserName(Canvas canvas){
+        float length = userNamePaint.measureText(this.userName);
+//        float x = sreenWidth - 60 - length;
+//        float y = 420;
+        canvas.drawText(this.userName, this.userImg_left, this.userImg_top-100, userNamePaint);
+
+//        canvas.restore();
     }
     //画斜线
     private void rotateCanvas(Canvas canvas){
         //画布翻转
-        float tanX = (float) (rightHeight-leftHeight)/sreenWidth;
+        float tanX = (rightHeight-leftHeight)/sreenWidth;
         Log.e("tanX",""+tanX);
         tanX = (float) Math.atan(tanX);
         tanX = (float) (180 / Math.PI * tanX);
@@ -145,24 +197,11 @@ public class CanvasView extends View{
         canvas.restore();
     }
     //
-    private void initBackgroundPaint(){
-        backgroundPaint = new Paint();
-        backgroundPaint.setColor(context.getResources().getColor(R.color.me_headerview));
-        backgroundPaint.setAntiAlias(true);
-    }
 
-    private void initTextPaint(){
-        textPaint = new Paint();
-        textPaint.setAntiAlias(true);
-        textPaint.setTextSize(dip2px(this.context,14));
-        textPaint.setTypeface(Typeface.DEFAULT_BOLD);
-        textPaint.setTextAlign(Paint.Align.LEFT);
-        textPaint.setColor(Color.WHITE);
-    }
-    private void drawText(Canvas canvas){
+    private void drawText(Canvas canvas,float x,float y,String text){
         float length = textPaint.measureText(text);
-        float x = sreenWidth - 60 - length;
-        float y = 420;
+//        float x = sreenWidth - 60 - length;
+//        float y = 420;
         canvas.drawText(text, x, y, textPaint);
 
         canvas.restore();
@@ -178,5 +217,6 @@ public class CanvasView extends View{
         path5.close();
         canvas.drawPath(path5, backgroundPaint);
     }
+
 
 }

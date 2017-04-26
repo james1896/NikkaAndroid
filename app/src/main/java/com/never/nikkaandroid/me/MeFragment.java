@@ -52,12 +52,11 @@ public class MeFragment extends BaseFragment {
         //ViewGroup$LayoutParams 6.0         4.4崩溃
         //AbsListView$LayoutParams 4.4
         ViewGroup.LayoutParams params = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
-        headerView  = new CanvasView(getContext(),height,20.0f,"name","subTitle", R.drawable.home_ticket);
+        headerView  = new CanvasView(getContext(),height,20.0f,"","subTitle", R.drawable.home_ticket);
         headerView.setBackgroundColor(getResources().getColor(R.color.white));
         headerView.setLayoutParams(params);
-        headerView.refresh(280.0f);
+        headerView.refreshPoint(280.0f);
         headerView.setuserImageId(R.drawable.home_preference);
-
 
 //        dataList = new ArrayList<String>();
 //        // 初始化数据
