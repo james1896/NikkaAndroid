@@ -1,6 +1,8 @@
 package com.never.nikkaandroid;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.lzy.okgo.OkGo;
@@ -23,6 +25,86 @@ public class NikkaApplication extends Application {
         initOkGo();
         Log.e("application","application");
     }
+
+                /*sharePreference 数据持久化*/
+
+    public static String getString(Context context, String strKey) {
+        SharedPreferences setPreferences = context.getSharedPreferences("app", 0);
+        String result = setPreferences.getString(strKey, "");
+        return result;
+    }
+
+    public static String getString(Context context, String strKey, String strDefault) {
+        SharedPreferences setPreferences = context.getSharedPreferences("app", 0);
+        String result = setPreferences.getString(strKey, strDefault);
+        return result;
+    }
+
+    public static void saveString(Context context, String strKey, String strData) {
+        SharedPreferences activityPreferences = context.getSharedPreferences("app", 0);
+        SharedPreferences.Editor editor = activityPreferences.edit();
+        editor.putString(strKey, strData);
+        editor.commit();
+    }
+
+    public static Boolean getBoolean(Context context, String strKey) {
+        SharedPreferences setPreferences = context.getSharedPreferences("app", 0);
+        Boolean result = Boolean.valueOf(setPreferences.getBoolean(strKey, false));
+        return result;
+    }
+
+    public static Boolean getBoolean(Context context, String strKey, Boolean strDefault) {
+        SharedPreferences setPreferences = context.getSharedPreferences("app", 0);
+        Boolean result = Boolean.valueOf(setPreferences.getBoolean(strKey, strDefault.booleanValue()));
+        return result;
+    }
+
+    public static void saveBoolean(Context context, String strKey, Boolean strData) {
+        SharedPreferences activityPreferences = context.getSharedPreferences("app", 0);
+        SharedPreferences.Editor editor = activityPreferences.edit();
+        editor.putBoolean(strKey, strData.booleanValue());
+        editor.commit();
+    }
+
+    public static int getInt(Context context, String strKey) {
+        SharedPreferences setPreferences = context.getSharedPreferences("app", 0);
+        int result = setPreferences.getInt(strKey, -1);
+        return result;
+    }
+
+    public static int getInt(Context context, String strKey, int strDefault) {
+        SharedPreferences setPreferences = context.getSharedPreferences("app", 0);
+        int result = setPreferences.getInt(strKey, strDefault);
+        return result;
+    }
+
+    public static void saveInt(Context context, String strKey, int strData) {
+        SharedPreferences activityPreferences = context.getSharedPreferences("app", 0);
+        SharedPreferences.Editor editor = activityPreferences.edit();
+        editor.putInt(strKey, strData);
+        editor.commit();
+    }
+
+    public static long getLong(Context context, String strKey) {
+        SharedPreferences setPreferences = context.getSharedPreferences("app", 0);
+        long result = setPreferences.getLong(strKey, -1L);
+        return result;
+    }
+
+    public static long getLong(Context context, String strKey, long strDefault) {
+        SharedPreferences setPreferences = context.getSharedPreferences("app", 0);
+        long result = setPreferences.getLong(strKey, strDefault);
+        return result;
+    }
+
+    public static void saveLong(Context context, String strKey, long strData) {
+        SharedPreferences activityPreferences = context.getSharedPreferences("app", 0);
+        SharedPreferences.Editor editor = activityPreferences.edit();
+        editor.putLong(strKey, strData);
+        editor.commit();
+    }
+
+    /****************************************************************************/
 
     private void initOkGo(){
 //---------这里给出的是示例代码,告诉你可以这么传,实际使用的时候,根据需要传,不需要就不传-------------//
