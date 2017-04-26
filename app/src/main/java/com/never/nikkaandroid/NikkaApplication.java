@@ -3,6 +3,9 @@ package com.never.nikkaandroid;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.icu.util.Calendar;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import com.lzy.okgo.OkGo;
@@ -25,8 +28,74 @@ public class NikkaApplication extends Application {
         initOkGo();
         Log.e("application","application");
     }
+    /***************    获取系统时间  某年 某月 某天 星期几    ***************/
 
-                /*sharePreference 数据持久化*/
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static int getYear(){
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        return year;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static int getMonth(){
+        Calendar calendar = Calendar.getInstance();
+        int month = calendar.get(Calendar.YEAR);
+        return month;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static int getDay(){
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        return day;
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static String getDayOfWeek(){
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;// Java月份从0开始算
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        calendar.set(Calendar.YEAR, year);//指定年份
+        calendar.set(Calendar.MONTH, month - 1);//指定月份 Java月份从0开始算
+        int daysCountOfMonth = calendar.getActualMaximum(Calendar.DATE);//获取指定年份中指定月份有几天
+
+        //获取指定年份月份中指定某天是星期几
+        calendar.set(Calendar.DAY_OF_MONTH, day);  //指定日
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+
+        String str = "";
+        switch (dayOfWeek)
+        {
+            case 1:
+                str = "星期日";
+                break;
+            case 2:
+                str ="星期一";
+                break;
+            case 3:
+                str = "星期二";
+                break;
+            case 4:
+                str ="星期三";
+                break;
+            case 5:
+                str ="星期四";
+                break;
+            case 6:
+                str = "星期五";
+                break;
+            case 7:
+                str ="星期六";
+                break;
+        }
+        return str;
+    }
+
+    /***************   sharePreference 数据持久化   ***************/
 
     public static String getString(Context context, String strKey) {
         SharedPreferences setPreferences = context.getSharedPreferences("app", 0);

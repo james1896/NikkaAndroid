@@ -44,6 +44,8 @@ dependencies {
 
     //zxing二维码
     compile files('src/main/java/libs/core-3.2.1.jar')
+
+
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:palette-v7:25.2.0'
     compile 'com.android.support:design:25.2.0'

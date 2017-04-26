@@ -1,6 +1,9 @@
 package com.never.nikkaandroid;
 
 import android.graphics.Typeface;
+import android.icu.util.Calendar;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -24,9 +27,24 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         return R.layout.activity_main;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void init() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;// Java月份从0开始算
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
 
+//        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);//指定年份
+        calendar.set(Calendar.MONTH, month - 1);//指定月份 Java月份从0开始算
+        int daysCountOfMonth = calendar.getActualMaximum(Calendar.DATE);//获取指定年份中指定月份有几天
+
+        //获取指定年份月份中指定某天是星期几
+        calendar.set(Calendar.DAY_OF_MONTH, day);  //指定日
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+
+        Log.e("calendar","year:"+year+" month:"+month+" day:"+day+" week:"+dayOfWeek);
 //        Request.getInstant().login().success();
 
 //        Request.loginReq.getInstant().success();
