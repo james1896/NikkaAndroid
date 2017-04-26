@@ -11,7 +11,6 @@ import com.never.nikkaandroid.adpter.MainActivityAdpter;
 import com.never.nikkaandroid.base.BaseActivity;
 import com.never.nikkaandroid.base.TabLayoutItemView;
 import com.never.nikkaandroid.venv.CommonUtils;
-import com.never.nikkaandroid.venv.Request;
 import com.never.nikkaandroid.views.TransView;
 
 public class MainActivity extends BaseActivity implements TabLayout.OnTabSelectedListener{
@@ -28,8 +27,9 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     @Override
     protected void init() {
 
-        Request.getInstant().login().success();
+//        Request.getInstant().login().success();
 
+//        Request.loginReq.getInstant().success();
         Log.e("Device",CommonUtils.collectDeviceInfo(this));
 
         //view动画

@@ -1,38 +1,42 @@
 package com.never.nikkaandroid.venv;
 
-import android.util.Log;
-
 /**
  * Created by toby on 25/04/2017.
  */
 
 public class Request {
 
-    private static volatile Request request;
-    public static synchronized Request getInstant(){
-        if(request == null){
-            //双重检查加锁，只有在第一次实例化时，才启用同步机制，提高了性能。
-            synchronized (Request.class){
-                if(request == null) {
-                    request = new Request();
-                }
-            }
+    public  class Login{
+
+        public Login(String userName,String pwd){
+
+
         }
-        return request;
     }
+//    public static class loginReq{
+//
+//        private static volatile loginReq req;
+//        public static synchronized loginReq getInstant(){
+//            if(req == null){
+//                //双重检查加锁，只有在第一次实例化时，才启用同步机制，提高了性能。
+//                synchronized (loginReq.class){
+//                    if(req == null) {
+//                        req = new loginReq();
+//                    }
+//                }
+//            }
+//            return req;
+//        }
+//
+//        public loginReq login(){
+//
+//            return req;
+//        }
+//
+//        public  void success(){
+//
+//            Log.e("login.success","login.success");
+//        }
+//    }
 
-    public Request login(){
-
-        return request;
-    }
-
-    public Request login1(){
-
-        return request;
-    }
-
-    public  void success(){
-
-        Log.e("login.success","login.success");
-    }
 }

@@ -25,25 +25,24 @@ import com.never.nikkaandroid.venv.CommonUtils;
  */
 
 public class CanvasView extends View{
-    private Paint backgroundPaint;
+
     private Paint textPaint;
+    private Paint bitmapPaint;
+    private Paint backgroundPaint;
+
     private Context context;
     private int height;
     private int sreenWidth;
     private float cellPath;
+    private float leftHeight = 444;
+    private float rightHeight = 544;
+    private String text = "";
+    //
     private float points;
     private String userName;
     private String subTitle;
-
-    private Paint bitmapPaint;
-
-
-    private float leftHeight = 444;
-    private float rightHeight = 544;
-
-    private String text = "";
-
     private int imageId;
+
     public static float dip2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
@@ -52,22 +51,21 @@ public class CanvasView extends View{
     public CanvasView(Context context, int height,float points,String userName,String subTitle, int imageId) {
         super(context);
 
+        this.context = context;
         this.cellPath = 52f;
-        leftHeight = CommonUtils.getWindowHeight((Activity) context)/8*3-100;
-        rightHeight = CommonUtils.getWindowHeight((Activity) context)/8*3;
-
-        Log.e("aaaaaa","init"+leftHeight + "bb" + rightHeight);
-       init(context);
         this.imageId = imageId;
         this.height = height;
         this.points = points;
         this.userName = userName;
         this.subTitle = subTitle;
-        this.sreenWidth = context.getResources().getDisplayMetrics().widthPixels;
-//        this.leftHeight = sreenWidth / 3;
+        this.leftHeight = CommonUtils.getWindowHeight((Activity) context)/8*3-150;
+        this.rightHeight = CommonUtils.getWindowHeight((Activity) context)/8*3;
+        this.sreenWidth = (int) CommonUtils.getWindowWidth((Activity) context);
+
+        init(context);
+
     }
     private void init(Context context){
-        this.context = context;
         initBackgroundPaint();
         initTextPaint();
         initBitmapPaint();
@@ -117,11 +115,10 @@ public class CanvasView extends View{
         if(imageId == 0)return;
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageId);
 
-        Log.e("height", String.valueOf(CommonUtils.getWindowHeight((Activity) this.context)));
-        Log.e("weight", String.valueOf(CommonUtils.getWindowWidth((Activity) this.context)));
-        Log.e("weight1", String.valueOf(context.getResources().getDisplayMetrics().widthPixels));
         //高度需要再减去 图片高度的一半
-        canvas.drawBitmap(bitmap, dip2px(this.context,cellPath), (float) (this.leftHeight+100*(dip2px(this.context,cellPath)/CommonUtils.getWindowHeight((Activity) this.context))-bitmap.getHeight()/2), bitmapPaint);
+        float left = dip2px(this.context,cellPath) - bitmap.getHeight()/2;
+        float top = (float) (this.leftHeight+100*(dip2px(this.context,cellPath)/CommonUtils.getWindowHeight((Activity) this.context))-bitmap.getHeight()/2);
+        canvas.drawBitmap(bitmap,left ,top , bitmapPaint);
 
     }
 
