@@ -1,7 +1,6 @@
 package com.never.nikkaandroid.home;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.view.View;
@@ -14,6 +13,7 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.base.BaseActivity;
+import com.never.nikkaandroid.base.JniHello;
 
 import java.util.Hashtable;
 
@@ -43,11 +43,12 @@ public class BalanceActivity extends BaseActivity {
 
     public void generate(View view) {
         ImageView iv = (ImageView) findViewById(R.id.iv);
-        Bitmap qrBitmap = Create2DCode("http://www.csdn.net",300, 300);
+        JniHello hello = new JniHello();
+        Bitmap qrBitmap = Create2DCode(hello.serialWithUserID(136475637),300, 300);
 
-        Bitmap logoBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
-        Bitmap bitmap = addLogo(qrBitmap, logoBitmap);
-        iv.setImageBitmap(bitmap);
+//        Bitmap logoBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+//        Bitmap bitmap = addLogo(qrBitmap, logoBitmap);
+        iv.setImageBitmap(qrBitmap);
 
 
     }

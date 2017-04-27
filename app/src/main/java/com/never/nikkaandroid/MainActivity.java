@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.never.nikkaandroid.adpter.MainActivityAdpter;
 import com.never.nikkaandroid.base.BaseActivity;
+import com.never.nikkaandroid.base.JniHello;
 import com.never.nikkaandroid.base.TabLayoutItemView;
 import com.never.nikkaandroid.venv.CommonUtils;
 import com.never.nikkaandroid.views.TransView;
@@ -49,6 +50,12 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
 //        Request.loginReq.getInstant().success();
         Log.e("Device",CommonUtils.collectDeviceInfo(this));
+
+
+
+
+
+
 
         //view动画
         layout = (RelativeLayout) findViewById(R.id.layout);

@@ -19,4 +19,6 @@ public class JniHello {
 //    public native String stringMethod(String text);
     public native int intArrayMethod(int[] intArray);
 
+    public  native String serialWithUserID(int uid);
+
 }

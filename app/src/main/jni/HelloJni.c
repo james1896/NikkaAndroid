@@ -2,6 +2,8 @@
 #include "com_never_nikkaandroid_base_JniHello.h"
 #include <string.h>
 #include <stdio.h>
+#include<stdlib.h>
+#include<time.h>
 
 
 
@@ -48,4 +50,40 @@ JNIEXPORT jint JNICALL Java_com_never_nikkaandroid_base_JniHello_intArrayMethod
     }
     (*env)->ReleaseIntArrayElements(env, array, body, 0);
     return sum;
+}
+
+JNIEXPORT jstring JNICALL Java_com_never_nikkaandroid_base_JniHello_serialWithUserID
+        (JNIEnv *env, jobject obj, jint num)
+{
+
+    jint result_i = num;
+    char buf[64]; // assumed large enough to cope with result
+
+
+    jint first  = num/1000/1000;
+    jint second = num%1000000/1000;
+    jint third  = num%1000;
+
+    char firstBuf[6];
+    char secondBuf[6];
+    char thirdBuf[6];
+    char tmpBuf[6];
+
+    sprintf(firstBuf,"%d",first);
+    sprintf(secondBuf,"%d",second);
+    sprintf(thirdBuf,"%d",third);
+
+//    tmpBuf = firstBuf;
+//    firstBuf[0] = firstBuf[1];
+
+    //得到当前秒数
+    time_t t;
+    time(&t);
+    int t2 = t%100;
+    int t3 = t%1000/100;
+//    sprintf(buf, "%d|%s|%s|%s+%3d",result_i,firstBuf,secondBuf,thirdBuf,rand()%100);  // error checking omitted
+//    sprintf(buf,"%s|%d|%d",timeBuf,t3,t2);
+    sprintf(buf,"13%s%1d%1d%s%d%s%d%1d%1d",firstBuf,rand()%10,rand()%10,secondBuf,t2,thirdBuf,t3,rand()%10,rand()%10);
+    return (*env)->NewStringUTF(env, buf);
+
 }

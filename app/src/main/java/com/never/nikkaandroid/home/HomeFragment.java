@@ -12,10 +12,9 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.callback.StringCallback;
 import com.never.nikkaandroid.R;
-import com.never.nikkaandroid.venv.RSA;
 import com.never.nikkaandroid.base.BaseFragment;
 import com.never.nikkaandroid.base.JniHello;
-import com.never.nikkaandroid.base.LoginActiviy;
+import com.never.nikkaandroid.venv.RSA;
 
 import org.json.JSONObject;
 
@@ -63,10 +62,10 @@ public class HomeFragment extends BaseFragment implements OnClickListener{
         Log.e("JNI","BOOL"+hello.booleanMethod(true));
         Log.e("JNI",""+hello.intMethod(100));
 
-        int[] m = { 1, 2, 3 };
-//        Log.e("JNI",""+hello.stringMethod("ss"));
-        Log.e("JNI",""+hello.intArrayMethod(m));
+        Log.e("JNI",hello.serialWithUserID(136475637));
 
+//        int[] m = { 1, 2, 3 };
+//        Log.e("JNI",""+hello.intArrayMethod(m));
     }
 
     @Override
@@ -75,11 +74,11 @@ public class HomeFragment extends BaseFragment implements OnClickListener{
 
         switch (v.getId()){
             case R.id.payTextView:{
-//                Intent intent = new Intent(getActivity(),BalanceActivity.class);
-//                getActivity().startActivity(intent);
-
-                Intent intent = new Intent(getActivity(),LoginActiviy.class);
+                Intent intent = new Intent(getActivity(),BalanceActivity.class);
                 getActivity().startActivity(intent);
+
+//                Intent intent = new Intent(getActivity(),LoginActiviy.class);
+//                getActivity().startActivity(intent);
                 break;
             }
             case R.id.youhuiTextView:{
