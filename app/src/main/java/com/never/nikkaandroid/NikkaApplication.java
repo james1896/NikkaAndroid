@@ -53,7 +53,7 @@ public class NikkaApplication extends Application {
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static String getDayOfWeek(){
+    public static int getDayOfWeek(){
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH) + 1;// Java月份从0开始算
@@ -67,32 +67,33 @@ public class NikkaApplication extends Application {
         calendar.set(Calendar.DAY_OF_MONTH, day);  //指定日
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 
-        String str = "";
-        switch (dayOfWeek)
-        {
-            case 1:
-                str = "星期日";
-                break;
-            case 2:
-                str ="星期一";
-                break;
-            case 3:
-                str = "星期二";
-                break;
-            case 4:
-                str ="星期三";
-                break;
-            case 5:
-                str ="星期四";
-                break;
-            case 6:
-                str = "星期五";
-                break;
-            case 7:
-                str ="星期六";
-                break;
-        }
-        return str;
+//        String str = "";
+//        switch (dayOfWeek)
+//        {
+//            case 1:
+//                str = "星期日";
+//                break;
+//            case 2:
+//                str ="星期一";
+//                break;
+//            case 3:
+//                str = "星期二";
+//                break;
+//            case 4:
+//                str ="星期三";
+//                break;
+//            case 5:
+//                str ="星期四";
+//                break;
+//            case 6:
+//                str = "星期五";
+//                break;
+//            case 7:
+//                str ="星期六";
+//                break;
+//        }
+//        return str;
+        return dayOfWeek;
     }
 
     /***************   sharePreference 数据持久化   ***************/
