@@ -12,8 +12,9 @@
  <ImageView
      android:layout_width="match_parent"
      android:layout_height="match_parent"
-     android:background="@drawable/balance_background"/>
 
+     />
+ <!--android:background="@drawable/balance_background"-->
 
   <ImageView
       android:id="@+id/iv"
