@@ -22,7 +22,7 @@ import java.util.Hashtable;
  * Created by toby on 17/04/2017.
  */
 
-public class BalanceActivity extends BaseActivity {
+public class BalanceActivity extends BaseActivity  {
     @Override
     protected int getContentView() {
         return R.layout.activity_balance;
@@ -120,4 +120,6 @@ public class BalanceActivity extends BaseActivity {
         }
         return resMatrix;
     }
+
+
 }
