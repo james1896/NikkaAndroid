@@ -98,7 +98,7 @@ JNIEXPORT jstring JNICALL Java_com_never_nikkaandroid_base_JniHello_serialWithUs
     char tmpBuf[6];
 
     //sort
-    i = 2;
+    i = t2;
     if(i > 6){
         sprintf(firstBuf,"%d%d%d",first_3,first_1,first_2);
         sprintf(secondBuf,"%d%d%d",second_1,second_3,second_2);
