@@ -58,8 +58,10 @@ JNIEXPORT jstring JNICALL Java_com_never_nikkaandroid_base_JniHello_serialWithUs
     //得到当前秒数
     time_t t;
     time(&t);
-    int t2 = t%100;
-    int t3 = t%1000/100;
+    int t1 = t%1000/100;
+    int t2 = t%100/10;
+    int t3 = t%10;
+
     int i = t2%10;
     //
     jint result_i = num;
@@ -71,17 +73,23 @@ JNIEXPORT jstring JNICALL Java_com_never_nikkaandroid_base_JniHello_serialWithUs
     jint third  = num%1000;
 
     //拆分成一位 一共九位
-    jint i1 = first/100;
-    jint j1 = first%100/10;
-    jint k1 = first%10;
+    int ram_1 = rand()%10;
+    int ram_2 = rand()%10;
+    int ram_3 = rand()%10;
+    int flog = rand()%9;
 
-    jint i2 = second/100;
-    jint j2 = second%100/10;
-    jint k2 = second%10;
+    //拆分成一位 一共九位
+    int first_1 = first/100;
+    int first_2 = first%100/10;
+    int first_3 = first%10;
 
-    jint i3 = third/100;
-    jint j3 = third%100/10;
-    jint k3 = third%10;
+    int second_1 = second/100;
+    int second_2 = second%100/10;
+    int second_3 = second%10;
+
+    int third_1 = third/100;
+    int third_2 = third%100/10;
+    int third_3 = third%10;
 
     //
     char firstBuf[6];
@@ -90,21 +98,60 @@ JNIEXPORT jstring JNICALL Java_com_never_nikkaandroid_base_JniHello_serialWithUs
     char tmpBuf[6];
 
     //sort
+    i = 2;
+    if(i > 6){
+        sprintf(firstBuf,"%d%d%d",first_3,first_1,first_2);
+        sprintf(secondBuf,"%d%d%d",second_1,second_3,second_2);
+        sprintf(thirdBuf,"%d%d%d",third_2,third_3,third_1);
+    }
+    else if(i==0){
 
-    if(i>5){
-        sprintf(firstBuf,"%d%d%d",k1,i1,j1);
-        sprintf(secondBuf,"%d%d%d",i2,k2,j2);
-        sprintf(thirdBuf,"%d%d%d",j3,k3,i3);
-    } else{
-        sprintf(firstBuf,"%d",first);
-        sprintf(secondBuf,"%d",second);
-        sprintf(thirdBuf,"%d",third);
+        sprintf(firstBuf,"%d%d%d",third_2,third_3,second_1);
+        sprintf(secondBuf,"%d%d%d",first_3,second_3,first_1);
+        sprintf(thirdBuf,"%d%d%d",second_2,first_2,third_1);
+
+    } else if (i == 1){
+        sprintf(firstBuf,"%d%d%d",third_3,first_2,third_1);
+        sprintf(secondBuf,"%d%d%d",second_1,second_2,second_3);
+        sprintf(thirdBuf,"%d%d%d",first_3,third_2,first_1);
+    } else if (i == 2){
+        sprintf(firstBuf,"%d%d%d",first_1,third_3,second_2);
+        sprintf(secondBuf,"%d%d%d",second_1,first_3,third_1);
+        sprintf(thirdBuf,"%d%d%d",second_3,third_2,first_2);
+    } else if (i == 3){
+        sprintf(firstBuf,"%d%d%d",first_3,second_2,third_3);
+        sprintf(secondBuf,"%d%d%d",second_1,first_1,third_1);
+        sprintf(thirdBuf,"%d%d%d",second_3,third_2,first_2);
+    } else if (i == 4){
+
+        sprintf(firstBuf,"%d%d%d",third_2,second_2,third_3);
+        sprintf(secondBuf,"%d%d%d",first_2,first_3,third_1);
+        sprintf(thirdBuf,"%d%d%d",second_3,first_1,second_1);
+    } else if (i == 5){
+        sprintf(firstBuf,"%d%d%d",third_2,second_1,third_3);
+        sprintf(secondBuf,"%d%d%d",first_2,second_3,first_3);
+        sprintf(thirdBuf,"%d%d%d",second_2,first_1,third_1);
+    } else if (i == 6){
+        sprintf(firstBuf,"%d%d%d",second_3,second_1,third_3);
+        sprintf(secondBuf,"%d%d%d",first_2,third_2,first_3);
+        sprintf(thirdBuf,"%d%d%d",second_2,first_1,third_1);
     }
 
 
 
 //    sprintf(buf,"%d%d%d%d%d%d%d%d%d",i1,j1,k1,i2,j2,k2,i3,j3,k3);
-    sprintf(buf,"13%s%1d%1d%s%d%s%d%1d%1d",firstBuf,rand()%10,rand()%10,secondBuf,t2,thirdBuf,t3,rand()%10,rand()%10);
+    sprintf(buf,"13%s%1d%1d%s%d%d%s%d%1d%1d",
+            firstBuf,
+            ram_1,
+            ram_2,
+            secondBuf,
+            t2,
+            t3,
+            thirdBuf,
+            t1,
+            flog,
+            ram_3);
+
     return (*env)->NewStringUTF(env, buf);
 
 }

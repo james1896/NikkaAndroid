@@ -3,6 +3,7 @@ package com.never.nikkaandroid.home;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -44,8 +45,10 @@ public class BalanceActivity extends BaseActivity {
     public void generate(View view) {
         ImageView iv = (ImageView) findViewById(R.id.iv);
         JniHello hello = new JniHello();
-        Bitmap qrBitmap = Create2DCode(hello.serialWithUserID(136475637),300, 300);
 
+        String qrStr = hello.serialWithUserID(136475637);
+        Log.e("qrString",qrStr);
+        Bitmap qrBitmap = Create2DCode(qrStr,300, 300);
 //        Bitmap logoBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
 //        Bitmap bitmap = addLogo(qrBitmap, logoBitmap);
         iv.setImageBitmap(qrBitmap);
