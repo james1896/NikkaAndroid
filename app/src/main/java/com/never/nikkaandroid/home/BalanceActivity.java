@@ -15,6 +15,8 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.base.BaseActivity;
 import com.never.nikkaandroid.base.JniHello;
+import com.never.nikkaandroid.base.QRTimer;
+import com.never.nikkaandroid.base.QRTimerInterface;
 
 import java.util.Hashtable;
 
@@ -22,19 +24,27 @@ import java.util.Hashtable;
  * Created by toby on 17/04/2017.
  */
 
-public class BalanceActivity extends BaseActivity  {
+public class BalanceActivity extends BaseActivity implements QRTimerInterface {
+
+    QRTimer timer;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_balance;
     }
 
+    ImageView iv;
     @Override
     protected void init() {
+
+        timer = new QRTimer();
+        timer.setTimerInterface(this);
+        timer.start();
+
+        ImageView back = (ImageView) findViewById(R.id.balance_back);
+        iv = (ImageView) findViewById(R.id.iv);
         generate(null);
-
-
-        ImageView iv = (ImageView) findViewById(R.id.balance_back);
-        iv.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -43,7 +53,7 @@ public class BalanceActivity extends BaseActivity  {
     }
 
     public void generate(View view) {
-        ImageView iv = (ImageView) findViewById(R.id.iv);
+
         JniHello hello = new JniHello();
 
         String qrStr = hello.serialWithUserID(136475637);
@@ -52,8 +62,6 @@ public class BalanceActivity extends BaseActivity  {
 //        Bitmap logoBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
 //        Bitmap bitmap = addLogo(qrBitmap, logoBitmap);
         iv.setImageBitmap(qrBitmap);
-
-
     }
 
     private Bitmap addLogo(Bitmap qrBitmap, Bitmap logoBitmap) {
@@ -121,5 +129,15 @@ public class BalanceActivity extends BaseActivity  {
         return resMatrix;
     }
 
+    @Override
+    public void runBlock() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                generate(null);
+            }
+        });
+        Log.e("QRTimerIntterface","runBlock");
+    }
 
 }

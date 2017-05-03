@@ -12,16 +12,11 @@ import android.widget.TextView;
 
 import com.never.nikkaandroid.adpter.MainActivityAdpter;
 import com.never.nikkaandroid.base.BaseActivity;
-import com.never.nikkaandroid.base.QRTimer;
-import com.never.nikkaandroid.base.QRTimerInterface;
 import com.never.nikkaandroid.base.TabLayoutItemView;
 import com.never.nikkaandroid.venv.CommonUtils;
 import com.never.nikkaandroid.views.TransView;
 
-public class MainActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,QRTimerInterface{
-
-
-    private QRTimer timer;
+public class MainActivity extends BaseActivity implements TabLayout.OnTabSelectedListener{
 
     private RelativeLayout layout;
     private TextView titleTextView;
@@ -34,10 +29,6 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void init() {
-
-        timer = new QRTimer();
-        timer.setTimerInterface(this);
-       timer.start();
 
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -135,12 +126,6 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
-    }
-
-
-    @Override
-    public void runBlock() {
-        Log.e("QRTimerIntterface","runBlock");
     }
 }
 
