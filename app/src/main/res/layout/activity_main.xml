@@ -1,40 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/layout"
-    tools:context="com.never.nikkaandroid.MainActivity"
-    >
 
-    <LinearLayout
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<data>-->
+    <!--<variable name="user" type="com.never.databinding003.User"/>-->
+    <!--</data>-->
+    <RelativeLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:id="@+id/layout"
+        tools:context="com.never.nikkaandroid.MainActivity"
+        >
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewpage"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        </android.support.v4.view.ViewPager>
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpage"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="49dp"
-            app:tabIndicatorHeight="0dp"
-            app:tabMode="fixed"
-            android:background="@color/background_white"
+            </android.support.v4.view.ViewPager>
 
-            >
-            <!--上面TabLayout中app:tabIndicatorHeight="0dp"是为了不显示tab底部的横线，-->
-            <!--app:tabMode="fixed"是让底部tab布局不可滑动。-->
-        </android.support.design.widget.TabLayout>
-    </LinearLayout>
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                app:tabIndicatorHeight="0dp"
+                app:tabMode="fixed"
+                android:background="@color/background_white"
 
-    <include layout="@layout/toolbar" />
+                >
+                <!--上面TabLayout中app:tabIndicatorHeight="0dp"是为了不显示tab底部的横线，-->
+                <!--app:tabMode="fixed"是让底部tab布局不可滑动。-->
+            </android.support.design.widget.TabLayout>
+        </LinearLayout>
 
-</RelativeLayout>
+        <include layout="@layout/toolbar" />
+
+    </RelativeLayout>
+
+</layout>
