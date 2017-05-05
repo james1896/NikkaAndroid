@@ -66,7 +66,7 @@ public class NikkaApplication extends Application {
         //获取指定年份月份中指定某天是星期几
         calendar.set(Calendar.DAY_OF_MONTH, day);  //指定日
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-
+        Log.e("calendar","year:"+year+" month:"+month+" day:"+day+" week:"+dayOfWeek);
 //        String str = "";
 //        switch (dayOfWeek)
 //        {

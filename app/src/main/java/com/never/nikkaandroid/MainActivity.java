@@ -1,7 +1,6 @@
 package com.never.nikkaandroid;
 
 import android.graphics.Typeface;
-import android.icu.util.Calendar;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
@@ -19,7 +18,6 @@ import com.never.nikkaandroid.views.TransView;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> implements TabLayout.OnTabSelectedListener{
 
-    private RelativeLayout layout;
     private TextView titleTextView;
     private String[] titles = new String[]{"Nikka","","Profile"};
     @Override
@@ -30,39 +28,17 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void init() {
-
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1;// Java月份从0开始算
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-//        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, year);//指定年份
-        calendar.set(Calendar.MONTH, month - 1);//指定月份 Java月份从0开始算
-        int daysCountOfMonth = calendar.getActualMaximum(Calendar.DATE);//获取指定年份中指定月份有几天
-
-        //获取指定年份月份中指定某天是星期几
-        calendar.set(Calendar.DAY_OF_MONTH, day);  //指定日
-        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-
-        Log.e("calendar","year:"+year+" month:"+month+" day:"+day+" week:"+dayOfWeek);
-//        Request.getInstant().login().success();
-
-//        Request.loginReq.getInstant().success();
-        Log.e("Device",CommonUtils.collectDeviceInfo(this));
-
-
+        Log.e("Devicedasfdsafdsa",CommonUtils.collectDeviceInfo(this));
 
         //view动画
 //        layout = (RelativeLayout) findViewById(R.id.layout);
-        layout = dataBind.layout;
-        layout.post(new Runnable() {
+        dataBind.layout.post(new Runnable() {
             @Override
             public void run() {
-
                 TransView view = new TransView(MainActivity.this);
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) CommonUtils.getWindowWidth(MainActivity.this),
                         (int)getResources().getDimension(R.dimen.m_100));
-                layout.addView(view, params);
+                dataBind.layout.addView(view, params);
                 view.startTrans(getResources().getDimension(R.dimen.m_100), 1000);
             }
         });
@@ -70,6 +46,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
 
         //toolbar title
         titleTextView = (TextView) findViewById(R.id.toolbar_title);
+
         titleTextView.setText(titles[0]);
         Typeface type= Typeface.createFromAsset(getAssets(),"font/MarkerFelt.ttf");
         titleTextView.setTypeface(type);

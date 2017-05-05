@@ -1,36 +1,39 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_white"
-    android:orientation="vertical"
-    >
-
-    <!--上半部分-->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-        <!--目前空白-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:background="#6FB136">
-        </LinearLayout>
 
-        <!--付款，优惠 消费记录-->
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_white"
+        android:orientation="vertical"
+        >
+
+        <!--上半部分-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:background="#62A634">
+            android:orientation="vertical">
+            <!--目前空白-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:background="#6FB136">
+            </LinearLayout>
 
-            <!--付款-->
-            <!--android:drawablePadding="10dp"-->
+            <!--付款，优惠 消费记录-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="#62A634">
+
+                <!--付款-->
+                <!--android:drawablePadding="10dp"-->
                 <TextView
                     android:id="@+id/payTextView"
                     android:drawableTop="@drawable/home_bankcard"
@@ -42,7 +45,7 @@
                     android:text="我的储蓄"/>
 
 
-            <!--优惠-->
+                <!--优惠-->
                 <TextView
                     android:id="@+id/youhuiTextView"
                     android:drawableTop="@drawable/home_preference"
@@ -52,7 +55,7 @@
                     android:gravity="center"
                     android:text="优惠活动"/>
 
-            <!--消费记录-->
+                <!--消费记录-->
                 <TextView
                     android:id="@+id/recordTextView"
                     android:drawableTop="@drawable/home_ticket"
@@ -61,30 +64,31 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="消费记录"/>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <!--下半部分-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-        <!--文字-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:textColor="#6FB136"
-            android:gravity="center_vertical|left"
-            android:textSize="16dp"
-            android:paddingLeft="@dimen/m_6"
-            android:text="Here's the loyalty program app"/>
-        <!--banner-->
-        <ImageView
+        <!--下半部分-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@drawable/home_banner"/>
-    </LinearLayout>
+            android:orientation="vertical">
+            <!--文字-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:textColor="#6FB136"
+                android:gravity="center_vertical|left"
+                android:textSize="16dp"
+                android:paddingLeft="@dimen/m_6"
+                android:text="Here's the loyalty program app"/>
+            <!--banner-->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/home_banner"/>
+        </LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>
+</layout>

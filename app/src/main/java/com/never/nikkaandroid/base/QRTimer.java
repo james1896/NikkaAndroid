@@ -1,5 +1,7 @@
 package com.never.nikkaandroid.base;
 
+import android.util.Log;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,10 +21,11 @@ public class QRTimer {
         timerTask = new TimerTask() {
             @Override
             public void run() {
-                if(t == 0){
+                if(t-- == 0){
                     t = time;
                     timeInface.runBlock();
                 }
+                Log.e("timerTask","run:"+t);
             }
         };
     }
