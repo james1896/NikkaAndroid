@@ -4,24 +4,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout"
-    android:background="@color/white"
+    android:background="@color/theme_green"
     tools:context="com.never.nikkaandroid.home.BalanceActivity"
     >
 
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="360dp"
+    android:orientation="vertical"
+    android:layout_centerInParent="true"
+    android:paddingLeft="@dimen/m_40"
+    android:paddingRight="@dimen/m_40"
+    android:paddingBottom="@dimen/m_30"
+    android:paddingTop="@dimen/m_20"
+    android:background="@drawable/banlance_background_shape">
 
- <ImageView
-     android:layout_width="match_parent"
-     android:layout_height="match_parent"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/textsize_16"
+        android:textColor="#2C592D"
+        android:gravity="center"
+        android:text="请向商家出示二维码"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
 
-     />
- <!--android:background="@drawable/balance_background"-->
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@android:color/white"
+        />
 
-  <ImageView
-      android:id="@+id/iv"
-      android:layout_width="200dp"
-      android:layout_height="200dp"
-      android:background="@android:color/white"
-      android:layout_centerInParent="true"/>
+</LinearLayout>
+
 
  <ImageView
      android:id="@+id/balance_back"

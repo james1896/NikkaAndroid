@@ -3,8 +3,11 @@ package com.never.nikkaandroid.me;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.never.nikkaandroid.R;
@@ -22,7 +25,7 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MeFragment extends BaseFragment<FragmentMeBinding> {
+public class MeFragment extends BaseFragment<FragmentMeBinding> implements AdapterView.OnItemClickListener {
 
     // 模拟数据
     private List<String> dataList = null;
@@ -72,8 +75,8 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> {
         listview.setAdapter(new MeListAdapter(getContext(),getDataList()));
         listview.addHeaderView(headerView);
 
-        // 绑定item点击事件
-//        listview.setOnItemClickListener(this);
+//      绑定item点击事件
+        listview.setOnItemClickListener(this);
 
 
 
@@ -128,6 +131,38 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> {
     }
 
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.e("me","item:"+position);
 
+        switch (position){
+            case 0:{
+            //header
+                break;
+            }
+            case 1:{
+            //礼物赠送
+                break;
+            }
+            case 2:{
+            //生活助手
+                break;
+            }
+            case 3:{
+            //意见反馈
+                break;
+            }
+            case 4:{
+            //呜谢组织
+                break;
+            }
+            case 5:{
+            //关于我们
+                break;
+            }
 
+            default:
+                break;
+        }
+    }
 }

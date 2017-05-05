@@ -28,7 +28,7 @@
             android:paddingTop="@dimen/m_2"
             android:paddingLeft="@dimen/m_12"
             android:textColor="@color/colorBlock"
-            android:textSize="@dimen/textsize_18">
+            android:textSize="@dimen/textsize_17">
         </TextView>
     </LinearLayout>
 
