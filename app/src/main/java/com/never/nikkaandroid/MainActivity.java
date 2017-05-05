@@ -37,12 +37,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
             public void run() {
                 TransView view = new TransView(MainActivity.this);
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int) CommonUtils.getWindowWidth(MainActivity.this),
-                        (int)getResources().getDimension(R.dimen.m_100));
+                        (int)getResources().getDimension(R.dimen.m_80));
                 dataBind.layout.addView(view, params);
                 view.startTrans(getResources().getDimension(R.dimen.m_100), 1000);
             }
         });
-
 
         //toolbar title
         titleTextView = (TextView) findViewById(R.id.toolbar_title);

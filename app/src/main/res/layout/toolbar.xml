@@ -5,7 +5,8 @@
     android:clipToPadding="true"
     android:layout_width="match_parent"
     android:background="@android:color/transparent"
-    android:layout_height="48dp">
+    android:layout_height="68dp"
+    >
 
     <TextView
         android:id="@+id/toolbar_title"
@@ -15,6 +16,7 @@
         android:textSize="22dp"
         android:textStyle="bold"
         android:textColor="#ffffff"
+        android:text="NAVBAR"
         android:background="@android:color/transparent"/>
 
 </android.support.v7.widget.Toolbar>

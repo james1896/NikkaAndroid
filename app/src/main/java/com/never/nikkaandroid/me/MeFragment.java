@@ -3,6 +3,7 @@ package com.never.nikkaandroid.me;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -142,6 +143,8 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
             }
             case 1:{
             //礼物赠送
+                Intent intent = new Intent(getActivity(),GiftActivity.class);
+                getActivity().startActivity(intent);
                 break;
             }
             case 2:{
