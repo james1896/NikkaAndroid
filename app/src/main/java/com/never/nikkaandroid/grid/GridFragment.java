@@ -6,10 +6,12 @@ import android.app.Fragment;
 import com.never.nikkaandroid.base.BaseFragment;
 
 import com.never.nikkaandroid.R;
+import com.never.nikkaandroid.databinding.FragmentGridBinding;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GridFragment extends BaseFragment {
+public class GridFragment extends BaseFragment<FragmentGridBinding> {
 
 
     public GridFragment() {

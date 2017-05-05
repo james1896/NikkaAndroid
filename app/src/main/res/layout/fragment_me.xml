@@ -1,30 +1,35 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_white"
-    android:orientation="vertical"
-    tools:context="com.never.nikkaandroid.me.MeFragment">
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_white"
+        android:orientation="vertical"
+        tools:context="com.never.nikkaandroid.me.MeFragment">
 
 
 
-    <!-- TODO: Update blank fragment layout -->
+        <!-- TODO: Update blank fragment layout -->
 
-    <!--<com.never.nikkaandroid.views.CanvasView-->
+        <!--<com.never.nikkaandroid.views.CanvasView-->
         <!--android:id="@+id/canvasview"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="0dp">-->
-    <!--</com.never.nikkaandroid.views.CanvasView>-->
+        <!--</com.never.nikkaandroid.views.CanvasView>-->
 
-    <!--<com.never.nikkaandroid.base.BounceListView-->
+        <!--<com.never.nikkaandroid.base.BounceListView-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"-->
         <!--android:id="@+id/meListView">-->
-    <!--</com.never.nikkaandroid.base.BounceListView>-->
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/meListView">
-    </ListView>
+        <!--</com.never.nikkaandroid.base.BounceListView>-->
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/meListView">
+        </ListView>
 
-</LinearLayout>
+    </LinearLayout>
+
+
+</layout>

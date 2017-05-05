@@ -14,6 +14,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.base.BaseFragment;
 import com.never.nikkaandroid.base.JniHello;
+import com.never.nikkaandroid.databinding.FragmentHomeBinding;
 import com.never.nikkaandroid.venv.RSA;
 
 import org.json.JSONObject;
@@ -29,7 +30,7 @@ import okhttp3.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends BaseFragment implements OnClickListener{
+public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements OnClickListener{
 
 
     public HomeFragment() {
@@ -47,13 +48,16 @@ public class HomeFragment extends BaseFragment implements OnClickListener{
 //        Intent intent = new Intent(getActivity(),BalanceActivity.class);
 //        startActivity(intent);
 
-        View v1 = contentView.findViewById(R.id.payTextView);
+//        View v1 = contentView.findViewById(R.id.payTextView);
+        View v1 = dataBind.payTextView;
         v1.setOnClickListener(this);
 
-        View v2 = contentView.findViewById(R.id.youhuiTextView);
+//        View v2 = contentView.findViewById(R.id.youhuiTextView);
+        View v2 = dataBind.youhuiTextView;
         v2.setOnClickListener(this);
 
-        View v3 = contentView.findViewById(R.id.recordTextView);
+//        View v3 = contentView.findViewById(R.id.recordTextView);
+        View v3 = dataBind.recordTextView;
         v3.setOnClickListener(this);
 
         JniHello hello = new JniHello();

@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.adpter.MeListAdapter;
 import com.never.nikkaandroid.base.BaseFragment;
+import com.never.nikkaandroid.databinding.FragmentMeBinding;
 import com.never.nikkaandroid.venv.CommonUtils;
 import com.never.nikkaandroid.views.CanvasView;
 
@@ -21,7 +22,7 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MeFragment extends BaseFragment {
+public class MeFragment extends BaseFragment<FragmentMeBinding> {
 
     // 模拟数据
     private List<String> dataList = null;
@@ -67,7 +68,7 @@ public class MeFragment extends BaseFragment {
 //        ListAdapter adapter = new ArrayAdapter<String>(getContext(),
 //                android.R.layout.simple_list_item_1, dataList);
 //
-        ListView listview = (ListView) contentView.findViewById(R.id.meListView);
+        ListView listview = dataBind.meListView;
         listview.setAdapter(new MeListAdapter(getContext(),getDataList()));
         listview.addHeaderView(headerView);
 
