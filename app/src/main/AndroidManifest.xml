@@ -33,7 +33,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".base.LoginActiviy" />
-        <activity android:name=".me.GiftActivity"></activity>
+        <activity android:name=".me.GiftActivity" />
+        <activity android:name=".me.FeedbackActivity" />
+        <activity android:name=".me.ThankActivity"></activity>
     </application>
 
 </manifest>

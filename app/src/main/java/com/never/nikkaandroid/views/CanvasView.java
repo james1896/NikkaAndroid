@@ -109,7 +109,7 @@ public class CanvasView extends View{
 
     private void initBackgroundPaint(){
         backgroundPaint = new Paint();
-        backgroundPaint.setColor(context.getResources().getColor(R.color.me_headerview));
+        backgroundPaint.setColor(context.getResources().getColor(R.color.theme_pink));
         backgroundPaint.setAntiAlias(true);
     }
 

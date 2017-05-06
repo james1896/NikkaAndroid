@@ -1,10 +1,7 @@
 package com.never.nikkaandroid.me;
 
-import android.graphics.Typeface;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.base.BaseActivity;
@@ -20,14 +17,8 @@ public class GiftActivity extends BaseActivity<ActivityGiftBinding> implements V
 
     @Override
     protected void init() {
-
         //toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        TextView tv = (TextView) findViewById(R.id.toolbar_title);
-        Typeface type= Typeface.createFromAsset(getAssets(),"font/MarkerFelt.ttf");
-        tv.setTypeface(type);
-        tv.setText("Gift To");
-        toolbar.setBackgroundColor(getResources().getColor(R.color.me_headerview));
+        setNavbar("Gift To",getResources().getColor(R.color.theme_pink));
 
         //back
         ImageView iv = dataBind.giftBack;

@@ -153,10 +153,14 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
             }
             case 3:{
             //意见反馈
+                Intent intent = new Intent(getActivity(),FeedbackActivity.class);
+                getActivity().startActivity(intent);
                 break;
             }
             case 4:{
             //呜谢组织
+                Intent intent = new Intent(getActivity(),ThankActivity.class);
+                getActivity().startActivity(intent);
                 break;
             }
             case 5:{

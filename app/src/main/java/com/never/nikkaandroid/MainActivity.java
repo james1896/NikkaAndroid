@@ -1,13 +1,11 @@
 package com.never.nikkaandroid;
 
-import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.never.nikkaandroid.adpter.MainActivityAdpter;
 import com.never.nikkaandroid.base.BaseActivity;
@@ -18,8 +16,8 @@ import com.never.nikkaandroid.views.TransView;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> implements TabLayout.OnTabSelectedListener{
 
-    private TextView titleTextView;
     private String[] titles = new String[]{"Nikka","","Profile"};
+
     @Override
     protected int getContentView() {
         return R.layout.activity_main;
@@ -30,6 +28,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
     protected void init() {
         Log.e("Devicedasfdsafdsa",CommonUtils.collectDeviceInfo(this));
 
+        //toolbar
+        setNavbar(titles[0],0);
         //view动画
 //        layout = (RelativeLayout) findViewById(R.id.layout);
         dataBind.layout.post(new Runnable() {
@@ -43,12 +43,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
             }
         });
 
-        //toolbar title
-        titleTextView = (TextView) findViewById(R.id.toolbar_title);
 
-        titleTextView.setText(titles[0]);
-        Typeface type= Typeface.createFromAsset(getAssets(),"font/MarkerFelt.ttf");
-        titleTextView.setTypeface(type);
+
 
         //viewPage
         ViewPager viewPage = (ViewPager) findViewById(R.id.viewpage);
@@ -68,8 +64,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-
-        titleTextView.setText(titles[tab.getPosition()]);
+        setNavbar(titles[tab.getPosition()],0);
 //        switch (tab.getPosition()){
 //            case 0:
 //                tab.setIcon(getResources().getDrawable(R.drawable.grape_press));
