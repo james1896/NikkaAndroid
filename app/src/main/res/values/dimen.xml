@@ -28,6 +28,7 @@
     <dimen name="m_80">80dp</dimen>
     <dimen name="m_90">90dp</dimen>
     <dimen name="m_100">100dp</dimen>
+    <dimen name="m_200">200dp</dimen>
 
 
 
@@ -48,5 +49,5 @@
 
     <dimen name="h_banner">150dp</dimen>
 
-    <dimen name="hhh">400dp</dimen>
+    <dimen name="view_path">20dp</dimen>
 </resources>

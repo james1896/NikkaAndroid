@@ -27,17 +27,18 @@ public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatA
 //        setContentView(getContentView());
         dataBind = DataBindingUtil.setContentView(this, getContentView());
 
+        initStatusBar();
+        initBaseView();
+
+        init();
+    }
+
+    private void initStatusBar(){
+        //沉浸式statusBar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
             localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
         }
-
-
-        initBaseView();
-
-        init();
-
-
     }
 
     private void initBaseView(){
