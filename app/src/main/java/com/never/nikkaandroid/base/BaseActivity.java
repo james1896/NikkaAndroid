@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.never.nikkaandroid.R;
@@ -16,6 +19,8 @@ import com.never.nikkaandroid.R;
 public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatActivity {
 
     protected B dataBind;
+    Toolbar toolbar;
+    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,24 +31,50 @@ public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatA
             WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
             localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
         }
+
+
+        initBaseView();
+
         init();
+
+
     }
 
-    //colorInt <=0 使用默认透明颜色
-    protected void setNavbar(String title, @ColorInt int color){
+    private void initBaseView(){
         //toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        TextView tv = (TextView) findViewById(R.id.toolbar_title);
-        Typeface type= Typeface.createFromAsset(getAssets(),"font/MarkerFelt.ttf");
-        tv.setTypeface(type);
-        tv.setText(title);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if(toolbar != null){
+            // setSupportActionBar(toolbar);
+            Log.e("----->", toolbar.toString());
+        }
 
-        if(color <= 0)
+        tv = (TextView) findViewById(R.id.toolbar_title);
+        if(tv != null){
+            Typeface type= Typeface.createFromAsset(getAssets(),"font/MarkerFelt.ttf");
+            tv.setTypeface(type);
+        }
+
+        //back_white button
+        ImageView back = (ImageView)findViewById(R.id.back);
+        if(back != null){
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }
+    }
+    //colorInt =0 使用默认透明颜色
+    protected void setNavbar(String title, @ColorInt int color){
+        Log.e("setNavbar","title:"+title+"  colorInt:"+color);
+        tv.setText(title);
         toolbar.setBackgroundColor(color);
+
     }
 
     protected void backPress(){
-        //back
+        //back_white
 
     }
 

@@ -37,19 +37,11 @@ public class BalanceActivity extends BaseActivity implements QRTimerInterface {
     @Override
     protected void init() {
 
+        iv = (ImageView) findViewById(R.id.iv);
+        generate(null);
         timer = new QRTimer();
         timer.setTimerInterface(this);
         timer.start();
-
-        ImageView back = (ImageView) findViewById(R.id.balance_back);
-        iv = (ImageView) findViewById(R.id.iv);
-        generate(null);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     public void generate(View view) {

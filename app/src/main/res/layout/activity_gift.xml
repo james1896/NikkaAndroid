@@ -7,16 +7,16 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="@color/background_white"
         tools:context="com.never.nikkaandroid.me.GiftActivity">
 
         <include layout="@layout/toolbar"/>
 
         <ImageView
-            android:id="@+id/gift_back"
+            android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/back"
+            android:background="@drawable/back_pink"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="@dimen/m_20"
             android:layout_marginLeft="@dimen/m_20"/>

@@ -10,7 +10,7 @@ import java.util.TimerTask;
  */
 
 public class QRTimer {
-    final int time = 10;
+    final int time = 9;
     Timer timer;
     TimerTask timerTask;
     int  t = time;

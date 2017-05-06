@@ -162,12 +162,10 @@ public class CanvasView extends View{
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imageId);
 
         //高度需要再减去 图片高度的一半
-        this.userImg_left = dip2px(this.context,cellPath) - bitmap.getHeight()/2;
+        this.userImg_left = cellPath ;
+
         this.userImg_top = this.leftHeight+100*(dip2px(this.context,cellPath)/CommonUtils.getWindowHeight((Activity) this.context))-bitmap.getHeight()/2;
-        canvas.drawBitmap(bitmap,this.userImg_left ,this.userImg_top , bitmapPaint);
-
-
-
+        canvas.drawBitmap(bitmap,dip2px(this.context,cellPath) ,this.userImg_top , bitmapPaint);
     }
 
     private void drawUserName(Canvas canvas){

@@ -16,7 +16,7 @@ import com.never.nikkaandroid.views.TransView;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> implements TabLayout.OnTabSelectedListener{
 
-    private String[] titles = new String[]{"Nikka","","Profile"};
+    private String[] titles = new String[]{"Nikka","Grid","Profile"};
 
     @Override
     protected int getContentView() {
@@ -42,9 +42,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
                 view.startTrans(getResources().getDimension(R.dimen.m_100), 1000);
             }
         });
-
-
-
 
         //viewPage
         ViewPager viewPage = (ViewPager) findViewById(R.id.viewpage);
