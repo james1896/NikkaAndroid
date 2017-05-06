@@ -3,6 +3,8 @@ package com.never.nikkaandroid.me;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -22,6 +24,7 @@ public class FeedbackActivity extends BaseActivity {
     protected void init() {
 
         setNavbar("FeedBack",getResources().getColor(R.color.theme_pink));
+
 
         editText = (EditText) findViewById(R.id.edittext);
         textNumber = (TextView) findViewById(R.id.feedback_textview);
@@ -45,6 +48,16 @@ public class FeedbackActivity extends BaseActivity {
             @Override
             public void afterTextChanged(Editable s) {
 //                Log.e("count",""+count);
+            }
+        });
+
+
+        View mainView = findViewById(R.id.feedback_layout);
+        mainView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
             }
         });
     }

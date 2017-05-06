@@ -8,7 +8,9 @@
         android:layout_height="match_parent"
         android:background="@color/background_white"
         android:orientation="vertical"
-        tools:context="com.never.nikkaandroid.me.FeedbackActivity">
+        tools:context="com.never.nikkaandroid.me.FeedbackActivity"
+        android:id="@+id/feedback_layout">
+
 
         <include layout="@layout/toolbar"/>
 
