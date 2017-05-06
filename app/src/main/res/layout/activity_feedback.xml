@@ -27,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:layout_marginTop="@dimen/m_6"
                 android:textColor="@color/theme_pink"
                 android:text="0/300"/>
 
@@ -39,6 +40,13 @@
                 android:textColor="@color/colorBlock"
                 android:background="@drawable/feedback_edittext_shape"
                 />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="提交宝贵意见"
+                android:textSize="@dimen/textsize_16"
+                android:layout_marginTop="@dimen/m_32"
+                android:background="@color/theme_pink"/>
 
         </LinearLayout>
 

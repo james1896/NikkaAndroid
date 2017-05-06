@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:paddingTop="@dimen/view_path"
+    >
+
+    <TextView
+        android:id="@+id/gift_item_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/theme_pink"
+        android:textSize="@dimen/textsize_19"/>
+
+    <!--底线-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="@dimen/view_path"
+        android:background="#FFF5EE">
+
+    </View>
+</LinearLayout>
