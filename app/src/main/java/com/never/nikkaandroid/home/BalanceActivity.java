@@ -16,8 +16,8 @@ import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.base.BaseActivity;
 import com.never.nikkaandroid.base.JniHello;
 import com.never.nikkaandroid.venv.AppManager;
-import com.never.nikkaandroid.venv.QRTimer;
-import com.never.nikkaandroid.venv.QRTimerInterface;
+import com.never.nikkaandroid.venv.Timer.QRTimer;
+import com.never.nikkaandroid.venv.Timer.QRTimerInterface;
 
 import java.util.Hashtable;
 

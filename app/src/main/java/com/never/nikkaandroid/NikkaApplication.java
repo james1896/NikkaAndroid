@@ -14,6 +14,7 @@ import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.cookie.store.PersistentCookieStore;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.HttpParams;
+import com.never.nikkaandroid.venv.CrashHandler;
 
 import java.util.logging.Level;
 
@@ -22,10 +23,21 @@ import java.util.logging.Level;
  */
 
 public class NikkaApplication extends Application {
+
+
     @Override
     public void onCreate() {
         super.onCreate();
+        //OkGo
         initOkGo();
+
+        //搜集崩溃日志
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            CrashHandler crashHandler = CrashHandler.getInstance();
+            crashHandler.init(this);
+        }
+
+
         Log.e("application","application");
     }
     /***************    获取系统时间  某年 某月 某天 星期几    ***************/

@@ -1,0 +1,106 @@
+package com.never.nikkaandroid.venv.request;
+
+import android.util.Log;
+
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.cache.CacheMode;
+import com.lzy.okgo.callback.StringCallback;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Response;
+
+/**
+ * Created by toby on 25/04/2017.
+ */
+
+public class Request {
+
+  public static void POST(final String url, final String params, String orgParams){
+      OkGo.post(url)    // 请求方式和请求url, get请求不需要拼接参数，支持get，post，put，delete，head，options请求
+//              .tag(this)               // 请求的 tag, 主要用于取消对应的请求
+              .isMultipart(true)       // 强制使用 multipart/form-data 表单上传（只是演示，不需要的话不要设置。默认就是false）
+              .connTimeOut(10000)      // 设置当前请求的连接超时时间
+              .readTimeOut(10000)      // 设置当前请求的读取超时时间
+              .writeTimeOut(10000)     // 设置当前请求的写入超时时间
+              .cacheKey("cacheKey")    // 设置当前请求的缓存key,建议每个不同功能的请求设置一个
+              .cacheTime(5000)         // 缓存的过期时间,单位毫秒
+              .cacheMode(CacheMode.FIRST_CACHE_THEN_REQUEST) // 缓存模式，详细请看第四部分，缓存介绍
+              .headers("header1", "headerValue1")     		// 添加请求头参数
+              .headers("header2", "headerValue2")     		// 支持多请求头参数同时添加
+              .params("value", params)
+              .execute(new StringCallback() {
+                  @Override
+                  public void onSuccess(String s, Call call, Response response) {
+//                      Log.e("POST response",s);
+
+                      //json转map
+                      Map map = getMapForJson(s);
+//                      Log.e("map","map_POST:"+map.get("aa"));
+
+                      Log.e("RequestManager","输入url:" + url + "\n输入参数:" + params + "\n输出参数:" + s);
+                  }
+              });
+
+  }
+
+    public static void GET(){
+
+
+    }
+
+    //json转map
+    public static Map<String, Object> getMapForJson(String jsonStr){
+        JSONObject jsonObject ;
+        try {
+            jsonObject = new JSONObject(jsonStr);
+
+            Iterator<String> keyIter= jsonObject.keys();
+            String key;
+            Object value ;
+            Map<String, Object> valueMap = new HashMap<String, Object>();
+            while (keyIter.hasNext()) {
+                key = keyIter.next();
+                value = jsonObject.get(key);
+                valueMap.put(key, value);
+            }
+            return valueMap;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+
+        }
+        return null;
+    }
+//    public static class loginReq{
+//
+//        private static volatile loginReq req;
+//        public static synchronized loginReq getInstant(){
+//            if(req == null){
+//                //双重检查加锁，只有在第一次实例化时，才启用同步机制，提高了性能。
+//                synchronized (loginReq.class){
+//                    if(req == null) {
+//                        req = new loginReq();
+//                    }
+//                }
+//            }
+//            return req;
+//        }
+//
+//        public loginReq login(){
+//
+//            return req;
+//        }
+//
+//        public  void success(){
+//
+//            Log.e("login.success","login.success");
+//        }
+//    }
+
+}

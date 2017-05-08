@@ -23,6 +23,8 @@ public class AppManager {
         }
 
 
+
+
         public static class DeviceInfo{
             /**
              * 设置当前activity的屏幕亮度
