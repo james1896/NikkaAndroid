@@ -7,6 +7,7 @@ import com.never.nikkaandroid.venv.RSA;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -26,7 +27,10 @@ public class RequestManager extends Request{
 
         String url = TB_BASE_URL+"/test";
         String encodeStr = str2rsa(params);
-        this.POST(url,encodeStr,encodeStr);
+
+        Map<String,String> par = new HashMap<String,String>();
+        par.put("value",encodeStr);
+        this.POST(url,par,encodeStr);
     };
 
     public void test1(Map<String, String> params){
@@ -35,7 +39,7 @@ public class RequestManager extends Request{
 //        String encodeStr = str2rsa(params);
         String str = new JSONObject(params).toString();
 
-        this.POST(url,str,str);
+        this.POST(url,params,str);
     };
 
 
@@ -72,4 +76,31 @@ public class RequestManager extends Request{
 
         return encryStr;
     }
+
+//    //json转map
+//    public static Map<String, String> getMapForJson(String jsonStr){
+//        JSONObject jsonObject ;
+//        Map<String, String> valueMap = new HashMap<String, String>();
+//        try {
+//            jsonObject = new JSONObject(jsonStr);
+//
+//            Iterator<String> keyIter= jsonObject.keys();
+//            String key;
+//            String value ;
+//
+//            while (keyIter.hasNext()) {
+//                key = keyIter.next();
+//                value = (String) jsonObject.get(key);
+//                valueMap.put(key, value);
+//            }
+//            return valueMap;
+//        } catch (Exception e) {
+//
+//            e.printStackTrace();
+//
+//        }
+//
+//
+//        return valueMap;
+//    }
 }
