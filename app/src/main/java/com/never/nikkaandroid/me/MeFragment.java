@@ -57,21 +57,13 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
         //ViewGroup$LayoutParams 6.0         4.4崩溃
         //AbsListView$LayoutParams 4.4
         ViewGroup.LayoutParams params = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
-        headerView  = new CanvasView(getContext(),height,20.0f,"","subTitle", R.drawable.home_ticket);
+        headerView  = new CanvasView(getContext(),height,20.0f,"","subTitle", R.drawable.user_image);
         headerView.setBackgroundColor(getResources().getColor(R.color.white));
         headerView.setLayoutParams(params);
         headerView.refreshPoint(280.0f);
-        headerView.setuserImageId(R.drawable.home_preference);
+//        headerView.setuserImageId(R.drawable.home_preference);
 
-//        dataList = new ArrayList<String>();
-//        // 初始化数据
-//        for (int i = 0; i < 20; i++) {
-//            dataList.add("第" + i + "条数据");
-//        }
-//        // 设置adapter(所在的activity,使用的显示样式,数据源)
-//        ListAdapter adapter = new ArrayAdapter<String>(getContext(),
-//                android.R.layout.simple_list_item_1, dataList);
-//
+
         ListView listview = dataBind.meListView;
         listview.setAdapter(new MeListAdapter(getContext(),getDataList()));
         listview.addHeaderView(headerView);

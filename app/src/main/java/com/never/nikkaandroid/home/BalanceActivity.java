@@ -15,8 +15,9 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.base.BaseActivity;
 import com.never.nikkaandroid.base.JniHello;
-import com.never.nikkaandroid.base.QRTimer;
-import com.never.nikkaandroid.base.QRTimerInterface;
+import com.never.nikkaandroid.venv.AppManager;
+import com.never.nikkaandroid.venv.QRTimer;
+import com.never.nikkaandroid.venv.QRTimerInterface;
 
 import java.util.Hashtable;
 
@@ -42,6 +43,8 @@ public class BalanceActivity extends BaseActivity implements QRTimerInterface {
         timer = new QRTimer();
         timer.setTimerInterface(this);
         timer.start();
+
+        AppManager.DeviceInfo.setActivityBrightness(0.9f,this);
     }
 
     public void generate(View view) {
