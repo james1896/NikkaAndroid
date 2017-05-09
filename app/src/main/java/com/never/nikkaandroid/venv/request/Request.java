@@ -1,10 +1,7 @@
 package com.never.nikkaandroid.venv.request;
 
-import android.util.Log;
-
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
-import com.lzy.okgo.callback.StringCallback;
 
 import org.json.JSONObject;
 
@@ -12,16 +9,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import okhttp3.Call;
-import okhttp3.Response;
-
 /**
  * Created by toby on 25/04/2017.
  */
 
 public class Request {
 
-  public static void POST(final String url, final Map<String, String> params, String orgParams){
+  public static void POST(final String url, final Map<String, String> params, String orgParams,RequestCallBack callback){
       OkGo.post(url)    // 请求方式和请求url, get请求不需要拼接参数，支持get，post，put，delete，head，options请求
 //              .tag(this)               // 请求的 tag, 主要用于取消对应的请求
               .isMultipart(true)       // 强制使用 multipart/form-data 表单上传（只是演示，不需要的话不要设置。默认就是false）
@@ -34,18 +28,7 @@ public class Request {
               .headers("header1", "headerValue1")     		// 添加请求头参数
               .headers("header2", "headerValue2")     		// 支持多请求头参数同时添加
               .params(params)
-              .execute(new StringCallback() {
-                  @Override
-                  public void onSuccess(String s, Call call, Response response) {
-//                      Log.e("POST response",s);
-
-                      //json转map
-                      Map map = getMapForJson(s);
-//                      Log.e("map","map_POST:"+map.get("aa"));
-
-                      Log.e("RequestManager","输入url:" + url + "\n输入参数:" + params + "\n输出参数:" + s);
-                  }
-              });
+              .execute(callback);
 
   }
 

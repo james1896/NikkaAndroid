@@ -11,10 +11,14 @@ import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.base.BaseFragment;
 import com.never.nikkaandroid.base.JniHello;
 import com.never.nikkaandroid.databinding.FragmentHomeBinding;
+import com.never.nikkaandroid.venv.request.RequestCallBack;
 import com.never.nikkaandroid.venv.request.RequestManager;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 
 /**
@@ -82,8 +86,21 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements O
                 Map<String,String> paras1 = new HashMap<String,String>();
                 paras1.put("test","TEST1_API_ANDROID_JNI");
 
-                new RequestManager().test(paras);
-                new RequestManager().test1(paras1);
+                RequestManager.getInstant().test(paras, new RequestCallBack() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        super.onSuccess(s, call, response);
+                       Log.e("test","ok");
+                    }
+                });
+
+                new RequestManager().test1(paras1, new RequestCallBack() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        super.onSuccess(s, call, response);
+                        Log.e("test1","ok");
+                    }
+                });
 
                 break;
             }

@@ -18,28 +18,41 @@ public class RequestManager extends Request{
 
     static String TB_BASE_URL = "http://10.71.66.102:8001/client";
 
+
 //    public static void login(String name,String pwd,String uuid,String device){
 //        this.POST("http://10.66.67.81:8001/client/test",);
 //
 //    }
 
-    public void test(Map<String, String> params){
+    private static volatile RequestManager instance;
+            public static synchronized RequestManager getInstant(){
+            if(instance == null){
+                //双重检查加锁，只有在第一次实例化时，才启用同步机制，提高了性能。
+                synchronized (RequestManager.class){
+                    if(instance == null) {
+                        instance = new RequestManager();
+                    }
+                }
+            }
+            return instance;
+        }
+    public void test(Map<String, String> params,RequestCallBack callback){
 
-        String url = TB_BASE_URL+"/test";
-        String encodeStr = str2rsa(params);
+        final String url = TB_BASE_URL+"/test";
+        final String encodeStr = str2rsa(params);
 
         Map<String,String> par = new HashMap<String,String>();
         par.put("value",encodeStr);
-        this.POST(url,par,encodeStr);
+        this.POST(url, par, encodeStr, callback);
     };
-
-    public void test1(Map<String, String> params){
+// Log.e("POST","输入url:" + url + "\n输入参数:" + encodeStr + "\n输出参数:" + s);
+    public void test1(Map<String, String> params,RequestCallBack callback){
 
         String url = TB_BASE_URL+"/test1";
 //        String encodeStr = str2rsa(params);
         String str = new JSONObject(params).toString();
 
-        this.POST(url,params,str);
+        this.POST(url, params, str, callback);
     };
 
 
