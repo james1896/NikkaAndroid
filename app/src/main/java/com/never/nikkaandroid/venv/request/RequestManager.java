@@ -10,6 +10,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import okhttp3.Call;
+import okhttp3.Response;
+
 /**
  * Created by toby on 08/05/2017.
  */
@@ -19,44 +22,78 @@ public class RequestManager extends Request{
     static String TB_BASE_URL = "http://10.71.66.102:8001/client";
 
 
+
 //    public static void login(String name,String pwd,String uuid,String device){
 //        this.POST("http://10.66.67.81:8001/client/test",);
 //
 //    }
 
     private static volatile RequestManager instance;
-            public static synchronized RequestManager getInstant(){
-            if(instance == null){
-                //双重检查加锁，只有在第一次实例化时，才启用同步机制，提高了性能。
-                synchronized (RequestManager.class){
-                    if(instance == null) {
-                        instance = new RequestManager();
-                    }
+    public static synchronized RequestManager getInstant(){
+        if(instance == null){
+            //双重检查加锁，只有在第一次实例化时，才启用同步机制，提高了性能。
+            synchronized (RequestManager.class){
+                if(instance == null) {
+                    instance = new RequestManager();
                 }
             }
-            return instance;
         }
+        return instance;
+    }
+    //    @param name <#name description#>
+//    @param pwd <#pwd description#>
+//    @param uuid 可以判断是否单点登录
+//    @param device <#device description#>
+//    @param success <#success description#>
+//    @param failure <#failure description#>
+    public void login(String name,String pwd,String uuid,String device,RequestCallBack callBack){
+        String url = TB_BASE_URL+"/login";
+
+//            @{@"username" :name,
+//                @"password" :pwd,
+//                @"uuid"     :uuid,
+//                @"device"   :device};
+
+        Map<String,String> params = new HashMap<String,String>();
+        params.put("username",name);
+        params.put("password",pwd);
+        params.put("uuid",uuid);
+        params.put("device",device);
+
+
+        this.POST(url,mapWithRSA(params), new RequestCallBack() {
+            @Override
+            public void onSuccess(String s, Call call, Response response) {
+                super.onSuccess(s, call, response);
+                Log.e("login",s);
+            }
+        });
+    }
+
+    //test
     public void test(Map<String, String> params,RequestCallBack callback){
 
-        final String url = TB_BASE_URL+"/test";
+        String url = TB_BASE_URL+"/test";
         final String encodeStr = str2rsa(params);
 
         Map<String,String> par = new HashMap<String,String>();
         par.put("value",encodeStr);
-        this.POST(url, par, encodeStr, callback);
+        this.POST(url, par, callback);
     };
 // Log.e("POST","输入url:" + url + "\n输入参数:" + encodeStr + "\n输出参数:" + s);
+
+    //test1
     public void test1(Map<String, String> params,RequestCallBack callback){
 
         String url = TB_BASE_URL+"/test1";
 //        String encodeStr = str2rsa(params);
         String str = new JSONObject(params).toString();
 
-        this.POST(url, params, str, callback);
+        this.POST(url, params, callback);
     };
 
 
-    public static String str2rsa(Map<String,String> map){
+    public  String str2rsa(Map<String,String> map){
         String encryStr = null;
         try {
 //            //map转json 字符串
@@ -90,6 +127,13 @@ public class RequestManager extends Request{
         return encryStr;
     }
 
+    private Map<String,String> mapWithRSA(Map<String,String> params){
+
+        String encodeStr = str2rsa(params);
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("value",encodeStr);
+        return map;
+    }
 //    //json转map
 //    public static Map<String, String> getMapForJson(String jsonStr){
 //        JSONObject jsonObject ;

@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class Request {
 
-  public static void POST(final String url, final Map<String, String> params, String orgParams,RequestCallBack callback){
+  public static void POST(final String url, Map<String, String> params,RequestCallBack callback){
       OkGo.post(url)    // 请求方式和请求url, get请求不需要拼接参数，支持get，post，put，delete，head，options请求
 //              .tag(this)               // 请求的 tag, 主要用于取消对应的请求
               .isMultipart(true)       // 强制使用 multipart/form-data 表单上传（只是演示，不需要的话不要设置。默认就是false）

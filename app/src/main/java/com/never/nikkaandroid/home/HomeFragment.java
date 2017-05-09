@@ -10,7 +10,9 @@ import android.view.View.OnClickListener;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.base.BaseFragment;
 import com.never.nikkaandroid.base.JniHello;
+import com.never.nikkaandroid.base.LoginActiviy;
 import com.never.nikkaandroid.databinding.FragmentHomeBinding;
+import com.never.nikkaandroid.venv.AppManager;
 import com.never.nikkaandroid.venv.request.RequestCallBack;
 import com.never.nikkaandroid.venv.request.RequestManager;
 
@@ -72,16 +74,21 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements O
 
         switch (v.getId()){
             case R.id.payTextView:{
-                Intent intent = new Intent(getActivity(),BalanceActivity.class);
-                getActivity().startActivity(intent);
+                Intent intents = new Intent(getActivity(),BalanceActivity.class);
+                getActivity().startActivity(intents);
 
-//                Intent intent = new Intent(getActivity(),LoginActiviy.class);
-//                getActivity().startActivity(intent);
+                if(AppManager.getInstance().getLogin()){
+                    Log.e("Login","isLogin");
+                }else {
+                    Intent intent = new Intent(getActivity(),LoginActiviy.class);
+                    getActivity().startActivity(intent);
+                }
+
                 break;
             }
             case R.id.youhuiTextView:{
                 Map<String,String> paras = new HashMap<String,String>();
-                    paras.put("aa","TEST_API_ANDROID_JNI");
+                paras.put("aa","TEST_API_ANDROID_JNI");
 
                 Map<String,String> paras1 = new HashMap<String,String>();
                 paras1.put("test","TEST1_API_ANDROID_JNI");
@@ -90,7 +97,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements O
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
                         super.onSuccess(s, call, response);
-                       Log.e("test","ok");
+                        Log.e("test","ok");
                     }
                 });
 

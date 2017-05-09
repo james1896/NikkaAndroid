@@ -16,19 +16,17 @@ public class LoginActiviy extends AppCompatActivity implements View.OnClickListe
     private View register;
     private EditText login_user_edit ;
     private EditText login_pwd_edit ;
-    private EditText register_user_edit ;
+    private EditText register_user_edit;
     private EditText register_pwd_edit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_activiy);
+        setContentView(R.layout.activity_login);
 
+        //得到三个界面 隐藏注册和登录
         this.layout = findViewById(R.id.baseLayout);
         this.login = findViewById(R.id.loginLayout);
         this.register = findViewById(R.id.registerLayout);
-
-
-//        layout.setVisibility(View.GONE);
         this.login.setVisibility(View.GONE);
         this.register.setVisibility(View.GONE);
 
@@ -40,18 +38,24 @@ public class LoginActiviy extends AppCompatActivity implements View.OnClickListe
         Button base_login_btn = (Button) findViewById(R.id.base_login_btn);
         Button base_register_btn = (Button) findViewById(R.id.base_register_btn);
 
+        //
         back.setOnClickListener(this);
         base_login_btn.setOnClickListener(this);
         base_register_btn.setOnClickListener(this);
 
-
+        //得到主布局 取消键盘
         View main_layout = findViewById(R.id.mainLayout);
         main_layout.setOnClickListener(this);
 
+        //注册登录 输入框
         this.login_user_edit = (EditText) findViewById(R.id.login_user_edit);
         this.login_pwd_edit = (EditText) findViewById(R.id.login_pwd_edit);
         this.register_user_edit = (EditText) findViewById(R.id.register_user_edit);
         this.register_pwd_edit = (EditText) findViewById(R.id.register_pwd_edit);
+
+        //注册 登录 按钮
+        findViewById(R.id.login_btn).setOnClickListener(this);
+        findViewById(R.id.register_btn).setOnClickListener(this);
     }
 
     @Override
@@ -81,7 +85,7 @@ public class LoginActiviy extends AppCompatActivity implements View.OnClickListe
                 break;
             }
 
-            case R.id.login_back:{
+            case R.id.base_back:{
                 if(this.layout.getVisibility() == View.VISIBLE){
                     finish();
                 }
@@ -97,6 +101,16 @@ public class LoginActiviy extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             }
+
+            case R.id.register_btn:{
+
+                break;
+            }
+            case R.id.login_btn:{
+//                RequestManager.getInstant().login(this.login_user_edit.getText(),this.login_pwd_edit,);
+                break;
+            }
+
 
         }
     }
