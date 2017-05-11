@@ -11,7 +11,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
+import org.json.JSONObject;
+
 import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -178,5 +183,32 @@ public class CommonUtils {
         view.destroyDrawingCache();
         return bp;
 
+    }
+
+
+        public static Map<String, String> getMapForJson(String jsonStr){
+        JSONObject jsonObject ;
+        Map<String, String> valueMap = new HashMap<String, String>();
+        try {
+            jsonObject = new JSONObject(jsonStr);
+
+            Iterator<String> keyIter= jsonObject.keys();
+            String key;
+            String value ;
+
+            while (keyIter.hasNext()) {
+                key = keyIter.next();
+                value = (String) jsonObject.get(key);
+                valueMap.put(key, value);
+            }
+            return valueMap;
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+
+        return valueMap;
     }
 }

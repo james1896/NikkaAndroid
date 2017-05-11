@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@drawable/login_background"
     android:id="@+id/mainLayout"
-    tools:context="com.never.nikkaandroid.base.LoginActiviy">
+    tools:context="com.never.nikkaandroid.base.login.LoginActiviy">
 
     <!--base-->
     <RelativeLayout
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/m_30"
-        android:layout_above="@+id/login_back">
+        android:layout_above="@+id/base_back">
 
         <TextView
             android:id="@+id/textView"
@@ -84,14 +84,14 @@
             android:id="@+id/login_user_edit"
             android:nextFocusForward="@+id/login_pwd_edit"
             style="@style/login_editview_style"
-            android:text="用户名"
+            android:hint="用户名"
             />
         <!--<include layout="@layout/login_edittext"/>-->
 
         <EditText
             android:id="@+id/login_pwd_edit"
             style="@style/login_editview_style"
-            android:text="密码"/>
+            android:hint="密码"/>
 
         <Button
             android:id="@+id/login_btn"
@@ -116,7 +116,7 @@
             android:layout_weight="1"/>
 
         <EditText
-            android:text="用户名"
+            android:hint="用户名"
             android:id="@+id/register_user_edit"
             android:nextFocusForward="@+id/register_pwd_edit"
             style="@style/login_editview_style"
@@ -125,7 +125,7 @@
         <EditText
             android:id="@+id/register_pwd_edit"
             style="@style/login_editview_style"
-            android:text="密码"/>
+            android:hint="密码"/>
 
         <Button
             android:id="@+id/register_btn"

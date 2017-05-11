@@ -10,7 +10,7 @@ import android.view.View.OnClickListener;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.base.BaseFragment;
 import com.never.nikkaandroid.base.JniHello;
-import com.never.nikkaandroid.base.LoginActiviy;
+import com.never.nikkaandroid.base.login.LoginActiviy;
 import com.never.nikkaandroid.databinding.FragmentHomeBinding;
 import com.never.nikkaandroid.venv.AppManager;
 import com.never.nikkaandroid.venv.request.RequestCallBack;
@@ -74,11 +74,12 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements O
 
         switch (v.getId()){
             case R.id.payTextView:{
-                Intent intents = new Intent(getActivity(),BalanceActivity.class);
-                getActivity().startActivity(intents);
+
 
                 if(AppManager.getInstance().getLogin()){
                     Log.e("Login","isLogin");
+                    Intent intents = new Intent(getActivity(),BalanceActivity.class);
+                    getActivity().startActivity(intents);
                 }else {
                     Intent intent = new Intent(getActivity(),LoginActiviy.class);
                     getActivity().startActivity(intent);

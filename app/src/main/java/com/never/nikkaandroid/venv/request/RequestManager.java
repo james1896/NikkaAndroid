@@ -10,9 +10,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import okhttp3.Call;
-import okhttp3.Response;
-
 /**
  * Created by toby on 08/05/2017.
  */
@@ -46,7 +43,7 @@ public class RequestManager extends Request{
 //    @param device <#device description#>
 //    @param success <#success description#>
 //    @param failure <#failure description#>
-    public void login(String name,String pwd,String uuid,String device,RequestCallBack callBack){
+    public void login(String name,String pwd,RequestCallBack callBack){
         String url = TB_BASE_URL+"/login";
 
 //            @{@"username" :name,
@@ -57,24 +54,16 @@ public class RequestManager extends Request{
         Map<String,String> params = new HashMap<String,String>();
         params.put("username",name);
         params.put("password",pwd);
-        params.put("uuid",uuid);
-        params.put("device",device);
 
 
-        this.POST(url,mapWithRSA(params), new RequestCallBack() {
-            @Override
-            public void onSuccess(String s, Call call, Response response) {
-                super.onSuccess(s, call, response);
-                Log.e("login",s);
-            }
-        });
+        this.POST(url,mapWithRSA(params), callBack);
     }
 
     //test
     public void test(Map<String, String> params,RequestCallBack callback){
 
         String url = TB_BASE_URL+"/test";
-        final String encodeStr = str2rsa(params);
+        String encodeStr = str2rsa(params);
 
         Map<String,String> par = new HashMap<String,String>();
         par.put("value",encodeStr);
@@ -103,6 +92,7 @@ public class RequestManager extends Request{
             //得到json字符串
             //object.toString()
 
+            Log.e("RSA encode",object.toString());
             //从 jni中读取字符串
             JniHello hello = new JniHello();
             encryStr= RSA.encryptByPublicKey(object.toString(),RSA.getPublicKey(hello.SayHello()).getEncoded());

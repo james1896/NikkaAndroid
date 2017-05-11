@@ -55,5 +55,13 @@ dependencies {
     compile 'com.android.support:gridlayout-v7:25.2.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.lzy.net:okgo:2.1.4'
+
+    //网络请求的json转model
+    compile 'com.google.code.gson:gson:2.8.0'
+
     testCompile 'junit:junit:4.12'
+
+
+
+
 }

@@ -11,6 +11,25 @@ import android.view.WindowManager;
 public class AppManager {
 
     protected String userName;
+    protected float points;
+    protected String user_id;
+
+    public float getPoints() {
+        return points;
+    }
+
+    public void setPoints(float points) {
+        this.points = points;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
     protected  Boolean isLogin;
     //私有的静态变量
 
@@ -19,6 +38,14 @@ public class AppManager {
         if(userName != null)
             return true;
         return false;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public void setLogin(Boolean login) {

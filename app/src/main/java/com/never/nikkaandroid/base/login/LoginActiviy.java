@@ -1,14 +1,29 @@
-package com.never.nikkaandroid.base;
+package com.never.nikkaandroid.base.login;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.gson.reflect.TypeToken;
 import com.never.nikkaandroid.R;
+import com.never.nikkaandroid.base.JsonParse;
+import com.never.nikkaandroid.venv.AppManager;
+import com.never.nikkaandroid.venv.request.RequestCallBack;
+import com.never.nikkaandroid.venv.request.RequestManager;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class LoginActiviy extends AppCompatActivity implements View.OnClickListener{
     private View layout;
@@ -34,7 +49,7 @@ public class LoginActiviy extends AppCompatActivity implements View.OnClickListe
 //        InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
 //        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
 
-        ImageView back = (ImageView) findViewById(R.id.login_back);
+        ImageView back = (ImageView) findViewById(R.id.base_back);
         Button base_login_btn = (Button) findViewById(R.id.base_login_btn);
         Button base_register_btn = (Button) findViewById(R.id.base_register_btn);
 
@@ -107,11 +122,61 @@ public class LoginActiviy extends AppCompatActivity implements View.OnClickListe
                 break;
             }
             case R.id.login_btn:{
-//                RequestManager.getInstant().login(this.login_user_edit.getText(),this.login_pwd_edit,);
+                RequestManager.getInstant().
+                        login(this.login_user_edit.getText().toString(),
+                                this.login_pwd_edit.getText().toString(),
+                                new RequestCallBack() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        super.onSuccess(s, call, response);
+                        JsonModel model = JsonParse.parser.fromJson(s, new TypeToken<JsonModel>(){}.getType());
+
+
+                        Log.e("model",model.toString());
+
+
+                        AppManager.getInstance().setPoints(model.getData().getPoints());
+//
+                        AppManager.getInstance().setUser_id(model.getUser_id());
+                        Log.e("data",model.getData().getPoints() + "&&&&&&&"+ model.getUser_id());
+                        AppManager.getInstance().setUserName(LoginActiviy.this.login_user_edit.getText().toString());
+
+//                        finish();
+                    }
+
+                });
                 break;
             }
 
 
         }
+    }
+
+    /**
+     * Json 转成 Map<>
+     * @param jsonStr
+     * @return
+     */
+    public  Map<String, Object> getMapForJson(String jsonStr){
+        JSONObject jsonObject ;
+        try {
+            jsonObject = new JSONObject(jsonStr);
+
+            Iterator<String> keyIter= jsonObject.keys();
+            String key;
+            Object value ;
+            Map<String, Object> valueMap = new HashMap<String, Object>();
+            while (keyIter.hasNext()) {
+                key = keyIter.next();
+                value = jsonObject.get(key);
+                valueMap.put(key, value);
+            }
+            return valueMap;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            Log.e("", e.toString());
+        }
+        return null;
     }
 }
