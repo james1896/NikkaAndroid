@@ -45,6 +45,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
 
         //viewPage
         ViewPager viewPage = (ViewPager) findViewById(R.id.viewpage);
+        viewPage.setOffscreenPageLimit(3);
         viewPage.setAdapter(new MainActivityAdpter(this));
 
         //tablayout

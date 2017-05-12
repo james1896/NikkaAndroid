@@ -7,6 +7,7 @@ import com.never.nikkaandroid.base.BaseFragment;
 
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.databinding.FragmentGridBinding;
+import com.never.nikkaandroid.venv.AppManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +26,6 @@ public class GridFragment extends BaseFragment<FragmentGridBinding> {
 
     @Override
     public void init() {
-
+        AppManager.getInstance().setPoints(1000);
     }
 }

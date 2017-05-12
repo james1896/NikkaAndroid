@@ -38,6 +38,31 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
+    protected void viewWillappear() {
+        super.viewWillappear();
+
+//        headerView.refreshPoint(AppManager.getInstance().getPoints());
+    }
+
+    @Override
+    protected void lazyLoad() {
+        super.lazyLoad();
+        Log.e("lazyLoad","lazyLoad");
+    }
+
+    @Override
     public int getContentView() {
         return R.layout.fragment_me;
     }
@@ -60,18 +85,16 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
         headerView  = new CanvasView(getContext(),height,20.0f,"","subTitle", R.drawable.user_image);
         headerView.setBackgroundColor(getResources().getColor(R.color.white));
         headerView.setLayoutParams(params);
-        headerView.refreshPoint(280.0f);
+
 //        headerView.setuserImageId(R.drawable.home_preference);
 
 
         ListView listview = dataBind.meListView;
         listview.setAdapter(new MeListAdapter(getContext(),getDataList()));
         listview.addHeaderView(headerView);
-
+        Log.e("aaaaa","1");
 //      绑定item点击事件
         listview.setOnItemClickListener(this);
-
-
 
         //布局初始化完成才可以打印view的宽高度
 

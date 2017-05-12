@@ -1,5 +1,6 @@
 package com.never.nikkaandroid.base.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import com.google.gson.reflect.TypeToken;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.base.JsonParse;
+import com.never.nikkaandroid.home.BalanceActivity;
 import com.never.nikkaandroid.venv.AppManager;
 import com.never.nikkaandroid.venv.request.RequestCallBack;
 import com.never.nikkaandroid.venv.request.RequestManager;
@@ -119,6 +121,19 @@ public class LoginActiviy extends AppCompatActivity implements View.OnClickListe
 
             case R.id.register_btn:{
 
+                RequestManager.getInstant().register(this.register_user_edit.getText().toString(),
+                        this.register_pwd_edit.getText().toString(),
+                        new RequestCallBack() {
+                            @Override
+                            public void onSuccess(String s, Call call, Response response) {
+                                super.onSuccess(s, call, response);
+                                Log.e("register",s);
+
+                                Intent intent = new Intent(LoginActiviy.this, BalanceActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        });
                 break;
             }
             case R.id.login_btn:{
@@ -129,19 +144,17 @@ public class LoginActiviy extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
                         super.onSuccess(s, call, response);
-                        JsonModel model = JsonParse.parser.fromJson(s, new TypeToken<JsonModel>(){}.getType());
+                        LoginModel model = JsonParse.parser.fromJson(s, new TypeToken<LoginModel>(){}.getType());
 
-
-                        Log.e("model",model.toString());
-
-
+                        Log.e("login",model.toString());
                         AppManager.getInstance().setPoints(model.getData().getPoints());
-//
                         AppManager.getInstance().setUser_id(model.getUser_id());
                         Log.e("data",model.getData().getPoints() + "&&&&&&&"+ model.getUser_id());
                         AppManager.getInstance().setUserName(LoginActiviy.this.login_user_edit.getText().toString());
 
-//                        finish();
+                        Intent intent = new Intent(LoginActiviy.this, BalanceActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
 
                 });

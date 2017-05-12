@@ -54,10 +54,23 @@ public class RequestManager extends Request{
         Map<String,String> params = new HashMap<String,String>();
         params.put("username",name);
         params.put("password",pwd);
-
-
         this.POST(url,mapWithRSA(params), callBack);
     }
+
+    public void register(String name,String pwd,RequestCallBack callBack){
+        String url = TB_BASE_URL+"/register";
+
+//            @{@"username" :name,
+//                @"password" :pwd,
+//                @"uuid"     :uuid,
+//                @"device"   :device};
+
+        Map<String,String> params = new HashMap<String,String>();
+        params.put("username",name);
+        params.put("password",pwd);
+        this.POST(url,mapWithRSA(params), callBack);
+    }
+
 
     //test
     public void test(Map<String, String> params,RequestCallBack callback){

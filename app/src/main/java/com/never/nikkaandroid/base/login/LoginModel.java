@@ -6,17 +6,17 @@ import com.google.gson.annotations.SerializedName;
  * Created by toby on 11/05/2017.
  */
 
-public class JsonModel {
+public class LoginModel {
     @SerializedName("user_id")
     private String user_id;
     @SerializedName("status")
     private int status;
     @SerializedName("data")
-    private aaa data;
+    private Data data;
 
     @Override
     public String toString() {
-        return "JsonModel{" +
+        return "LoginModel{" +
                 "user_id='" + user_id + '\'' +
                 ", status=" + status +
                 ", data=" + data +
@@ -39,15 +39,15 @@ public class JsonModel {
         this.status = status;
     }
 
-    public aaa getData() {
+    public Data getData() {
         return data;
     }
 
-    public void setData(aaa data) {
+    public void setData(Data data) {
         this.data = data;
     }
 
-    public static class aaa{
+    public static class Data{
         @SerializedName("points")
         private float points;
 
