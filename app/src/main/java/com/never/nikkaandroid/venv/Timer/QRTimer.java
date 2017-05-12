@@ -34,7 +34,9 @@ public class QRTimer {
 
         this.timer.schedule(timerTask,1000,1000);
     }
-
+    public void stop(){
+    this.timer.cancel();
+    }
     public void setTimerInterface(QRTimerInterface timerInterface){
         this.timeInface = timerInterface;
     }

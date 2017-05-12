@@ -47,6 +47,12 @@ public class BalanceActivity extends BaseActivity implements QRTimerInterface {
         AppManager.DeviceInfo.setActivityBrightness(0.9f,this);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        timer.stop();
+    }
+
     public void generate(View view) {
 
         JniHello hello = new JniHello();

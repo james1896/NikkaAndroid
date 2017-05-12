@@ -15,6 +15,7 @@ import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.adpter.MeListAdapter;
 import com.never.nikkaandroid.base.BaseFragment;
 import com.never.nikkaandroid.databinding.FragmentMeBinding;
+import com.never.nikkaandroid.venv.AppManager;
 import com.never.nikkaandroid.venv.CommonUtils;
 import com.never.nikkaandroid.views.CanvasView;
 
@@ -53,7 +54,7 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
     protected void viewWillappear() {
         super.viewWillappear();
 
-//        headerView.refreshPoint(AppManager.getInstance().getPoints());
+        headerView.refreshPoint(AppManager.getInstance().getPoints());
     }
 
     @Override
