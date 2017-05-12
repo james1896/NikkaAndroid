@@ -58,12 +58,14 @@ public class CanvasView extends View{
     }
 
     public void refreshPoint(float point){
+
         this.text  = "当前积分: " + point;
+        if(point < 0){
+            this.text = "";
+        }
+
         invalidate();
     }
-
-
-
 
     public static float dip2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;

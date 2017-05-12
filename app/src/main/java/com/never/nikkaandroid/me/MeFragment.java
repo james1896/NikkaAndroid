@@ -3,7 +3,9 @@ package com.never.nikkaandroid.me;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +21,7 @@ import com.never.nikkaandroid.venv.AppManager;
 import com.never.nikkaandroid.venv.CommonUtils;
 import com.never.nikkaandroid.views.CanvasView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +30,7 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
 
     // 模拟数据
     private List<String> dataList = null;
+    MeListAdapter adapter;
     private CanvasView headerView;
 
 
@@ -55,6 +55,8 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
         super.viewWillappear();
 
         headerView.refreshPoint(AppManager.getInstance().getPoints());
+        adapter.setDataList(null);
+        this.adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -86,14 +88,12 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
         headerView  = new CanvasView(getContext(),height,20.0f,"","subTitle", R.drawable.user_image);
         headerView.setBackgroundColor(getResources().getColor(R.color.white));
         headerView.setLayoutParams(params);
-
 //        headerView.setuserImageId(R.drawable.home_preference);
 
-
         ListView listview = dataBind.meListView;
-        listview.setAdapter(new MeListAdapter(getContext(),getDataList()));
+        this.adapter = new MeListAdapter(getContext(),null);
+        listview.setAdapter(this.adapter);
         listview.addHeaderView(headerView);
-        Log.e("aaaaa","1");
 //      绑定item点击事件
         listview.setOnItemClickListener(this);
 
@@ -114,37 +114,6 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
 //                Log.e("--->", "textView.getHeight()--->"+textView.getHeight());
 //            }
 //        });
-    }
-
-    private ArrayList<Map> getDataList(){
-        ArrayList<Map> list = new ArrayList<>();
-
-        Map<String,Object> map1 = new HashMap<String,Object>();
-        map1.put("title","礼物赠送");
-        map1.put("resId",R.drawable.me_list_zengsong);
-        list.add(map1);
-
-        Map<String,Object> map2 = new HashMap<String,Object>();
-        map2.put("title","生活助手");
-        map2.put("resId",R.drawable.me_list_key);
-        list.add(map2);
-
-        Map<String,Object> map3 = new HashMap<String,Object>();
-        map3.put("title","意见反馈");
-        map3.put("resId",R.drawable.me_list_yijian);
-        list.add(map3);
-
-        Map<String,Object> map4 = new HashMap<String,Object>();
-        map4.put("title","呜谢组织");
-        map4.put("resId",R.drawable.me_list_thank);
-        list.add(map4);
-
-        Map<String,Object> map5 = new HashMap<String,Object>();
-        map5.put("title","关于我们");
-        map5.put("resId",R.drawable.me_list_about);
-        list.add(map5);
-        return list;
-
     }
 
 
@@ -183,7 +152,28 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
             //关于我们
                 break;
             }
+            case 6:{
 
+                new AlertDialog.Builder(this.getActivity())
+                        .setMessage("退出当前账号不会删除任何历史数据，下次登录依然可以使用本账号")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AppManager.getInstance().setUser_id(null);
+                        AppManager.getInstance().setUserName(null);
+                        AppManager.getInstance().setUser_token(null);
+                        adapter.setDataList(null);
+                        adapter.notifyDataSetChanged();
+                        headerView.refreshPoint(-1);
+                    }
+                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.e("AlertDialog","AlertDialog");
+                    }
+                }).show();
+                break;
+            }
             default:
                 break;
         }

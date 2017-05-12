@@ -1,4 +1,4 @@
-package com.never.nikkaandroid.base;
+package com.never.nikkaandroid.base.view;
 
 import android.content.Context;
 import android.os.Build;

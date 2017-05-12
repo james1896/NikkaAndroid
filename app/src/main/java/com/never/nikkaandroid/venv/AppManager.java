@@ -44,7 +44,7 @@ public class AppManager {
 
 
     public Boolean getLogin() {
-        if(userName != null)
+        if(this.getUser_id() != null)
             return true;
         return false;
     }

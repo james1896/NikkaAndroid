@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.gson.reflect.TypeToken;
 import com.never.nikkaandroid.R;
@@ -147,14 +148,19 @@ public class LoginActiviy extends AppCompatActivity implements View.OnClickListe
                         LoginModel model = JsonParse.parser.fromJson(s, new TypeToken<LoginModel>(){}.getType());
 
                         Log.e("login",model.toString());
-                        AppManager.getInstance().setPoints(model.getData().getPoints());
-                        AppManager.getInstance().setUser_id(model.getUser_id());
-                        Log.e("data",model.getData().getPoints() + "&&&&&&&"+ model.getUser_id());
-                        AppManager.getInstance().setUserName(LoginActiviy.this.login_user_edit.getText().toString());
+                        if(model.getStatus() != -1){
+                            AppManager.getInstance().setPoints(model.getData().getPoints());
+                            AppManager.getInstance().setUser_id(model.getUser_id());
+                            Log.e("data",model.getData().getPoints() + "&&&&&&&"+ model.getUser_id());
+                            AppManager.getInstance().setUserName(LoginActiviy.this.login_user_edit.getText().toString());
 
-                        Intent intent = new Intent(LoginActiviy.this, BalanceActivity.class);
-                        startActivity(intent);
-                        finish();
+                            Intent intent = new Intent(LoginActiviy.this, BalanceActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }else {
+                            Toast.makeText(LoginActiviy.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
+                        }
+
                     }
 
                 });
