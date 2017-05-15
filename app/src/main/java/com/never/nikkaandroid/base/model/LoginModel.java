@@ -1,4 +1,4 @@
-package com.never.nikkaandroid.base.login;
+package com.never.nikkaandroid.base.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -6,12 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by toby on 11/05/2017.
  */
 
-public class LoginModel {
-    @SerializedName("status")
-    private int status;
-
-    @SerializedName("userToken")
-    private String userToken;
+public class LoginModel extends BaseModel{
 
     @SerializedName("data")
     private Data data;

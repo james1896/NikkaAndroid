@@ -25,6 +25,10 @@ import java.util.UUID;
 
 public class CommonUtils {
 
+    static final int secondOfHour   =    60*60;
+    static final int secondOfDay    = 24*60*60;
+
+
 //    px与dip的概念及互相转化
 //    px即pixels，是绝对像素，有多少个像素点就是多少个像素点。
 //    dip即device independent pixel，设备独立像素，无像素无关。

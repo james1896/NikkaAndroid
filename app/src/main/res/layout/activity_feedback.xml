@@ -41,6 +41,7 @@
                 android:background="@drawable/feedback_edittext_shape"
                 />
             <Button
+                android:id="@+id/feedback_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="提交宝贵意见"

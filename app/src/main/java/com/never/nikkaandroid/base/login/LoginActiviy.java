@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.google.gson.reflect.TypeToken;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.base.JsonParse;
+import com.never.nikkaandroid.base.model.LoginModel;
+import com.never.nikkaandroid.base.model.RegisterModel;
 import com.never.nikkaandroid.home.BalanceActivity;
 import com.never.nikkaandroid.venv.AppManager;
 import com.never.nikkaandroid.venv.request.RequestCallBack;
@@ -128,13 +130,24 @@ public class LoginActiviy extends AppCompatActivity implements View.OnClickListe
                             @Override
                             public void onSuccess(String s, Call call, Response response) {
                                 super.onSuccess(s, call, response);
-                                Log.e("register",s);
 
-                                Intent intent = new Intent(LoginActiviy.this, BalanceActivity.class);
-                                startActivity(intent);
-                                finish();
+                                RegisterModel model = JsonParse.parser.fromJson(s, new TypeToken<RegisterModel>(){}.getType());
+                                Log.e("register",model.toString());
+
+                                if(model.getStatus() == 1001){
+                                    AppManager.getInstance().setPoints(model.getData().getPoints());
+                                    AppManager.getInstance().setUserName(LoginActiviy.this.login_user_edit.getText().toString());
+                                    AppManager.getInstance().setUser_id(model.getData().getUser_id());
+                                    Intent intent = new Intent(LoginActiviy.this, BalanceActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }else {
+                                    Toast.makeText(LoginActiviy.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
+                                }
+
                             }
                         });
+
                 break;
             }
             case R.id.login_btn:{
@@ -158,16 +171,16 @@ public class LoginActiviy extends AppCompatActivity implements View.OnClickListe
                         }else {
                             Toast.makeText(LoginActiviy.this,"用户名或密码错误",Toast.LENGTH_SHORT).show();
                         }
-
                     }
-
                 });
+
                 break;
             }
 
 
         }
     }
+
 
     /**
      * Json 转成 Map<>

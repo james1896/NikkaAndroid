@@ -138,8 +138,11 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
             }
             case 3:{
             //意见反馈
-                Intent intent = new Intent(getActivity(),FeedbackActivity.class);
-                getActivity().startActivity(intent);
+                if(AppManager.getInstance().getLogin()){
+                    Intent intent = new Intent(getActivity(),FeedbackActivity.class);
+                    getActivity().startActivity(intent);
+                }
+
                 break;
             }
             case 4:{

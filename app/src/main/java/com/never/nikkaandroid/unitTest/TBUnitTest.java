@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
 import com.never.nikkaandroid.base.JsonParse;
-import com.never.nikkaandroid.base.login.LoginModel;
+import com.never.nikkaandroid.base.model.LoginModel;
 import com.never.nikkaandroid.venv.AppManager;
 import com.never.nikkaandroid.venv.request.RequestCallBack;
 import com.never.nikkaandroid.venv.request.RequestManager;

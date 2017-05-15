@@ -19,24 +19,16 @@ public class RequestManager extends Request{
     static String TB_BASE_URL = "http://10.71.66.102:8001/client";
 
 
+    public void feedback(String userId,String content, RequestCallBack callBack){
+        String url = TB_BASE_URL+ "/feedback";
 
-//    public static void login(String name,String pwd,String uuid,String device){
-//        this.POST("http://10.66.67.81:8001/client/test",);
-//
-//    }
+        Map<String,String> params = new HashMap<String,String>();
+        params.put("user_id",userId);
+        params.put("content",content);
 
-    private static volatile RequestManager instance;
-    public static synchronized RequestManager getInstant(){
-        if(instance == null){
-            //双重检查加锁，只有在第一次实例化时，才启用同步机制，提高了性能。
-            synchronized (RequestManager.class){
-                if(instance == null) {
-                    instance = new RequestManager();
-                }
-            }
-        }
-        return instance;
+        this.POST(url,params, callBack);
     }
+
     //    @param name <#name description#>
 //    @param pwd <#pwd description#>
 //    @param uuid 可以判断是否单点登录
@@ -93,6 +85,20 @@ public class RequestManager extends Request{
 
         this.POST(url, params, callback);
     };
+
+
+    private static volatile RequestManager instance;
+    public static synchronized RequestManager getInstant(){
+        if(instance == null){
+            //双重检查加锁，只有在第一次实例化时，才启用同步机制，提高了性能。
+            synchronized (RequestManager.class){
+                if(instance == null) {
+                    instance = new RequestManager();
+                }
+            }
+        }
+        return instance;
+    }
 
 
     public  String str2rsa(Map<String,String> map){

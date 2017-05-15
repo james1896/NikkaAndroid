@@ -92,7 +92,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements O
                 paras.put("aa","TEST_API_ANDROID_JNI");
 
                 Map<String,String> paras1 = new HashMap<String,String>();
-                paras1.put("test","TEST1_API_ANDROID_JNI");
+                paras1.put("test1","TEST1_API_ANDROID_JNI");
 
                 RequestManager.getInstant().test(paras, new RequestCallBack() {
                     @Override
