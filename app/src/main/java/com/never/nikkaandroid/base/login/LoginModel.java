@@ -7,28 +7,22 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class LoginModel {
-    @SerializedName("user_id")
-    private String user_id;
     @SerializedName("status")
     private int status;
+
+    @SerializedName("userToken")
+    private String userToken;
+
     @SerializedName("data")
     private Data data;
 
     @Override
     public String toString() {
         return "LoginModel{" +
-                "user_id='" + user_id + '\'' +
-                ", status=" + status +
+                "status=" + status +
+                ", userToken='" + userToken + '\'' +
                 ", data=" + data +
                 '}';
-    }
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
     }
 
     public int getStatus() {
@@ -51,6 +45,17 @@ public class LoginModel {
         @SerializedName("points")
         private float points;
 
+        @SerializedName("user_id")
+        private String user_id;
+
+        public String getUser_id() {
+            return user_id;
+        }
+
+        public void setUser_id(String user_id) {
+            this.user_id = user_id;
+        }
+
         public float getPoints() {
             return points;
         }
@@ -61,8 +66,9 @@ public class LoginModel {
 
         @Override
         public String toString() {
-            return "aaa{" +
+            return "Data{" +
                     "points=" + points +
+                    ", user_id='" + user_id + '\'' +
                     '}';
         }
     }

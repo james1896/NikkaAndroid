@@ -46,7 +46,9 @@
                 android:text="提交宝贵意见"
                 android:textSize="@dimen/textsize_16"
                 android:layout_marginTop="@dimen/m_32"
-                android:background="@color/theme_pink"/>
+                android:background="@color/theme_pink"
+                style="?android:attr/borderlessButtonStyle"/>
+            <!--去掉 button 默认的底部阴影效果-->
 
         </LinearLayout>
 

@@ -28,10 +28,10 @@ public class TBUnitTest {
                 LoginModel model = JsonParse.parser.fromJson(s, new TypeToken<LoginModel>(){}.getType());
 
                 Log.e("login",model.toString());
-                if(model.getStatus() != -1) {
+                if(model.getStatus() == 1001){
                     AppManager.getInstance().setPoints(model.getData().getPoints());
-                    AppManager.getInstance().setUser_id(model.getUser_id());
-                    Log.e("data", model.getData().getPoints() + "&&&&&&&" + model.getUser_id());
+                    Log.e("data",model.getData().getPoints() + "&&&&&&&"+ model.getData().getUser_id());
+                    AppManager.getInstance().setUser_id(model.getData().getUser_id());
                 }
             }
         });

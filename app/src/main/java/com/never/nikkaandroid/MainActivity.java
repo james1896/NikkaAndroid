@@ -11,7 +11,6 @@ import com.never.nikkaandroid.adpter.MainActivityAdpter;
 import com.never.nikkaandroid.base.BaseActivity;
 import com.never.nikkaandroid.base.view.TabLayoutItemView;
 import com.never.nikkaandroid.databinding.ActivityMainBinding;
-import com.never.nikkaandroid.unitTest.TBUnitTest;
 import com.never.nikkaandroid.venv.CommonUtils;
 import com.never.nikkaandroid.views.TransView;
 
@@ -28,7 +27,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
     @Override
     protected void init() {
         Log.e("Device",CommonUtils.collectDeviceInfo(this));
-        TBUnitTest.unitTest();
+//        TBUnitTest.unitTest();
         //toolbar
         setNavbar(titles[0],0);
         //view动画

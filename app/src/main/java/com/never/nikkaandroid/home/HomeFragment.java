@@ -102,13 +102,13 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements O
                     }
                 });
 
-                new RequestManager().test1(paras1, new RequestCallBack() {
-                    @Override
-                    public void onSuccess(String s, Call call, Response response) {
-                        super.onSuccess(s, call, response);
-                        Log.e("test1","ok");
-                    }
-                });
+//                new RequestManager().test1(paras1, new RequestCallBack() {
+//                    @Override
+//                    public void onSuccess(String s, Call call, Response response) {
+//                        super.onSuccess(s, call, response);
+//                        Log.e("test1","ok");
+//                    }
+//                });
 
                 break;
             }

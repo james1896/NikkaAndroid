@@ -148,12 +148,10 @@ public class LoginActiviy extends AppCompatActivity implements View.OnClickListe
                         LoginModel model = JsonParse.parser.fromJson(s, new TypeToken<LoginModel>(){}.getType());
 
                         Log.e("login",model.toString());
-                        if(model.getStatus() != -1){
+                        if(model.getStatus() == 1001){
                             AppManager.getInstance().setPoints(model.getData().getPoints());
-                            AppManager.getInstance().setUser_id(model.getUser_id());
-                            Log.e("data",model.getData().getPoints() + "&&&&&&&"+ model.getUser_id());
                             AppManager.getInstance().setUserName(LoginActiviy.this.login_user_edit.getText().toString());
-
+                            AppManager.getInstance().setUser_id(model.getData().getUser_id());
                             Intent intent = new Intent(LoginActiviy.this, BalanceActivity.class);
                             startActivity(intent);
                             finish();
