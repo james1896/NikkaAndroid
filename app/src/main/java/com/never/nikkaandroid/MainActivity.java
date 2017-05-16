@@ -12,7 +12,12 @@ import com.never.nikkaandroid.base.BaseActivity;
 import com.never.nikkaandroid.base.view.TabLayoutItemView;
 import com.never.nikkaandroid.databinding.ActivityMainBinding;
 import com.never.nikkaandroid.venv.CommonUtils;
+import com.never.nikkaandroid.venv.request.RequestCallBack;
+import com.never.nikkaandroid.venv.request.RequestManager;
 import com.never.nikkaandroid.views.TransView;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> implements TabLayout.OnTabSelectedListener{
 
@@ -26,7 +31,20 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void init() {
-        Log.e("Device",CommonUtils.collectDeviceInfo(this));
+
+        //如果超过24小时 就收集userInfo
+        if(!CommonUtils.isIntraday(this)){
+            RequestManager.getInstant().userinfo(CommonUtils.getUniquePsuedoID(), CommonUtils.collectDeviceInfo(this), new RequestCallBack() {
+                @Override
+                public void onSuccess(String s, Call call, Response response) {
+                    super.onSuccess(s, call, response);
+                    Log.e("userinfo",s);
+
+                    CommonUtils.saveLong(MainActivity.this,CommonUtils.collection_userinfo_lasttime,CommonUtils.getCurrentDate());
+                }
+            });
+        }
+
 //        TBUnitTest.unitTest();
         //toolbar
         setNavbar(titles[0],0);

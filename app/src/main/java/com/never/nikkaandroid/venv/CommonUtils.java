@@ -2,11 +2,14 @@ package com.never.nikkaandroid.venv;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.icu.text.SimpleDateFormat;
 import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,6 +17,7 @@ import android.view.WindowManager;
 import org.json.JSONObject;
 
 import java.lang.reflect.Field;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -25,8 +29,9 @@ import java.util.UUID;
 
 public class CommonUtils {
 
-    static final int secondOfHour   =    60*60;
-    static final int secondOfDay    = 24*60*60;
+    public static final int secondOfHour   =    60*60;
+    public static final int secondOfDay    = 24*60*60;
+    public static final String collection_userinfo_lasttime = "collection_userinfo_lasttime";
 
 
 //    px与dip的概念及互相转化
@@ -213,6 +218,114 @@ public class CommonUtils {
         }
 
 
-        return valueMap;
+       return valueMap;
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static boolean isIntraday(Context context){
+       long last_time = CommonUtils.getLong(context,CommonUtils.collection_userinfo_lasttime);
+
+        SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年MM月dd日   HH:mm:ss");
+        Date curDate =  new Date(System.currentTimeMillis());
+//        Log.e("curDate", String.valueOf(curDate.getTime()/1000L + "|" + last_time));
+
+        //毫秒
+//        Log.e("curDate","c"+System.currentTimeMillis());
+        return curDate.getTime()/1000L -last_time < CommonUtils.secondOfDay;
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static long getCurrentDate(){
+
+        SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年MM月dd日   HH:mm:ss");
+        Date curDate =  new Date(System.currentTimeMillis());
+
+        return curDate.getTime()/1000L;
+    }
+
+
+
+
+
+
+    /***************   sharePreference 数据持久化   ***************/
+
+    public static String getString(Context context, String strKey) {
+        SharedPreferences setPreferences = context.getSharedPreferences("app", 0);
+        String result = setPreferences.getString(strKey, "");
+        return result;
+    }
+
+    public static String getString(Context context, String strKey, String strDefault) {
+        SharedPreferences setPreferences = context.getSharedPreferences("app", 0);
+        String result = setPreferences.getString(strKey, strDefault);
+        return result;
+    }
+
+    public static void saveString(Context context, String strKey, String strData) {
+        SharedPreferences activityPreferences = context.getSharedPreferences("app", 0);
+        SharedPreferences.Editor editor = activityPreferences.edit();
+        editor.putString(strKey, strData);
+        editor.commit();
+    }
+
+    public static Boolean getBoolean(Context context, String strKey) {
+        SharedPreferences setPreferences = context.getSharedPreferences("app", 0);
+        Boolean result = Boolean.valueOf(setPreferences.getBoolean(strKey, false));
+        return result;
+    }
+
+    public static Boolean getBoolean(Context context, String strKey, Boolean strDefault) {
+        SharedPreferences setPreferences = context.getSharedPreferences("app", 0);
+        Boolean result = Boolean.valueOf(setPreferences.getBoolean(strKey, strDefault.booleanValue()));
+        return result;
+    }
+
+    public static void saveBoolean(Context context, String strKey, Boolean strData) {
+        SharedPreferences activityPreferences = context.getSharedPreferences("app", 0);
+        SharedPreferences.Editor editor = activityPreferences.edit();
+        editor.putBoolean(strKey, strData.booleanValue());
+        editor.commit();
+    }
+
+    public static int getInt(Context context, String strKey) {
+        SharedPreferences setPreferences = context.getSharedPreferences("app", 0);
+        int result = setPreferences.getInt(strKey, -1);
+        return result;
+    }
+
+    public static int getInt(Context context, String strKey, int strDefault) {
+        SharedPreferences setPreferences = context.getSharedPreferences("app", 0);
+        int result = setPreferences.getInt(strKey, strDefault);
+        return result;
+    }
+
+    public static void saveInt(Context context, String strKey, int strData) {
+        SharedPreferences activityPreferences = context.getSharedPreferences("app", 0);
+        SharedPreferences.Editor editor = activityPreferences.edit();
+        editor.putInt(strKey, strData);
+        editor.commit();
+    }
+
+    public static long getLong(Context context, String strKey) {
+        SharedPreferences setPreferences = context.getSharedPreferences("app", 0);
+        long result = setPreferences.getLong(strKey, -1L);
+        return result;
+    }
+
+    public static long getLong(Context context, String strKey, long strDefault) {
+        SharedPreferences setPreferences = context.getSharedPreferences("app", 0);
+        long result = setPreferences.getLong(strKey, strDefault);
+        return result;
+    }
+
+    public static void saveLong(Context context, String strKey, long strData) {
+        SharedPreferences activityPreferences = context.getSharedPreferences("app", 0);
+        SharedPreferences.Editor editor = activityPreferences.edit();
+        editor.putLong(strKey, strData);
+        editor.commit();
+    }
+
+    /****************************************************************************/
 }

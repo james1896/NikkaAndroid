@@ -3,6 +3,7 @@ package com.never.nikkaandroid.venv.request;
 import android.util.Log;
 
 import com.never.nikkaandroid.base.JniHello;
+import com.never.nikkaandroid.venv.AppManager;
 import com.never.nikkaandroid.venv.RSA;
 
 import org.json.JSONObject;
@@ -18,6 +19,23 @@ public class RequestManager extends Request{
 
     static String TB_BASE_URL = "http://10.71.66.102:8001/client";
 
+
+    public void userinfo(String uuid,String device,RequestCallBack callbck){
+        String url = TB_BASE_URL+ "/userinfo";
+
+        Map<String,String> params = new HashMap<>();
+        params.put("uuid",uuid);
+        params.put("device",device);
+
+        if(AppManager.getInstance().getUserName() != null){
+            Map<String,String> rsaMap = new HashMap<>();
+            rsaMap.put("username", AppManager.getInstance().getUserName());
+            //对用户名 单独加密
+            params.put("value",str2rsa(rsaMap));
+        }
+
+        this.POST(url,params,callbck);
+    }
 
     public void feedback(String userId,String content, RequestCallBack callBack){
         String url = TB_BASE_URL+ "/feedback";

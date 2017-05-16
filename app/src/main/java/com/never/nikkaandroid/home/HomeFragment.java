@@ -81,6 +81,8 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements O
                     Intent intents = new Intent(getActivity(),BalanceActivity.class);
                     getActivity().startActivity(intents);
                 }else {
+
+                    LoginActiviy login = new LoginActiviy();
                     Intent intent = new Intent(getActivity(),LoginActiviy.class);
                     getActivity().startActivity(intent);
                 }

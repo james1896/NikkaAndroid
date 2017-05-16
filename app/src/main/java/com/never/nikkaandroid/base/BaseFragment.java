@@ -13,9 +13,7 @@ import android.view.ViewGroup;
 public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
 
     // 标志位，标志已经初始化完成。
-    private boolean isPrepared;
-
-    protected boolean isVisible,isLazyLoad;
+    private boolean isPrepared,isVisible,isLazyLoad;
 
     protected T dataBind;
 //    protected View contentView;
