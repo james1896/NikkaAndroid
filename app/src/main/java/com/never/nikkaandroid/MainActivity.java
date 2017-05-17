@@ -11,6 +11,7 @@ import com.never.nikkaandroid.adpter.MainActivityAdpter;
 import com.never.nikkaandroid.base.BaseActivity;
 import com.never.nikkaandroid.base.view.TabLayoutItemView;
 import com.never.nikkaandroid.databinding.ActivityMainBinding;
+import com.never.nikkaandroid.venv.AppManager;
 import com.never.nikkaandroid.venv.CommonUtils;
 import com.never.nikkaandroid.venv.request.RequestCallBack;
 import com.never.nikkaandroid.venv.request.RequestManager;
@@ -81,36 +82,46 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         setNavbar(titles[tab.getPosition()],0);
-//        switch (tab.getPosition()){
-//            case 0:
+        switch (tab.getPosition()){
+            case 0:
 //                tab.setIcon(getResources().getDrawable(R.drawable.grape_press));
-//                break;
-//            case 1:
+                break;
+            case 1:
 //                tab.setIcon(getResources().getDrawable(R.drawable.activity_press));
-//                break;
-//            case 2:
+                break;
+            case 2:
 //                tab.setIcon(getResources().getDrawable(R.drawable.me_press));
-//                break;
-//            default:
-//                break;
-//        }
+                if(AppManager.getInstance().getLogin()){
+                    this.navSpaceLab.setText(" | ");
+                    this.navSubtitle.setText(AppManager.getInstance().getUserName());
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
-//        switch (tab.getPosition()){
-//            case 0:
+        switch (tab.getPosition()){
+            case 0:
 //                tab.setIcon(getResources().getDrawable(R.drawable.grape_normal));
-//                break;
-//            case 1:
+                break;
+            case 1:
 //                tab.setIcon(getResources().getDrawable(R.drawable.activity_normal));
-//                break;
-//            case 2:
+                break;
+            case 2:
 //                tab.setIcon(getResources().getDrawable(R.drawable.activity_normal));
-//                break;
-//            default:
-//                break;
-//        }
+
+                if(!AppManager.getInstance().getLogin()){
+                    this.navSpaceLab.setText("");
+                    this.navSubtitle.setText("");
+                }
+
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

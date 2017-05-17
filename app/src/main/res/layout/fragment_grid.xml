@@ -9,8 +9,12 @@
         android:orientation="vertical"
         tools:context="com.never.nikkaandroid.grid.GridFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <include layout="@layout/toolbar" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+        </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

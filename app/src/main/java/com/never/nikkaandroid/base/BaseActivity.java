@@ -20,9 +20,9 @@ public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatA
 
     protected B dataBind;
     Toolbar toolbar;
-    TextView navTitle;
-    TextView navSpaceLab;
-    TextView navSubtitle;
+    public  TextView navTitle;
+    public TextView navSpaceLab;
+    public TextView navSubtitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +52,9 @@ public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatA
         }
 
         navTitle = (TextView) findViewById(R.id.toolbar_title);
+        navSpaceLab = (TextView) findViewById(R.id.toolbar_space);
+        navSubtitle = (TextView) findViewById(R.id.toolbar_subtitle);
+
         if(navTitle != null){
             Typeface type= Typeface.createFromAsset(getAssets(),"font/MarkerFelt.ttf");
             navTitle.setTypeface(type);

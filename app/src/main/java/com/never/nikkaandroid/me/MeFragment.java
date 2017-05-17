@@ -50,13 +50,23 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
     }
 
     @Override
-    protected void viewWillappear() {
-        super.viewWillappear();
+    protected void viewWillAppear() {
+        super.viewWillAppear();
 
-        if(AppManager.getInstance().getLogin())
-        headerView.refreshPoint(AppManager.getInstance().getPoints());
+        if(AppManager.getInstance().getLogin()){
+            headerView.refreshPoint(AppManager.getInstance().getPoints());
+
+        }
+
         adapter.setDataList(null);
         this.adapter.notifyDataSetChanged();
+
+    }
+
+    @Override
+    protected void viewWillDisappear() {
+        super.viewWillDisappear();
+        Log.e("me","viewWillDisappear");
     }
 
     @Override

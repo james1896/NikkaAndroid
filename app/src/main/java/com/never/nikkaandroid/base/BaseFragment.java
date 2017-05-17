@@ -51,7 +51,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
         if (!isPrepared || !isVisible) {
             return;
         }
-        viewWillappear();
+        viewWillAppear();
         if (isLazyLoad) return;
         isLazyLoad = true;
         lazyLoad();
@@ -59,11 +59,15 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     /**
      * 界面不可见时自动调用
      */
-    protected void onInvisible() {
+    private void onInvisible() {
+        viewWillDisappear();
+    }
+
+    protected void viewWillAppear(){
 
     }
 
-    protected void viewWillappear(){
+    protected void viewWillDisappear(){
 
     }
     /**

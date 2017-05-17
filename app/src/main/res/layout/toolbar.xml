@@ -4,7 +4,7 @@
     android:fitsSystemWindows="true"
     android:clipToPadding="true"
     android:layout_width="match_parent"
-    android:background="@android:color/transparent"
+    android:background="@android:color/holo_blue_bright"
     android:layout_height="68dp"
     >
 
@@ -21,6 +21,26 @@
             android:textSize="22dp"
             android:textStyle="bold"
             android:textColor="#ffffff"
+            android:background="@android:color/transparent"/>
+
+        <TextView
+            android:id="@+id/toolbar_space"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textSize="22dp"
+            android:textColor="#ffffff"
+            android:text=""
+            android:background="@android:color/transparent"/>
+
+        <TextView
+            android:id="@+id/toolbar_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textSize="14dp"
+            android:textColor="#ffffff"
+            android:text=""
             android:background="@android:color/transparent"/>
 
 

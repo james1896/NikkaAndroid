@@ -7,7 +7,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
-import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
@@ -224,8 +223,6 @@ public class CommonUtils {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static boolean isIntraday(Context context){
        long last_time = CommonUtils.getLong(context,CommonUtils.collection_userinfo_lasttime);
-
-        SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年MM月dd日   HH:mm:ss");
         Date curDate =  new Date(System.currentTimeMillis());
 //        Log.e("curDate", String.valueOf(curDate.getTime()/1000L + "|" + last_time));
 
@@ -238,16 +235,11 @@ public class CommonUtils {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static long getCurrentDate(){
 
-        SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年MM月dd日   HH:mm:ss");
+//        SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年MM月dd日   HH:mm:ss");
         Date curDate =  new Date(System.currentTimeMillis());
 
         return curDate.getTime()/1000L;
     }
-
-
-
-
-
 
     /***************   sharePreference 数据持久化   ***************/
 
