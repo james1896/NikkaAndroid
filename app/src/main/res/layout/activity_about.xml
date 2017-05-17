@@ -34,8 +34,10 @@
                 android:textSize="@dimen/m_15"
                 android:lineSpacingExtra="@dimen/m_3"
                 android:textColor="@color/theme_pink"
-                android:text="      京东于2004年正式涉足电商领域。2016年，京东集团市场交易额达到9392亿元*，净收入达到2601亿元，同比增长43%。京东是中国收入规模最大的互联网企业。2016年7月，京东入榜2016《财富》全球500强，成为中国首家、唯一入选的互联网企业。
-2014年5月，京东集团在美国纳斯达克证券交易所正式挂牌上市，是中国第一个成功赴美上市的大型综合型电商平台，并成功跻身全球前十大互联网公司排行榜，2015年7月，京东凭借高成长性入选纳斯达克100指数和纳斯达克100平均加权指数。"/>
+                android:text="      京东于2004年正式涉足电商领域。2016年，京东集团市场交易额达到9392亿元*，净收入达到2601亿元，
+                同比增长43%。京东是中国收入规模最大的互联网企业。2016年7月，京东入榜2016《财富》全球500强，
+                成为中国首家、唯一入选的互联网企业。2014年5月，京东集团在美国纳斯达克证券交易所正式挂牌上市，
+                是中国第一个成功赴美上市的大型综合型电商平台，并成功跻身全球前十大互联网公司排行榜，2015年7月，京东凭借高成长性入选纳斯达克100指数和纳斯达克100平均加权指数。"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,10 +50,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:lineSpacingExtra="@dimen/m_6"
                 android:paddingTop="@dimen/m_6"
                 android:textSize="@dimen/textsize_15"
                 android:textColor="@color/theme_pink"
-                android:text="    IOS  下载：只有App Store \n    Android 下载: "/>
+                android:text="    IOS  下载： App Store \n    Android 下载: "/>
         </LinearLayout>
 
         <ImageView
