@@ -16,16 +16,24 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:orientation="vertical"
             android:layout_weight="1"
             android:paddingLeft="@dimen/view_path"
             android:paddingTop="@dimen/m_10">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textsize_19"
+                android:textColor="@color/theme_pink"
+                android:text="感谢以下开源组织提供技术支持:"/>
+            <TextView
+                android:paddingTop="@dimen/m_10"
                 android:lineSpacingExtra="@dimen/m_8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/thank_for"
-                android:textSize="@dimen/textsize_18"
+                android:textSize="@dimen/textsize_16"
                 android:textColor="@color/theme_pink"/>
         </LinearLayout>
 

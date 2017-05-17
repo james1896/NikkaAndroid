@@ -9,8 +9,7 @@
 
 
 
-    <string name="thank_for">   感谢以下开源组织提供技术支持:\n
-                                Masonry\n
+    <string name="thank_for">   Masonry\n
                                 AFNetworking\n
                                 IQKeyboardManager\n
                                 ShareSDK3

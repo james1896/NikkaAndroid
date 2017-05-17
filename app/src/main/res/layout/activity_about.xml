@@ -51,7 +51,7 @@
                 android:paddingTop="@dimen/m_6"
                 android:textSize="@dimen/textsize_15"
                 android:textColor="@color/theme_pink"
-                android:text="    IOS  下载： App Store \n    Android 下载: "/>
+                android:text="        IOS    下载： App Store \n    Android 下载: "/>
         </LinearLayout>
 
         <ImageView

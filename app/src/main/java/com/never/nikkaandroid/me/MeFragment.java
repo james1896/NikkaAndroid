@@ -16,6 +16,7 @@ import android.widget.ListView;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.adpter.MeListAdapter;
 import com.never.nikkaandroid.base.BaseFragment;
+import com.never.nikkaandroid.base.login.LoginActiviy;
 import com.never.nikkaandroid.databinding.FragmentMeBinding;
 import com.never.nikkaandroid.venv.AppManager;
 import com.never.nikkaandroid.venv.CommonUtils;
@@ -138,8 +139,15 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
             }
             case 1:{
             //礼物赠送
-                Intent intent = new Intent(getActivity(),GiftActivity.class);
-                getActivity().startActivity(intent);
+                if(AppManager.getInstance().getLogin()){
+
+                    Intent intent = new Intent(getActivity(),GiftActivity.class);
+                    getActivity().startActivity(intent);
+                }else {
+
+                    Intent intent = new Intent(getActivity(),LoginActiviy.class);
+                    getActivity().startActivity(intent);
+                }
                 break;
             }
             case 2:{
@@ -150,6 +158,9 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
             //意见反馈
                 if(AppManager.getInstance().getLogin()){
                     Intent intent = new Intent(getActivity(),FeedbackActivity.class);
+                    getActivity().startActivity(intent);
+                }else {
+                    Intent intent = new Intent(getActivity(),LoginActiviy.class);
                     getActivity().startActivity(intent);
                 }
 
