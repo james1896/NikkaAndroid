@@ -19,7 +19,6 @@ import com.never.nikkaandroid.base.BaseFragment;
 import com.never.nikkaandroid.databinding.FragmentMeBinding;
 import com.never.nikkaandroid.venv.AppManager;
 import com.never.nikkaandroid.venv.CommonUtils;
-import com.never.nikkaandroid.views.CanvasView;
 
 import java.util.List;
 
@@ -31,7 +30,7 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
     // 模拟数据
     private List<String> dataList = null;
     MeListAdapter adapter;
-    private CanvasView headerView;
+    private MeHeaderView headerView;
 
 
     public MeFragment() {
@@ -54,6 +53,7 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
     protected void viewWillappear() {
         super.viewWillappear();
 
+        if(AppManager.getInstance().getLogin())
         headerView.refreshPoint(AppManager.getInstance().getPoints());
         adapter.setDataList(null);
         this.adapter.notifyDataSetChanged();
@@ -85,7 +85,7 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
         //ViewGroup$LayoutParams 6.0         4.4崩溃
         //AbsListView$LayoutParams 4.4
         ViewGroup.LayoutParams params = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
-        headerView  = new CanvasView(getContext(),height,20.0f,"","subTitle", R.drawable.user_image);
+        headerView  = new MeHeaderView(getContext(),height,20.0f,"","subTitle", R.drawable.user_image);
         headerView.setBackgroundColor(getResources().getColor(R.color.white));
         headerView.setLayoutParams(params);
 //        headerView.setuserImageId(R.drawable.home_preference);
@@ -183,6 +183,7 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
                         AppManager.getInstance().setUser_id(null);
                         AppManager.getInstance().setUserName(null);
                         AppManager.getInstance().setUser_token(null);
+                        AppManager.getInstance().setPoints(-1);
                         adapter.setDataList(null);
                         adapter.notifyDataSetChanged();
                         headerView.refreshPoint(-1);

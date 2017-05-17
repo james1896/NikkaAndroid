@@ -1,37 +1,39 @@
-package com.never.nikkaandroid.base.model;
+package com.never.nikkaandroid.base.login;
 
 import com.google.gson.annotations.SerializedName;
+import com.never.nikkaandroid.base.model.BaseModel;
 
 /**
- * Created by toby on 12/05/2017.
+ * Created by toby on 11/05/2017.
  */
 
-public class RegisterModel extends BaseModel{
+public class LoginModel extends BaseModel {
+
     @SerializedName("data")
-    private LoginModel.Data data;
+    private Data data;
 
     @Override
     public String toString() {
         return "LoginModel{" +
-                "status=" + status +
+                "statusCode=" + statusCode +
                 ", userToken='" + userToken + '\'' +
                 ", data=" + data +
                 '}';
     }
 
-    public int getStatus() {
-        return status;
+    public int getStatusCode() {
+        return statusCode;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
     }
 
-    public LoginModel.Data getData() {
+    public Data getData() {
         return data;
     }
 
-    public void setData(LoginModel.Data data) {
+    public void setData(Data data) {
         this.data = data;
     }
 
@@ -66,5 +68,6 @@ public class RegisterModel extends BaseModel{
                     '}';
         }
     }
-
 }
+
+

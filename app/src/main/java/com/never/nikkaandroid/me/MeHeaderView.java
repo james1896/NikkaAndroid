@@ -1,4 +1,4 @@
-package com.never.nikkaandroid.views;
+package com.never.nikkaandroid.me;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,7 +24,7 @@ import com.never.nikkaandroid.venv.CommonUtils;
  * Created by toby on 05/04/2017.
  */
 
-public class CanvasView extends View{
+public class MeHeaderView extends View{
 
     private Paint textPaint;
     private Paint bitmapPaint;
@@ -72,7 +72,7 @@ public class CanvasView extends View{
         return (int) (dpValue * scale + 0.5f);
     }
 
-    public CanvasView(Context context, int height,float points,String userName,String subTitle, int imageId) {
+    public MeHeaderView(Context context, int height, float points, String userName, String subTitle, int imageId) {
         super(context);
 
         this.context = context;
@@ -82,8 +82,8 @@ public class CanvasView extends View{
         this.points = points;
         this.userName = userName;
         this.subTitle = subTitle;
-        this.leftHeight = CommonUtils.getWindowHeight((Activity) context)/8*3-150;
-        this.rightHeight = CommonUtils.getWindowHeight((Activity) context)/8*3;
+        this.leftHeight = CommonUtils.getWindowHeight((Activity) context)/8*3-150   -50;
+        this.rightHeight = CommonUtils.getWindowHeight((Activity) context)/8*3      -50;
         this.sreenWidth = (int) CommonUtils.getWindowWidth((Activity) context);
 
         init(context);
@@ -128,20 +128,20 @@ public class CanvasView extends View{
         bitmapPaint = new Paint();
         bitmapPaint.setAntiAlias(true);
     }
-    public CanvasView(Context context, @Nullable AttributeSet attrs) {
+    public MeHeaderView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         init(context);
     }
 
-    public CanvasView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public MeHeaderView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
 
     //必需在这个版本下 才会调用这个方法
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public CanvasView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public MeHeaderView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context);
     }
@@ -166,7 +166,7 @@ public class CanvasView extends View{
         //高度需要再减去 图片高度的一半
         this.userImg_left = cellPath ;
 
-        this.userImg_top = this.leftHeight+100*(dip2px(this.context,cellPath)/CommonUtils.getWindowHeight((Activity) this.context))-bitmap.getHeight()/2;
+        this.userImg_top = this.rightHeight-bitmap.getHeight();
         canvas.drawBitmap(bitmap,dip2px(this.context,cellPath) ,this.userImg_top , bitmapPaint);
     }
 

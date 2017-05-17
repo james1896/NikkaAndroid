@@ -20,7 +20,9 @@ public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatA
 
     protected B dataBind;
     Toolbar toolbar;
-    TextView tv;
+    TextView navTitle;
+    TextView navSpaceLab;
+    TextView navSubtitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +51,10 @@ public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatA
             Log.e("----->", toolbar.toString());
         }
 
-        tv = (TextView) findViewById(R.id.toolbar_title);
-        if(tv != null){
+        navTitle = (TextView) findViewById(R.id.toolbar_title);
+        if(navTitle != null){
             Typeface type= Typeface.createFromAsset(getAssets(),"font/MarkerFelt.ttf");
-            tv.setTypeface(type);
+            navTitle.setTypeface(type);
         }
 
         //back_white button
@@ -68,8 +70,7 @@ public abstract class BaseActivity<B extends ViewDataBinding> extends AppCompatA
     }
     //colorInt =0 使用默认透明颜色
     protected void setNavbar(String title, @ColorInt int color){
-        Log.e("setNavbar","title:"+title+"  colorInt:"+color);
-        tv.setText(title);
+        navTitle.setText(title);
         toolbar.setBackgroundColor(color);
 
     }

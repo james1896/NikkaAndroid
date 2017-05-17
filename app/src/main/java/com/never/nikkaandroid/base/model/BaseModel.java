@@ -8,9 +8,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class BaseModel {
 
-    @SerializedName("status")
-    protected int status;
+    @SerializedName("statusCode")
+    public int statusCode;
 
     @SerializedName("userToken")
-    protected String userToken;
+    public String userToken;
 }
