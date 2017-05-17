@@ -163,24 +163,27 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
             }
             case 5:{
             //关于我们
-                new AlertDialog.Builder(this.getActivity())
-                        .setMessage("退出当前账号不会删除任何历史数据，下次登录依然可以使用本账号")
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                AppManager.getInstance().setUser_id(null);
-                                AppManager.getInstance().setUserName(null);
-                                AppManager.getInstance().setUser_token(null);
-                                adapter.setDataList(null);
-                                adapter.notifyDataSetChanged();
-                                headerView.refreshPoint(-1);
-                            }
-                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.e("AlertDialog","AlertDialog");
-                    }
-                }).show();
+//                new AlertDialog.Builder(this.getActivity())
+//                        .setMessage("退出当前账号不会删除任何历史数据，下次登录依然可以使用本账号")
+//                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                AppManager.getInstance().setUser_id(null);
+//                                AppManager.getInstance().setUserName(null);
+//                                AppManager.getInstance().setUser_token(null);
+//                                adapter.setDataList(null);
+//                                adapter.notifyDataSetChanged();
+//                                headerView.refreshPoint(-1);
+//                            }
+//                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Log.e("AlertDialog","AlertDialog");
+//                    }
+//                }).show();
+                Intent intent = new Intent(getActivity(),AboutActivity.class);
+                getActivity().startActivity(intent);
+
                 break;
             }
             case 6:{

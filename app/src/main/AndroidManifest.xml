@@ -32,10 +32,12 @@
                 />
             </intent-filter>
         </activity>
+
         <activity android:name=".base.login.LoginActiviy" />
         <activity android:name=".me.GiftActivity" />
         <activity android:name=".me.FeedbackActivity" />
-        <activity android:name=".me.ThankActivity"></activity>
+        <activity android:name=".me.ThankActivity"/>
+        <activity android:name=".me.AboutActivity"/>
     </application>
 
 </manifest>
