@@ -46,6 +46,8 @@ public class MeHeaderView extends View{
     private String subTitle;
     private int imageId;
 
+    private int hh = 46;
+
 
 
     public void setuserImageId(@DrawableRes int imageId){
@@ -82,7 +84,7 @@ public class MeHeaderView extends View{
         this.points = points;
         this.userName = userName;
         this.subTitle = subTitle;
-        this.leftHeight = CommonUtils.getWindowHeight((Activity) context)/8*3-dip2px(this.context,55)  -50;
+        this.leftHeight = CommonUtils.getWindowHeight((Activity) context)/8*3-dip2px(this.context,hh)  -50;
         this.rightHeight = CommonUtils.getWindowHeight((Activity) context)/8*3      -50;
         Log.e("meHeader","left"+this.leftHeight + "right" + this.rightHeight);
         this.sreenWidth = (int) CommonUtils.getWindowWidth((Activity) context);
