@@ -113,10 +113,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
             case 2:
 //                tab.setIcon(getResources().getDrawable(R.drawable.activity_normal));
 
-                if(!AppManager.getInstance().getLogin()){
+
                     this.navSpaceLab.setText("");
                     this.navSubtitle.setText("");
-                }
+
 
                 break;
             default:

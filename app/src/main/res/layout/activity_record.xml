@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/home_record_background">
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="40dp"/>-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
 
     <ListView
         android:layout_width="match_parent"

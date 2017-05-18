@@ -20,6 +20,32 @@ public class RequestManager extends Request{
     static String TB_BASE_URL = "http://10.71.66.102:8001/client";
 
 
+    public void queryOrder(String userid,RequestCallBack callback){
+        String url = TB_BASE_URL+ "/findorder";
+
+
+        Map<String,String> params = new HashMap<>();
+
+        Map<String,String> rsaMap = new HashMap<>();
+        rsaMap.put("user_id", AppManager.getInstance().getUser_id());
+        //对用户名 单独加密
+        params.put("value",str2rsa(rsaMap));
+
+        this.POST(url,params,callback);
+    }
+    public void queryOrder(RequestCallBack callback){
+        String url = TB_BASE_URL+ "/findorder";
+
+        Map<String,String> params = new HashMap<>();
+
+        Map<String,String> rsaMap = new HashMap<>();
+        rsaMap.put("user_id", AppManager.getInstance().getUser_id());
+        //对用户名 单独加密
+        params.put("value",str2rsa(rsaMap));
+
+        this.POST(url,params,callback);
+    }
+
     public void userinfo(String uuid,String device,RequestCallBack callbck){
         String url = TB_BASE_URL+ "/userinfo";
 

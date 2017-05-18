@@ -1,14 +1,24 @@
 package com.never.nikkaandroid.home;
 
+import android.util.Log;
 import android.widget.ListView;
 
+import com.google.gson.reflect.TypeToken;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.adpter.RecordListAdapter;
 import com.never.nikkaandroid.base.BaseActivity;
+import com.never.nikkaandroid.base.JsonParse;
+import com.never.nikkaandroid.base.model.BaseModel;
+import com.never.nikkaandroid.venv.request.RequestCallBack;
+import com.never.nikkaandroid.venv.request.RequestManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 /**
  * Created by toby on 18/04/2017.
@@ -22,38 +32,33 @@ public class RecordActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        ListView listview = (ListView)findViewById(R.id.recordListView);
-        listview.setAdapter(new RecordListAdapter(this,getDataList()));
+        final ListView listview = (ListView)findViewById(R.id.recordListView);
+
+
+        RequestManager.getInstant().queryOrder(new RequestCallBack() {
+            @Override
+            public void onSuccess(String s, Call call, Response response) {
+                super.onSuccess(s, call, response);
+
+                Log.e("queryOrder",s);
+                BaseModel<List<RecordModel>> model = JsonParse.parser.fromJson(s, new TypeToken<BaseModel<List<RecordModel>> >(){}.getType());
+               Log.e("0000", model.toString()+"|" +model.getStatusCode());
+
+                ArrayList<Map> list = new ArrayList<>();
+                for(RecordModel tmp:model.getData())
+                {
+
+
+                    Map<String,Object> map = new HashMap<String,Object>();
+                    map.put("name",tmp.getName());
+                    map.put("price",tmp.getPrice());
+                    map.put("time",tmp.getTime());
+                    list.add(map);
+                }
+
+                listview.setAdapter(new RecordListAdapter(RecordActivity.this,list));
+            }
+        });
     }
 
-    private ArrayList<Map> getDataList(){
-        ArrayList<Map> list = new ArrayList<>();
-
-        Map<String,Object> map1 = new HashMap<String,Object>();
-        map1.put("title","礼物赠送");
-        map1.put("resId",R.drawable.me_list_zengsong);
-        list.add(map1);
-
-        Map<String,Object> map2 = new HashMap<String,Object>();
-        map2.put("title","生活助手");
-        map2.put("resId",R.drawable.me_list_key);
-        list.add(map2);
-
-        Map<String,Object> map3 = new HashMap<String,Object>();
-        map3.put("title","意见反馈");
-        map3.put("resId",R.drawable.me_list_yijian);
-        list.add(map3);
-
-        Map<String,Object> map4 = new HashMap<String,Object>();
-        map4.put("title","呜谢组织");
-        map4.put("resId",R.drawable.me_list_thank);
-        list.add(map4);
-
-        Map<String,Object> map5 = new HashMap<String,Object>();
-        map5.put("title","关于我们");
-        map5.put("resId",R.drawable.me_list_about);
-        list.add(map5);
-        return list;
-
-    }
 }

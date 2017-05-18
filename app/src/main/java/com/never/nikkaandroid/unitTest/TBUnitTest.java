@@ -1,11 +1,5 @@
 package com.never.nikkaandroid.unitTest;
 
-import android.util.Log;
-
-import com.google.gson.reflect.TypeToken;
-import com.never.nikkaandroid.base.JsonParse;
-import com.never.nikkaandroid.base.login.LoginModel;
-import com.never.nikkaandroid.venv.AppManager;
 import com.never.nikkaandroid.venv.request.RequestCallBack;
 import com.never.nikkaandroid.venv.request.RequestManager;
 
@@ -25,14 +19,14 @@ public class TBUnitTest {
             @Override
             public void onSuccess(String s, Call call, Response response) {
                 super.onSuccess(s, call, response);
-                LoginModel model = JsonParse.parser.fromJson(s, new TypeToken<LoginModel>(){}.getType());
-
-                Log.e("login",model.toString());
-                if(model.getStatusCode() == 1001){
-                    AppManager.getInstance().setPoints(model.getData().getPoints());
-                    Log.e("data",model.getData().getPoints() + "&&&&&&&"+ model.getData().getUser_id());
-                    AppManager.getInstance().setUser_id(model.getData().getUser_id());
-                }
+//                LoginModel model = JsonParse.parser.fromJson(s, new TypeToken<LoginModel>(){}.getType());
+//
+//                Log.e("login",model.toString());
+//                if(model.getStatusCode() == 1001){
+//                    AppManager.getInstance().setPoints(model.getData().getPoints());
+//                    Log.e("data",model.getData().getPoints() + "&&&&&&&"+ model.getData().getUser_id());
+//                    AppManager.getInstance().setUser_id(model.getData().getUser_id());
+//                }
             }
         });
     }

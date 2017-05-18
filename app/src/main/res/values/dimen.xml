@@ -10,7 +10,8 @@
     <dimen name="m_6">6dp</dimen>
     <dimen name="m_4">4dp</dimen>
     <dimen name="m_3">3dp</dimen>
-    <dimen name="m_2">3dp</dimen>
+    <dimen name="m_2">2dp</dimen>
+    <dimen name="m_1">1dp</dimen>
     <dimen name="m_8">8dp</dimen>
     <dimen name="m_10">10dp</dimen>
     <dimen name="m_12">12dp</dimen>

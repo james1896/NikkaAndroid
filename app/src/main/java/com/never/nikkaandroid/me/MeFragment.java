@@ -54,6 +54,7 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
     protected void viewWillAppear() {
         super.viewWillAppear();
 
+        Log.e("me",AppManager.getInstance().getLogin()+"|"+AppManager.getInstance().getUserName()+"|"+AppManager.getInstance().getUser_id()+"");
         if(AppManager.getInstance().getLogin()){
             headerView.refreshPoint(AppManager.getInstance().getPoints());
 

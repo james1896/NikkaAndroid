@@ -82,8 +82,9 @@ public class MeHeaderView extends View{
         this.points = points;
         this.userName = userName;
         this.subTitle = subTitle;
-        this.leftHeight = CommonUtils.getWindowHeight((Activity) context)/8*3-150   -50;
+        this.leftHeight = CommonUtils.getWindowHeight((Activity) context)/8*3-dip2px(this.context,55)  -50;
         this.rightHeight = CommonUtils.getWindowHeight((Activity) context)/8*3      -50;
+        Log.e("meHeader","left"+this.leftHeight + "right" + this.rightHeight);
         this.sreenWidth = (int) CommonUtils.getWindowWidth((Activity) context);
 
         init(context);
@@ -165,8 +166,8 @@ public class MeHeaderView extends View{
 
         //高度需要再减去 图片高度的一半
         this.userImg_left = cellPath ;
-
-        this.userImg_top = this.rightHeight-bitmap.getHeight();
+      this.userImg_top =  this.rightHeight-bitmap.getHeight();
+//        this.userImg_top = this.rightHeight-bitmap.getHeight();
         canvas.drawBitmap(bitmap,dip2px(this.context,cellPath) ,this.userImg_top , bitmapPaint);
     }
 

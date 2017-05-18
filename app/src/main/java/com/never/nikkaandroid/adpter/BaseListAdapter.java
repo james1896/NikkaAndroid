@@ -26,7 +26,7 @@ public class BaseListAdapter extends BaseAdapter {
     }
     @Override
     public int getCount() {
-        return dataList.size();
+        return this.dataList.size();
     }
 
     @Override

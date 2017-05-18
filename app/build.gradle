@@ -17,7 +17,16 @@ android {
             //适配各种架构的cpu
             abiFilters "armeabi", "armeabi-v7a", "x86"
         }
+
+
     }
+
+//    externalNativeBuild {
+//        ndkBuild {
+//            path 'src/main/jni/Android.mk'
+//        }
+//    }
+
     buildTypes {
         release {
             minifyEnabled false
