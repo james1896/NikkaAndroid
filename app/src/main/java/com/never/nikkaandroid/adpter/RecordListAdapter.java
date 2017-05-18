@@ -24,8 +24,9 @@ public class RecordListAdapter extends BaseListAdapter {
             ArrayList<Map> list1 = new ArrayList<>();
 
             Map<String,Object> map1 = new HashMap<String,Object>();
-            map1.put("title","礼物赠送");
-            map1.put("resId",R.drawable.me_list_zengsong);
+            map1.put("name","XXX");
+            map1.put("time","XXX");
+            map1.put("price","XXX");
             list1.add(map1);
             this.dataList = list1;
 

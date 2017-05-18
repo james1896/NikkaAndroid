@@ -11,21 +11,21 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        ndk {
-            //需要生成的so文件名称
-            moduleName "hello"
-            //适配各种架构的cpu
-            abiFilters "armeabi", "armeabi-v7a", "x86"
-        }
+//        ndk {
+//            //需要生成的so文件名称
+//            moduleName "hello"
+//            //适配各种架构的cpu
+//            abiFilters "armeabi", "armeabi-v7a", "x86"
+//        }
 
 
     }
 
-//    externalNativeBuild {
-//        ndkBuild {
-//            path 'src/main/jni/Android.mk'
-//        }
-//    }
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
 
     buildTypes {
         release {
