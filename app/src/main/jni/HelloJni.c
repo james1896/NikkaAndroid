@@ -22,7 +22,7 @@ JNIEXPORT jstring JNICALL Java_com_never_nikkaandroid_base_JniHello_getValue
       return (*env)->NewStringUTF(env, hello);
     }
 
-JNIEXPORT jstring JNICALL Java_com_never_nikkaandroid_base_JniHello_getuserID
+JNIEXPORT jstring JNICALL Java_com_never_nikkaandroid_base_JniHello_getUID
      (JNIEnv * env, jobject obj){
        //要执行的代码
        char *hello = "user_id";

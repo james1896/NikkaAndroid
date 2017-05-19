@@ -21,6 +21,42 @@ public class RequestManager extends Request{
     static String TB_BASE_URL = "http://10.71.66.102:8001/client";
 
 
+/*****************************************************************************************/
+//积分赠送
+    public void transformPoint(String userID,String fName,String points,RequestCallBack callback){
+        String url = TB_BASE_URL+ "/transforpoints";
+
+        Map<String,String> params = new HashMap<>();
+
+        //对用户名 单独加密
+        Map<String,String> rsaMap = new HashMap<>();
+        rsaMap.put(hello.getUID(), AppManager.getInstance().getUser_id());
+        rsaMap.put("friend_name", fName);
+
+        params.put(hello.getValue(),str2rsa(rsaMap));
+        params.put("points",points);
+        this.POST(url,params,callback);
+    }
+
+    /*****************************************************************************************/
+    //更新积分
+    public void updatePoints(String userID,String positive_points,String negative_points,RequestCallBack callback){
+        String url = TB_BASE_URL+ "/updatepoints";
+
+        Map<String,String> params = new HashMap<>();
+
+        Map<String,String> rsaMap = new HashMap<>();
+        rsaMap.put(hello.getUID(), AppManager.getInstance().getUser_id());
+        //对用户名 单独加密
+        params.put(hello.getValue(),str2rsa(rsaMap));
+        params.put("positive_points",positive_points);
+        params.put("negative_points",negative_points);
+
+        this.POST(url,params,callback);
+    }
+
+    /*****************************************************************************************/
+    //订单查询
     public void queryOrder(String userid,RequestCallBack callback){
         String url = TB_BASE_URL+ "/findorder";
 
@@ -28,7 +64,7 @@ public class RequestManager extends Request{
         Map<String,String> params = new HashMap<>();
 
         Map<String,String> rsaMap = new HashMap<>();
-        rsaMap.put(hello.getUserID(), AppManager.getInstance().getUser_id());
+        rsaMap.put(hello.getUID(), AppManager.getInstance().getUser_id());
         //对用户名 单独加密
         params.put(hello.getValue(),str2rsa(rsaMap));
 
@@ -40,13 +76,15 @@ public class RequestManager extends Request{
         Map<String,String> params = new HashMap<>();
 
         Map<String,String> rsaMap = new HashMap<>();
-        rsaMap.put(hello.getUserID(), AppManager.getInstance().getUser_id());
+        rsaMap.put(hello.getUID(), AppManager.getInstance().getUser_id());
         //对用户名 单独加密
         params.put(hello.getValue(),str2rsa(rsaMap));
 
         this.POST(url,params,callback);
     }
 
+    /*****************************************************************************************/
+    //用户信息收集
     public void userinfo(String uuid,String device,RequestCallBack callbck){
         String url = TB_BASE_URL+ "/userinfo";
 
@@ -63,16 +101,21 @@ public class RequestManager extends Request{
 
         this.POST(url,params,callbck);
     }
-
+    /*****************************************************************************************/
+//    意见反馈
     public void feedback(String userId,String content, RequestCallBack callBack){
         String url = TB_BASE_URL+ "/feedback";
 
         Map<String,String> params = new HashMap<String,String>();
-        params.put(hello.getUserID(),userId);
+        params.put(hello.getUID(),userId);
         params.put("content",content);
 
         this.POST(url,params, callBack);
     }
+
+
+    /*****************************************************************************************/
+//    登录
 
     //    @param name <#name description#>
 //    @param pwd <#pwd description#>
@@ -94,6 +137,8 @@ public class RequestManager extends Request{
         this.POST(url,mapWithRSA(params), callBack);
     }
 
+    /*****************************************************************************************/
+//    注册
     public void register(String name,String pwd,RequestCallBack callBack){
         String url = TB_BASE_URL+"/register";
 
@@ -108,7 +153,7 @@ public class RequestManager extends Request{
         this.POST(url,mapWithRSA(params), callBack);
     }
 
-
+    /*****************************************************************************************/
     //test
     public void test(Map<String, String> params,RequestCallBack callback){
 
@@ -131,7 +176,8 @@ public class RequestManager extends Request{
         this.POST(url, params, callback);
     };
 
-
+    /*****************************************************************************************/
+//    单利
     private static volatile RequestManager instance;
     public static synchronized RequestManager getInstant(){
         if(instance == null){
@@ -145,7 +191,8 @@ public class RequestManager extends Request{
         return instance;
     }
 
-
+    /*****************************************************************************************/
+//    内部方法
     public  String str2rsa(Map<String,String> map){
         String encryStr = null;
         try {

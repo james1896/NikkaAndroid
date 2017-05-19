@@ -20,8 +20,13 @@ import com.never.nikkaandroid.base.login.LoginActiviy;
 import com.never.nikkaandroid.databinding.FragmentMeBinding;
 import com.never.nikkaandroid.venv.AppManager;
 import com.never.nikkaandroid.venv.CommonUtils;
+import com.never.nikkaandroid.venv.request.RequestCallBack;
+import com.never.nikkaandroid.venv.request.RequestManager;
 
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,13 +61,32 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
 
         Log.e("me",AppManager.getInstance().getLogin()+"|"+AppManager.getInstance().getUserName()+"|"+AppManager.getInstance().getUser_id()+"");
         if(AppManager.getInstance().getLogin()){
-            headerView.refreshPoint(AppManager.getInstance().getPoints());
 
+
+            RequestManager.getInstant().updatePoints(AppManager.getInstance().getUser_id(), "0", "0", new RequestCallBack() {
+                @Override
+                public void onSuccess(String s, Call call, Response response) {
+                    super.onSuccess(s, call, response);
+                    Log.e("updatePoints",s);
+
+//                    AppManager.getInstance().setPoints();
+                    headerView.refreshPoint(AppManager.getInstance().getPoints());
+                }
+            });
+            headerView.refreshPoint(AppManager.getInstance().getPoints());
         }
 
         adapter.setDataList(null);
         this.adapter.notifyDataSetChanged();
 
+//RequestManager.getInstant().transformPoint(AppManager.getInstance().getUser_id(), "Rea", "2", new RequestCallBack() {
+//    @Override
+//    public void onSuccess(String s, Call call, Response response) {
+//        super.onSuccess(s, call, response);
+//
+//        Log.e("transformPoint",s);
+//    }
+//});
     }
 
     @Override
