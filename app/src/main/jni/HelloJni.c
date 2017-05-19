@@ -94,15 +94,15 @@ JNIEXPORT jstring JNICALL Java_com_never_nikkaandroid_base_JniHello_serialWithUs
     int i = t2%10;
     //
 
-    jint result_i = num;
+    int result_i = num;
     char buf[64]; // assumed large enough to cope with result
 
     //得到 每三位一组
 
     int timeNum = num/10;
-    jint first  = timeNum/1000/1000;
-    jint second = timeNum%1000000/1000;
-    jint third  = timeNum%1000;
+    int first  = timeNum/1000/1000;
+    int second = timeNum%1000000/1000;
+    int third  = timeNum%1000;
     int  end    = num%10;
     //拆分成一位 一共九位
 
