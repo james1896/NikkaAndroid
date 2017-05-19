@@ -12,6 +12,10 @@ public class JniHello {
 
     //声明一个由 native 修饰的函数
     public native String SayHello();
+    public native String getValue();
+    public native String getUserID();
+    public native String getUserName();
+    public native String getPwd();
 
     //声明四种带参数的 函数
     public native int intMethod(int n);

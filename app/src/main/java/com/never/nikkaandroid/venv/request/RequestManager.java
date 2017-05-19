@@ -16,6 +16,7 @@ import java.util.Map;
  */
 
 public class RequestManager extends Request{
+    private  JniHello hello = new JniHello();
 
     static String TB_BASE_URL = "http://10.71.66.102:8001/client";
 
@@ -27,9 +28,9 @@ public class RequestManager extends Request{
         Map<String,String> params = new HashMap<>();
 
         Map<String,String> rsaMap = new HashMap<>();
-        rsaMap.put("user_id", AppManager.getInstance().getUser_id());
+        rsaMap.put(hello.getUserID(), AppManager.getInstance().getUser_id());
         //对用户名 单独加密
-        params.put("value",str2rsa(rsaMap));
+        params.put(hello.getValue(),str2rsa(rsaMap));
 
         this.POST(url,params,callback);
     }
@@ -39,9 +40,9 @@ public class RequestManager extends Request{
         Map<String,String> params = new HashMap<>();
 
         Map<String,String> rsaMap = new HashMap<>();
-        rsaMap.put("user_id", AppManager.getInstance().getUser_id());
+        rsaMap.put(hello.getUserID(), AppManager.getInstance().getUser_id());
         //对用户名 单独加密
-        params.put("value",str2rsa(rsaMap));
+        params.put(hello.getValue(),str2rsa(rsaMap));
 
         this.POST(url,params,callback);
     }
@@ -55,9 +56,9 @@ public class RequestManager extends Request{
 
         if(AppManager.getInstance().getUserName() != null){
             Map<String,String> rsaMap = new HashMap<>();
-            rsaMap.put("username", AppManager.getInstance().getUserName());
+            rsaMap.put(hello.getUserName(), AppManager.getInstance().getUserName());
             //对用户名 单独加密
-            params.put("value",str2rsa(rsaMap));
+            params.put(hello.getValue(),str2rsa(rsaMap));
         }
 
         this.POST(url,params,callbck);
@@ -67,7 +68,7 @@ public class RequestManager extends Request{
         String url = TB_BASE_URL+ "/feedback";
 
         Map<String,String> params = new HashMap<String,String>();
-        params.put("user_id",userId);
+        params.put(hello.getUserID(),userId);
         params.put("content",content);
 
         this.POST(url,params, callBack);
@@ -88,8 +89,8 @@ public class RequestManager extends Request{
 //                @"device"   :device};
 
         Map<String,String> params = new HashMap<String,String>();
-        params.put("username",name);
-        params.put("password",pwd);
+        params.put(hello.getUserName(),name);
+        params.put(hello.getPwd(),pwd);
         this.POST(url,mapWithRSA(params), callBack);
     }
 
@@ -102,8 +103,8 @@ public class RequestManager extends Request{
 //                @"device"   :device};
 
         Map<String,String> params = new HashMap<String,String>();
-        params.put("username",name);
-        params.put("password",pwd);
+        params.put(hello.getUserName(),name);
+        params.put(hello.getPwd(),pwd);
         this.POST(url,mapWithRSA(params), callBack);
     }
 
@@ -115,7 +116,7 @@ public class RequestManager extends Request{
         String encodeStr = str2rsa(params);
 
         Map<String,String> par = new HashMap<String,String>();
-        par.put("value",encodeStr);
+        par.put(hello.getValue(),encodeStr);
         this.POST(url, par, callback);
     };
 // Log.e("POST","输入url:" + url + "\n输入参数:" + encodeStr + "\n输出参数:" + s);
@@ -184,7 +185,7 @@ public class RequestManager extends Request{
 
         String encodeStr = str2rsa(params);
         Map<String,String> map = new HashMap<String,String>();
-        map.put("value",encodeStr);
+        map.put(hello.getValue(),encodeStr);
         return map;
     }
 //    //json转map

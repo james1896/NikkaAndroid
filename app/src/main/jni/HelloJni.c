@@ -15,6 +15,35 @@ JNIEXPORT jstring JNICALL Java_com_never_nikkaandroid_base_JniHello_SayHello
     return (*env)->NewStringUTF(env, hello);
   }
 
+JNIEXPORT jstring JNICALL Java_com_never_nikkaandroid_base_JniHello_getValue
+    (JNIEnv * env, jobject obj){
+      //要执行的代码
+      char *hello = "value";
+      return (*env)->NewStringUTF(env, hello);
+    }
+
+JNIEXPORT jstring JNICALL Java_com_never_nikkaandroid_base_JniHello_getuserID
+     (JNIEnv * env, jobject obj){
+       //要执行的代码
+       char *hello = "user_id";
+       return (*env)->NewStringUTF(env, hello);
+     }
+ JNIEXPORT jstring JNICALL Java_com_never_nikkaandroid_base_JniHello_getUserName
+     (JNIEnv * env, jobject obj){
+       //要执行的代码
+       char *hello = "username";
+       return (*env)->NewStringUTF(env, hello);
+     }
+
+ JNIEXPORT jstring JNICALL Java_com_never_nikkaandroid_base_JniHello_getPwd
+      (JNIEnv * env, jobject obj){
+        //要执行的代码
+        char *hello = "password";
+        return (*env)->NewStringUTF(env, hello);
+      }
+
+
+
 JNIEXPORT jint JNICALL Java_com_never_nikkaandroid_base_JniHello_intMethod
         (JNIEnv *env, jobject obj, jint num)
 {
@@ -64,16 +93,19 @@ JNIEXPORT jstring JNICALL Java_com_never_nikkaandroid_base_JniHello_serialWithUs
 
     int i = t2%10;
     //
+
     jint result_i = num;
     char buf[64]; // assumed large enough to cope with result
 
     //得到 每三位一组
-    jint first  = num/1000/1000;
-    jint second = num%1000000/1000;
-    jint third  = num%1000;
 
+    int timeNum = num/10;
+    jint first  = timeNum/1000/1000;
+    jint second = timeNum%1000000/1000;
+    jint third  = timeNum%1000;
+    int  end    = num%10;
     //拆分成一位 一共九位
-    int ram_1 = rand()%10;
+
     int ram_2 = rand()%10;
     int ram_3 = rand()%10;
     int flog = rand()%9;
@@ -98,7 +130,7 @@ JNIEXPORT jstring JNICALL Java_com_never_nikkaandroid_base_JniHello_serialWithUs
     char tmpBuf[6];
 
     //sort
-    i = t2;
+    i = flog;
     if(i > 6){
         sprintf(firstBuf,"%d%d%d",first_3,first_1,first_2);
         sprintf(secondBuf,"%d%d%d",second_1,second_3,second_2);
@@ -137,12 +169,9 @@ JNIEXPORT jstring JNICALL Java_com_never_nikkaandroid_base_JniHello_serialWithUs
         sprintf(thirdBuf,"%d%d%d",second_2,first_1,third_1);
     }
 
-
-
-//    sprintf(buf,"%d%d%d%d%d%d%d%d%d",i1,j1,k1,i2,j2,k2,i3,j3,k3);
     sprintf(buf,"13%s%1d%1d%s%d%d%s%d%1d%1d",
             firstBuf,
-            ram_1,
+            end,
             ram_2,
             secondBuf,
             t2,

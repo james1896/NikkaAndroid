@@ -61,7 +61,6 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements O
 //        Log.e("JNI",);
         Log.e("JNI","BOOL"+hello.booleanMethod(true));
         Log.e("JNI",""+hello.intMethod(100));
-
         Log.e("JNI",hello.serialWithUserID(136475637));
 
 //        int[] m = { 1, 2, 3 };

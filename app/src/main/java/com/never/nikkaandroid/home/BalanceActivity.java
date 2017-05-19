@@ -56,8 +56,7 @@ public class BalanceActivity extends BaseActivity implements QRTimerInterface {
     public void generate(View view) {
 
         JniHello hello = new JniHello();
-
-        String qrStr = hello.serialWithUserID(136475637);
+        String qrStr = hello.serialWithUserID(Integer.parseInt(AppManager.getInstance().getUser_id()));
         Log.e("qrString",qrStr);
         Bitmap qrBitmap = Create2DCode(qrStr,300, 300);
 //        Bitmap logoBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
