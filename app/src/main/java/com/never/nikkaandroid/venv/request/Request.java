@@ -15,13 +15,26 @@ import java.util.Map;
 
 public class Request {
 
-    protected Boolean isRequest = true;
-    protected String currentInterfaceName = "method";
+    protected int refreshTime;
+    protected Boolean isRequest;
     public void POST(final String url, Map<String, String> params,RequestCallBack callback){
 
 
+//        Log.e("refreshRate",this.currentInterfaceName);
+
+        long refreshRate = CommonUtils.getLong(NikkaApplication.getContext(),url);
+        if(refreshRate > 0){
+            long currentDate = CommonUtils.getCurrentDate();
+            if(currentDate - refreshRate < refreshTime){
+                //接口请求频率高，放弃请求
+                this.isRequest = false;
+            }else {
+                this.isRequest = true;
+            }
+        }
+
         if(!isRequest){
-            Log.e("POST","检查到 "+this.currentInterfaceName+" 接口刷新频率过高，放弃本次请求");
+            Log.e("POST","检查到 "+url+" 接口刷新频率过高，放弃本次请求");
             return;
         }
         OkGo.post(url)    // 请求方式和请求url, get请求不需要拼接参数，支持get，post，put，delete，head，options请求
@@ -37,13 +50,9 @@ public class Request {
                 .headers("header2", "headerValue2")     		// 支持多请求头参数同时添加
                 .params(params)
                 .execute(callback);
-
-        CommonUtils.saveLong(NikkaApplication.getContext(),this.currentInterfaceName,CommonUtils.getCurrentDate());
-
     }
 
     public void GET(){
-        Log.e("GET",this.currentInterfaceName);
 
     }
 

@@ -77,20 +77,12 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
                     headerView.refreshPoint(AppManager.getInstance().getPoints());
                 }
             });
+
             headerView.refreshPoint(AppManager.getInstance().getPoints());
         }
 
         adapter.setDataList(null);
         this.adapter.notifyDataSetChanged();
-
-//RequestManager.getInstant().transformPoint(AppManager.getInstance().getUser_id(), "Rea", "2", new RequestCallBack() {
-//    @Override
-//    public void onSuccess(String s, Call call, Response response) {
-//        super.onSuccess(s, call, response);
-//
-//        Log.e("transformPoint",s);
-//    }
-//});
     }
 
     @Override

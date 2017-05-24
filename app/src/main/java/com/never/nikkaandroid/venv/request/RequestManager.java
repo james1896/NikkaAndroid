@@ -2,10 +2,8 @@ package com.never.nikkaandroid.venv.request;
 
 import android.util.Log;
 
-import com.never.nikkaandroid.NikkaApplication;
 import com.never.nikkaandroid.base.JniHello;
 import com.never.nikkaandroid.venv.AppManager;
-import com.never.nikkaandroid.venv.CommonUtils;
 import com.never.nikkaandroid.venv.RSA;
 
 import org.json.JSONObject;
@@ -18,10 +16,8 @@ import java.util.Map;
  */
 
 public class RequestManager extends Request{
+
     private  JniHello hello = new JniHello();
-
-
-
 
     static String TB_BASE_URL = "http://10.71.66.102:8001/client";
 
@@ -29,7 +25,7 @@ public class RequestManager extends Request{
 /*****************************************************************************************/
 //积分赠送
     public void transformPoint(String userID,String fName,String points,RequestCallBack callback){
-        this.currentInterfaceName = "transformPoint";
+
         String url = TB_BASE_URL+ "/transforpoints";
 
         Map<String,String> params = new HashMap<>();
@@ -47,7 +43,7 @@ public class RequestManager extends Request{
     /*****************************************************************************************/
     //更新积分
     public void updatePoints(String userID,String positive_points,String negative_points,RequestCallBack callback){
-        this.currentInterfaceName = "updatePoints";
+
         String url = TB_BASE_URL+ "/updatepoints";
 
         Map<String,String> params = new HashMap<>();
@@ -65,7 +61,7 @@ public class RequestManager extends Request{
     /*****************************************************************************************/
     //订单查询
     public void queryOrder(String userid,RequestCallBack callback){
-        this.currentInterfaceName = "queryOrder";
+
         String url = TB_BASE_URL+ "/findorder";
 
 
@@ -79,7 +75,7 @@ public class RequestManager extends Request{
         this.POST(url,params,callback);
     }
     public void queryOrder(RequestCallBack callback){
-        this.currentInterfaceName = "queryOrder";
+
         String url = TB_BASE_URL+ "/findorder";
 
         Map<String,String> params = new HashMap<>();
@@ -95,7 +91,7 @@ public class RequestManager extends Request{
     /*****************************************************************************************/
     //用户信息收集
     public void userinfo(String uuid,String device,RequestCallBack callbck){
-        this.currentInterfaceName = "userinfo";
+
         String url = TB_BASE_URL+ "/userinfo";
 
         Map<String,String> params = new HashMap<>();
@@ -114,7 +110,7 @@ public class RequestManager extends Request{
     /*****************************************************************************************/
 //    意见反馈
     public void feedback(String userId,String content, RequestCallBack callBack){
-        this.currentInterfaceName = "feedback";
+
         String url = TB_BASE_URL+ "/feedback";
 
         Map<String,String> params = new HashMap<String,String>();
@@ -135,7 +131,7 @@ public class RequestManager extends Request{
 //    @param success <#success description#>
 //    @param failure <#failure description#>
     public void login(String name,String pwd,RequestCallBack callBack){
-        this.currentInterfaceName = "login";
+
         String url = TB_BASE_URL+"/login";
 
 //            @{@"username" :name,
@@ -152,7 +148,7 @@ public class RequestManager extends Request{
     /*****************************************************************************************/
 //    注册
     public void register(String name,String pwd,RequestCallBack callBack){
-        this.currentInterfaceName = "register";
+
         String url = TB_BASE_URL+"/register";
 
 //            @{@"username" :name,
@@ -169,7 +165,7 @@ public class RequestManager extends Request{
     /*****************************************************************************************/
     //test
     public void test(Map<String, String> params,RequestCallBack callback){
-        this.currentInterfaceName = "test";
+
         String url = TB_BASE_URL+"/test";
         String encodeStr = str2rsa(params);
 
@@ -181,7 +177,7 @@ public class RequestManager extends Request{
 
     //test1
     public void test1(Map<String, String> params,RequestCallBack callback){
-        this.currentInterfaceName = "test1";
+
         String url = TB_BASE_URL+"/test1";
 //        String encodeStr = str2rsa(params);
         String str = new JSONObject(params).toString();
@@ -190,17 +186,7 @@ public class RequestManager extends Request{
     };
 
     public RequestManager refreshRate(int second){
-
-        this.isRequest = true;
-        long refreshRate = CommonUtils.getLong(NikkaApplication.getContext(),this.currentInterfaceName);
-        if(refreshRate > 0){
-            long currentDate = CommonUtils.getCurrentDate();
-            if(currentDate - refreshRate < second){
-                //接口请求频率高，放弃请求
-                this.isRequest = false;
-            }
-        }
-
+        this.refreshTime = second;
         return this;
     }
 
