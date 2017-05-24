@@ -66,7 +66,8 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
         if(AppManager.getInstance().getLogin()){
 
 
-            RequestManager.getInstant().updatePoints(AppManager.getInstance().getUser_id(), "0", "0", new RequestCallBack() {
+//            RequestManager.getInstant().
+            RequestManager.getInstant().refreshRate(10).updatePoints(AppManager.getInstance().getUser_id(), "0", "0", new RequestCallBack() {
                 @Override
                 public void onSuccess(String s, Call call, Response response) {
                     super.onSuccess(s, call, response);

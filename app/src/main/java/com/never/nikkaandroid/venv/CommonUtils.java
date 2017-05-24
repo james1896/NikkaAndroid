@@ -234,8 +234,6 @@ public class CommonUtils {
         return curDate.getTime()/1000L -last_time < CommonUtils.secondOfDay;
     }
 
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public static long getCurrentDate(){
 
 //        SimpleDateFormat formatter   =   new   SimpleDateFormat   ("yyyy年MM月dd日   HH:mm:ss");
