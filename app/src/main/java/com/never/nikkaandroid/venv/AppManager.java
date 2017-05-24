@@ -54,7 +54,7 @@ public class AppManager extends  Object{
 
 
     public Boolean getLogin() {
-        if(this.getUser_id() != null)
+        if(this.getUser_id() != null && this.getUser_id() != "")
             return true;
         return false;
     }

@@ -13,10 +13,13 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.google.gson.reflect.TypeToken;
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.adpter.MeListAdapter;
 import com.never.nikkaandroid.base.BaseFragment;
+import com.never.nikkaandroid.base.JsonParse;
 import com.never.nikkaandroid.base.login.LoginActiviy;
+import com.never.nikkaandroid.base.model.BaseModel;
 import com.never.nikkaandroid.databinding.FragmentMeBinding;
 import com.never.nikkaandroid.venv.AppManager;
 import com.never.nikkaandroid.venv.CommonUtils;
@@ -68,8 +71,8 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
                 public void onSuccess(String s, Call call, Response response) {
                     super.onSuccess(s, call, response);
                     Log.e("updatePoints",s);
-
-//                    AppManager.getInstance().setPoints();
+                    BaseModel<MeRefreshPointModel> model = JsonParse.parser.fromJson(s, new TypeToken<BaseModel<MeRefreshPointModel>>(){}.getType());
+                    AppManager.getInstance().setPoints(model.getData().getPoints());
                     headerView.refreshPoint(AppManager.getInstance().getPoints());
                 }
             });

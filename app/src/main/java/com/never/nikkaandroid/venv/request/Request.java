@@ -3,10 +3,6 @@ package com.never.nikkaandroid.venv.request;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -37,53 +33,9 @@ public class Request {
 
     }
 
-    //json转map
-    public static Map<String, Object> getMapForJson(String jsonStr){
-        JSONObject jsonObject ;
-        try {
-            jsonObject = new JSONObject(jsonStr);
+    protected Request refreshRate(int second){
 
-            Iterator<String> keyIter= jsonObject.keys();
-            String key;
-            Object value ;
-            Map<String, Object> valueMap = new HashMap<String, Object>();
-            while (keyIter.hasNext()) {
-                key = keyIter.next();
-                value = jsonObject.get(key);
-                valueMap.put(key, value);
-            }
-            return valueMap;
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-
-        }
-        return null;
+        return this;
     }
-//    public static class loginReq{
-//
-//        private static volatile loginReq req;
-//        public static synchronized loginReq getInstant(){
-//            if(req == null){
-//                //双重检查加锁，只有在第一次实例化时，才启用同步机制，提高了性能。
-//                synchronized (loginReq.class){
-//                    if(req == null) {
-//                        req = new loginReq();
-//                    }
-//                }
-//            }
-//            return req;
-//        }
-//
-//        public loginReq login(){
-//
-//            return req;
-//        }
-//
-//        public  void success(){
-//
-//            Log.e("login.success","login.success");
-//        }
-//    }
 
 }
