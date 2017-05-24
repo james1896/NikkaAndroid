@@ -2,10 +2,6 @@ package com.never.nikkaandroid;
 
 import android.app.Application;
 import android.content.Context;
-import android.icu.util.Calendar;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.util.Log;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
