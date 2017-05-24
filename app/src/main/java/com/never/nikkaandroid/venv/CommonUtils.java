@@ -7,6 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.icu.util.Calendar;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
@@ -220,6 +221,8 @@ public class CommonUtils {
        return valueMap;
     }
 
+    /**************************   时间相关   **************************/
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static boolean isIntraday(Context context){
        long last_time = CommonUtils.getLong(context,CommonUtils.collection_userinfo_lasttime);
@@ -241,7 +244,79 @@ public class CommonUtils {
         return curDate.getTime()/1000L;
     }
 
-    /***************   sharePreference 数据持久化   ***************/
+    /***************    获取系统时间  某年 某月 某天 星期几    ***************/
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static int getYear(){
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        return year;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static int getMonth(){
+        Calendar calendar = Calendar.getInstance();
+        int month = calendar.get(Calendar.YEAR);
+        return month;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static int getDay(){
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        return day;
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static int getDayOfWeek(){
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;// Java月份从0开始算
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        calendar.set(Calendar.YEAR, year);//指定年份
+        calendar.set(Calendar.MONTH, month - 1);//指定月份 Java月份从0开始算
+        int daysCountOfMonth = calendar.getActualMaximum(Calendar.DATE);//获取指定年份中指定月份有几天
+
+        //获取指定年份月份中指定某天是星期几
+        calendar.set(Calendar.DAY_OF_MONTH, day);  //指定日
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        Log.e("calendar","year:"+year+" month:"+month+" day:"+day+" week:"+dayOfWeek);
+//        String str = "";
+//        switch (dayOfWeek)
+//        {
+//            case 1:
+//                str = "星期日";
+//                break;
+//            case 2:
+//                str ="星期一";
+//                break;
+//            case 3:
+//                str = "星期二";
+//                break;
+//            case 4:
+//                str ="星期三";
+//                break;
+//            case 5:
+//                str ="星期四";
+//                break;
+//            case 6:
+//                str = "星期五";
+//                break;
+//            case 7:
+//                str ="星期六";
+//                break;
+//        }
+//        return str;
+        return dayOfWeek;
+    }
+
+
+
+    /****************************************************************************/
+
+    /***********************   sharePreference 数据持久化   ***********************/
 
     public static String getString(Context context, String strKey) {
         SharedPreferences setPreferences = context.getSharedPreferences("app", 0);

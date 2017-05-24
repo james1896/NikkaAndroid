@@ -4,16 +4,22 @@ import android.app.Activity;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.never.nikkaandroid.NikkaApplication;
+
 /**
  * Created by toby on 06/04/2017.
  */
 
-public class AppManager {
+public class AppManager extends  Object{
+
+    private String save_userid_key = "save_userid_key";
+    private String save_username_key = "save_username_key";
 
     protected String userName;
     protected float points;
     protected String user_id;
     protected String user_token;
+
 
     public String getUser_token() {
         return user_token;
@@ -31,14 +37,18 @@ public class AppManager {
         this.points = points;
     }
 
+    /******************     user_id      **************************/
     public String getUser_id() {
+        this.user_id = CommonUtils.getString(NikkaApplication.getContext(),save_userid_key);
         return user_id;
     }
 
     public void setUser_id(String user_id) {
+        CommonUtils.saveString(NikkaApplication.getContext(),save_userid_key,user_id);
         this.user_id = user_id;
     }
 
+    /******************************************************************/
     protected  Boolean isLogin;
     //私有的静态变量
 
@@ -48,14 +58,19 @@ public class AppManager {
             return true;
         return false;
     }
-
+    /******************     UserName      **************************/
     public String getUserName() {
-        return userName;
+        this.userName = CommonUtils.getString(NikkaApplication.getContext(),save_username_key);
+        return this.userName;
     }
 
     public void setUserName(String userName) {
+        CommonUtils.saveString(NikkaApplication.getContext(),save_username_key,userName);
         this.userName = userName;
     }
+
+    /******************************************************************/
+
 
     public void setLogin(Boolean login) {
         isLogin = login;

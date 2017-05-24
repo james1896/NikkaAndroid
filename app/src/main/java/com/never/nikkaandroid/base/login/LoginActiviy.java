@@ -163,9 +163,11 @@ public class LoginActiviy extends AppCompatActivity implements View.OnClickListe
                         Log.e("register",model.toString());
 
                         if(model.getStatusCode() == 1001){
+
                             AppManager.getInstance().setPoints(model.getData().getPoints());
                             AppManager.getInstance().setUserName(LoginActiviy.this.login_user_edit.getText().toString());
                             AppManager.getInstance().setUser_id(model.getData().getUser_id());
+
                             Intent intent = new Intent(LoginActiviy.this, BalanceActivity.class);
                             startActivity(intent);
                             finish();
