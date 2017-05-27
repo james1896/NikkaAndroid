@@ -1,11 +1,14 @@
 package com.never.nikkaandroid.me;
 
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.never.nikkaandroid.R;
 import com.never.nikkaandroid.adpter.GiftAdapter;
 import com.never.nikkaandroid.base.BaseActivity;
 import com.never.nikkaandroid.databinding.ActivityGiftBinding;
+import com.never.nikkaandroid.venv.GiftDialogFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +31,21 @@ public class GiftActivity extends BaseActivity<ActivityGiftBinding> {
 
         ListView listView = (ListView) findViewById(R.id.gift_listview);
         listView.setAdapter(new GiftAdapter(this,getDataList()));
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:{
+                        GiftDialogFragment giftDialog = new GiftDialogFragment();
+                        giftDialog.show(getSupportFragmentManager(),"ss");
+                        break;
+                    }
+                    case 1:{
+                        break;
+                    }
+                }
+            }
+        });
     }
 
     private ArrayList<Map> getDataList(){

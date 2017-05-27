@@ -44,6 +44,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
                     CommonUtils.saveLong(MainActivity.this,CommonUtils.collection_userinfo_lasttime,CommonUtils.getCurrentDate());
                 }
             });
+        }else {
+            Log.e("isIntraday","24小时之内");
         }
 
 //        TBUnitTest.unitTest();

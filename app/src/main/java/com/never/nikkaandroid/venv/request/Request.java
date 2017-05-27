@@ -16,7 +16,7 @@ import java.util.Map;
 public class Request {
 
     protected int refreshTime;
-    protected Boolean isRequest;
+    protected Boolean isRequest = true;
     public void POST(final String url, Map<String, String> params,RequestCallBack callback){
 
 
@@ -25,6 +25,8 @@ public class Request {
         long refreshRate = CommonUtils.getLong(NikkaApplication.getContext(),url);
         if(refreshRate > 0){
             long currentDate = CommonUtils.getCurrentDate();
+
+            Log.e("POST","currentDate:" +currentDate+"refreshRate:"+refreshRate+"refreshTime:"+refreshTime);
             if(currentDate - refreshRate < refreshTime){
                 //接口请求频率高，放弃请求
                 this.isRequest = false;
@@ -33,7 +35,7 @@ public class Request {
             }
         }
 
-        if(!isRequest){
+        if(!this.isRequest){
             Log.e("POST","检查到 "+url+" 接口刷新频率过高，放弃本次请求");
             return;
         }

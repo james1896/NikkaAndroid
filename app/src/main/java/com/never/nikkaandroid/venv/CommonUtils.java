@@ -226,12 +226,13 @@ public class CommonUtils {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static boolean isIntraday(Context context){
        long last_time = CommonUtils.getLong(context,CommonUtils.collection_userinfo_lasttime);
-        Date curDate =  new Date(System.currentTimeMillis());
+        long curDate =  System.currentTimeMillis();
 //        Log.e("curDate", String.valueOf(curDate.getTime()/1000L + "|" + last_time));
 
         //毫秒
 //        Log.e("curDate","c"+System.currentTimeMillis());
-        return curDate.getTime()/1000L -last_time < CommonUtils.secondOfDay;
+        Log.e("isIntraday","last_time:" + last_time + "  curDate:" + curDate/1000L);
+        return curDate/1000L -last_time < CommonUtils.secondOfDay;
     }
 
     public static long getCurrentDate(){
