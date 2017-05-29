@@ -52,8 +52,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
         }
 
 
-//        oncreate中 需要注册一下 广播
-                mNetworkReceiver = new NetTypeReceiver(this);
+//       需要注册一下 网络类型检测 广播
+        mNetworkReceiver = new NetTypeReceiver(this);
         IntentFilter mFilter = new IntentFilter();
         mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(mNetworkReceiver, mFilter);
@@ -128,8 +128,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
 //                tab.setIcon(getResources().getDrawable(R.drawable.activity_normal));
 
 
-                    this.navSpaceLab.setText("");
-                    this.navSubtitle.setText("");
+                this.navSpaceLab.setText("");
+                this.navSubtitle.setText("");
 
 
                 break;
@@ -144,7 +144,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
     }
 }
 
-                //android 6.0以上需要动态申请权限
+//android 6.0以上需要动态申请权限
 
 //      Acp.getInstance(MainActivity.this).request(new AcpOptions.Builder()
 //              .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE
