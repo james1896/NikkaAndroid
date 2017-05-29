@@ -71,10 +71,12 @@ public class MeFragment extends BaseFragment<FragmentMeBinding> implements Adapt
                 @Override
                 public void onSuccess(String s, Call call, Response response) {
                     super.onSuccess(s, call, response);
-                    Log.e("updatePoints",s);
                     BaseModel<MeRefreshPointModel> model = JsonParse.parser.fromJson(s, new TypeToken<BaseModel<MeRefreshPointModel>>(){}.getType());
-                    AppManager.getInstance().setPoints(model.getData().getPoints());
-                    headerView.refreshPoint(AppManager.getInstance().getPoints());
+                    if(model.getStatusCode() == 1001){
+                        AppManager.getInstance().setPoints(model.getData().getPoints());
+                        headerView.refreshPoint(AppManager.getInstance().getPoints());
+                    }
+
                 }
             });
 

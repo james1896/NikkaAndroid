@@ -1,5 +1,7 @@
 package com.never.nikkaandroid;
 
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
@@ -9,6 +11,7 @@ import android.widget.RelativeLayout;
 
 import com.never.nikkaandroid.adpter.MainActivityAdpter;
 import com.never.nikkaandroid.base.BaseActivity;
+import com.never.nikkaandroid.base.broadcastReceiver.NetTypeReceiver;
 import com.never.nikkaandroid.base.view.TabLayoutItemView;
 import com.never.nikkaandroid.databinding.ActivityMainBinding;
 import com.never.nikkaandroid.venv.AppManager;
@@ -23,7 +26,7 @@ import okhttp3.Response;
 public class MainActivity extends BaseActivity<ActivityMainBinding> implements TabLayout.OnTabSelectedListener{
 
     private String[] titles = new String[]{"Nikka","Grid","Profile"};
-
+    private NetTypeReceiver mNetworkReceiver;
     @Override
     protected int getContentView() {
         return R.layout.activity_main;
@@ -47,6 +50,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
         }else {
             Log.e("isIntraday","24小时之内");
         }
+
+
+//        oncreate中 需要注册一下 广播
+                mNetworkReceiver = new NetTypeReceiver(this);
+        IntentFilter mFilter = new IntentFilter();
+        mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(mNetworkReceiver, mFilter);
+
+
 
 //        TBUnitTest.unitTest();
         //toolbar

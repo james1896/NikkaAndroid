@@ -1,12 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/gift_layout"
     android:background="#4D000000"
     >
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="jdfkdsja;k"
-        />
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/m_35"
+        android:paddingRight="@dimen/m_35"
+        android:paddingTop="@dimen/m_60"
+        android:paddingBottom="@dimen/m_60">
+
+        <EditText
+            android:id="@+id/gift_edit_username"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:textColor="@color/text_gray"
+            android:gravity="center"
+            android:background="@drawable/edittext_bg"
+            android:textColorHint="@color/text_gray"
+            android:hint="好友用户名"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/m_10"
+            android:layout_marginBottom="@dimen/m_10"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/gift_textview_avapoints"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/theme_pink"
+                android:text="可用积分：0.00"
+                />
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/gift_edit_tranpoint"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="@color/text_gray"
+            android:gravity="center"
+            android:background="@drawable/edittext_bg"
+            android:textColorHint="@color/text_gray"
+            android:hint="转赠积分数"/>
+
+        <Button
+            android:id="@+id/gift_button"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="立即转赠"
+            android:textSize="@dimen/textsize_18"
+            android:textColor="@color/white"
+            android:background="@color/theme_pink"/>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

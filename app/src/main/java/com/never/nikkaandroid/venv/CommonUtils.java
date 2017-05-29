@@ -10,6 +10,7 @@ import android.graphics.Rect;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -34,7 +35,51 @@ public class CommonUtils {
     public static final String collection_userinfo_lasttime = "collection_userinfo_lasttime";
 
 
-//    px与dip的概念及互相转化
+
+
+
+    //把String转化为float
+    public static float convertToFloat(String number, float defaultValue) {
+        if (TextUtils.isEmpty(number)) {
+            return defaultValue;
+        }
+        try {
+            return Float.parseFloat(number);
+        } catch (Exception e) {
+            return defaultValue;
+        }
+
+    }
+
+    //把String转化为double
+    public static double convertToDouble(String number, double defaultValue) {
+        if (TextUtils.isEmpty(number)) {
+            return defaultValue;
+        }
+        try {
+            return Double.parseDouble(number);
+        } catch (Exception e) {
+            return defaultValue;
+        }
+
+    }
+
+    //把String转化为int
+    public static int convertToInt(String number, int defaultValue) {
+        if (TextUtils.isEmpty(number)) {
+            return defaultValue;
+        }
+        try {
+            return Integer.parseInt(number);
+        } catch (Exception e) {
+            return defaultValue;
+        }
+    }
+
+/////////////////////////////////////////////////////////////////////////
+
+
+    //    px与dip的概念及互相转化
 //    px即pixels，是绝对像素，有多少个像素点就是多少个像素点。
 //    dip即device independent pixel，设备独立像素，无像素无关。
     public static float dip2px(Context context, float dpValue) {

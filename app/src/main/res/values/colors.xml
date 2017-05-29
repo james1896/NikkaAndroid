@@ -14,4 +14,5 @@
     <color name="background_whit">#bbFFFFFF</color>
     <color name="theme_green">#72A346</color>
     <color name="theme_pink">#DDC1C4</color>
+    <color name="text_gray">#2F4F4F</color>
 </resources>

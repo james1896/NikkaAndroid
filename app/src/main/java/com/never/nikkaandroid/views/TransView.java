@@ -47,8 +47,9 @@ public class TransView extends LinearLayout implements Runnable, Animator.Animat
     }
 
     private void init(Context context){
-        LayoutInflater.from(context).inflate(R.layout.item_trans_view, this);
+      View layout =  LayoutInflater.from(context).inflate(R.layout.item_trans_view, this);
         handler = new Handler();
+        this.textView = (TextView) layout.findViewById(R.id.Transview_textview);
     }
 
 
