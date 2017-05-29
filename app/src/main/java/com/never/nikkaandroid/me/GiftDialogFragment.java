@@ -38,7 +38,7 @@ public class GiftDialogFragment extends DialogFragment {
 
     public EditText user_edit ;
     public EditText tranPoints_edit;
-
+    private GiftInterface giftInterface;
     public GiftInterface getGiftInterface() {
         return giftInterface;
     }
@@ -47,7 +47,7 @@ public class GiftDialogFragment extends DialogFragment {
         this.giftInterface = giftInterface;
     }
 
-    private GiftInterface giftInterface;
+
 
     public GiftDialogFragment(String userName, String avaPoints, String tranPoints) {
         this.userName = userName;

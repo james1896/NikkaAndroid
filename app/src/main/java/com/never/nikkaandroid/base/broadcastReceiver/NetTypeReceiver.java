@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
-import android.util.Log;
 
 /**
  * Created by toby on 29/05/2017.
@@ -15,6 +14,15 @@ import android.util.Log;
 public class NetTypeReceiver extends BroadcastReceiver {
     String type = "";
     Context context;
+    private NetTypeInterface netTypeInface;
+
+    public NetTypeInterface getNetTypeInface() {
+        return netTypeInface;
+    }
+
+    public void setNetTypeInface(NetTypeInterface netTypeInface) {
+        this.netTypeInface = netTypeInface;
+    }
 
     public NetTypeReceiver(Context context) {
         this.context = context;
@@ -33,11 +41,17 @@ public class NetTypeReceiver extends BroadcastReceiver {
                     case 0://移动 网络
                         if (TextUtils.isEmpty(type)) {
                             type = name;
+                            if(this.netTypeInface != null){
+                                this.netTypeInface.netTypeForMobile();
+                            }
                         }
                         break;
                     case 1://wifi网络
                         if (TextUtils.isEmpty(type)) {
                             type = name;
+                            if(this.netTypeInface != null){
+                                this.netTypeInface.netTypeForMobile();
+                            }
                         }
                         break;
                 }
@@ -45,9 +59,12 @@ public class NetTypeReceiver extends BroadcastReceiver {
                 //network was unavailable, stop the streamer, and show a dialog
 //                showNetworkInvalidView(R.string.network_error_message);
                 type = "";
+                if(this.netTypeInface != null){
+                    this.netTypeInface.netTypeForNone();
+                }
             }
         }
 
-        Log.e("netType",(TextUtils.isEmpty(type)?"当前无网络":type));
+//        Log.e("netType",(TextUtils.isEmpty(type)?"当前无网络":type));
     }
 }

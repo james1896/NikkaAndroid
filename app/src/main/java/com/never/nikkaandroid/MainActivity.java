@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 
 import com.never.nikkaandroid.adpter.MainActivityAdpter;
 import com.never.nikkaandroid.base.BaseActivity;
+import com.never.nikkaandroid.base.broadcastReceiver.NetTypeInterface;
 import com.never.nikkaandroid.base.broadcastReceiver.NetTypeReceiver;
 import com.never.nikkaandroid.base.view.TabLayoutItemView;
 import com.never.nikkaandroid.databinding.ActivityMainBinding;
@@ -23,7 +24,7 @@ import com.never.nikkaandroid.views.TransView;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding> implements TabLayout.OnTabSelectedListener{
+public class MainActivity extends BaseActivity<ActivityMainBinding> implements TabLayout.OnTabSelectedListener, NetTypeInterface {
 
     private String[] titles = new String[]{"Nikka","Grid","Profile"};
     private NetTypeReceiver mNetworkReceiver;
@@ -55,6 +56,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
 //       需要注册一下 网络类型检测 广播
         mNetworkReceiver = new NetTypeReceiver(this);
         IntentFilter mFilter = new IntentFilter();
+        mNetworkReceiver.setNetTypeInface(this);
         mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(mNetworkReceiver, mFilter);
 
@@ -141,6 +143,21 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+    @Override
+    public void netTypeForMobile() {
+        Log.e("netType","Mobile");
+    }
+
+    @Override
+    public void netTypeForWifi() {
+        Log.e("netType","wifi");
+    }
+
+    @Override
+    public void netTypeForNone() {
+        Log.e("netType","none");
     }
 }
 
