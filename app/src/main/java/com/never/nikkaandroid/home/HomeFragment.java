@@ -31,6 +31,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements O
 
     public HomeFragment() {
         // Required empty public constructor
+        Log.e("aa","aa");
     }
 
 
