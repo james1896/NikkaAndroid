@@ -35,9 +35,6 @@ public class CommonUtils {
     public static final String collection_userinfo_lasttime = "collection_userinfo_lasttime";
 
 
-
-
-
     //把String转化为float
     public static float convertToFloat(String number, float defaultValue) {
         if (TextUtils.isEmpty(number)) {

@@ -1,6 +1,9 @@
 package com.never.nikkaandroid;
 
+import android.content.Context;
 import android.content.IntentFilter;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -21,6 +24,8 @@ import com.never.nikkaandroid.venv.request.RequestCallBack;
 import com.never.nikkaandroid.venv.request.RequestManager;
 import com.never.nikkaandroid.views.TransView;
 
+import java.io.UnsupportedEncodingException;
+
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -33,13 +38,27 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
         return R.layout.activity_main;
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void init() {
 
+
+        String str = "个abc";
+        try {
+            Log.e("fdsaf","字节长度："+ str.getBytes("utf-8").length);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         //如果超过24小时 就收集userInfo
+        //需要加入 version版本信息
+//        Log.e("getVersionName",AppManager.getInstance().getVersionName(this));
         if(!CommonUtils.isIntraday(this)){
-            RequestManager.getInstant().userinfo(CommonUtils.getUniquePsuedoID(), CommonUtils.collectDeviceInfo(this), new RequestCallBack() {
+            RequestManager.
+                    getInstant().
+                    userinfo(CommonUtils.getUniquePsuedoID(),
+                    CommonUtils.collectDeviceInfo(this),
+                    new RequestCallBack() {
                 @Override
                 public void onSuccess(String s, Call call, Response response) {
                     super.onSuccess(s, call, response);
