@@ -58,6 +58,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements T
                     getInstant().
                     userinfo(CommonUtils.getUniquePsuedoID(),
                     CommonUtils.collectDeviceInfo(this),
+                            AppManager.getInstance().getVersionName(this),
                     new RequestCallBack() {
                 @Override
                 public void onSuccess(String s, Call call, Response response) {

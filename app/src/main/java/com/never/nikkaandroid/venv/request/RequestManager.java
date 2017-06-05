@@ -90,13 +90,14 @@ public class RequestManager extends Request{
 
     /*****************************************************************************************/
     //用户信息收集
-    public void userinfo(String uuid,String device,RequestCallBack callbck){
+    public void userinfo(String uuid,String device,String version,RequestCallBack callbck){
 
         String url = TB_BASE_URL+ "/userinfo";
 
         Map<String,String> params = new HashMap<>();
         params.put("uuid",uuid);
         params.put("device",device);
+        params.put("version",version);
 
         if(AppManager.getInstance().getUserName() != null){
             Map<String,String> rsaMap = new HashMap<>();
